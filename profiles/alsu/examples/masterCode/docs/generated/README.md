@@ -13,5 +13,7 @@ Controller `R00` (5069-L320ER, Logix v36). 25 UDTs, 30 AOIs, 42 modules, 49 cont
 | INTERLOCKS.md | cause and effect derived from the logic, multiple-writer check |
 | HMI_TAGS.md | HMI tag interface and alarm summary |
 | TEST_PLAN.md | FAT/SAT checklist skeleton |
+| HMI_NAVIGATION.md | HMI screen hierarchy, menu, navigation graph, reachability checks, AOG usage, bindings per screen |
+| SYSTEM.md | system overview: identification, architecture diagram, hardware inventory, networks, software, HMI, external interface |
 
 Regenerate with `lf docs build <project>`; export with `lf docs export <project> --to pdf|docx`.

@@ -6,6 +6,48 @@ Skeleton derived from the spec: one case per alarm, per physical output and per 
 
 | # | Case | Stimulus | Expected | Result | Tester / date |
 |---|---|---|---|---|---|
+| 1 | HMI screen Calib_HP_RF_Chain | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 2 | HMI screen Calib_Cavity_LCW | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 3 | HMI screen Calib_Cavity_Temp | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 4 | HMI screen Calib_RF_Power | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 5 | HMI screen Calib_Cavity_LCW | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 6 | HMI screen Calib_Cavity_Temp | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 7 | HMI screen Calib_RF_Power | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 8 | HMI screen Config_Arc_Detectors | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 9 | HMI screen Config_HP_RF_Chain | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 10 | HMI screen Config_System | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 11 | HMI screen Config_Cavity_LCW | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 12 | HMI screen Config_Cavity_Temp | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 13 | HMI screen Config_RF_Power | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 14 | HMI screen LLRF_Analog_Config | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 15 | HMI screen Config_Cavity_LCW | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 16 | HMI screen Config_Cavity_Temp | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 17 | HMI screen Config_RF_Power | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 18 | HMI screen LLRF_Analog_Config | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 19 | HMI screen Arc_Detectors | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 20 | HMI screen Auxilliary | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 21 | HMI screen Cavity | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 22 | HMI screen Cavity_LCW | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 23 | HMI screen Cavity_Temp | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 24 | HMI screen HP_Coax_Switch | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 25 | HMI screen HP_RF_Chain | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 26 | HMI screen LLRF1_Analog | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 27 | HMI screen LLRF2_Analog | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 28 | HMI screen RF_Power | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 29 | HMI screen TCU | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 30 | HMI screen Tuner1 | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 31 | HMI screen Tuner2 | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 32 | HMI screen Manual | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 33 | HMI screen MPS | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 34 | HMI screen PPS | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 35 | HMI screen Vacuum | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 36 | HMI screen HOME | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 37 | HMI screen HOME_Prev | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 38 | HMI screen Menu_Calibration | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 39 | HMI screen Menu_Configuration | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 40 | HMI screen Menu_Details | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 41 | HMI screen Menu_Main | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
+| 42 | HMI screen Vacuum | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |
 
 ## Sequence and mode tests (from SPEC.md)
 

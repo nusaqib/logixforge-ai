@@ -14,5 +14,7 @@ Controller `ConveyorDemo` (1756-L83E, Logix v33). 2 UDTs, 1 AOIs, 0 modules, 11 
 | HMI_TAGS.md | HMI tag interface and alarm summary |
 | ALARMS.csv | tag-based alarm list |
 | TEST_PLAN.md | FAT/SAT checklist skeleton |
+| HMI_NAVIGATION.md | HMI screen hierarchy, menu, navigation graph, reachability checks, AOG usage, bindings per screen |
+| SYSTEM.md | system overview: identification, architecture diagram, hardware inventory, networks, software, HMI, external interface |
 
 Regenerate with `lf docs build <project>`; export with `lf docs export <project> --to pdf|docx`.

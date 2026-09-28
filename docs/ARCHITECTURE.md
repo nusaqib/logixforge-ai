@@ -32,5 +32,7 @@ touching the rest.
 - New validation: add a method on `Validator`, a code in `standards/review-checklist.md`, a test.
 - New routine type (FBD/SFC): extend `Routine`, loader, writer, reader; FBD sheets are XML and are
   passed through verbatim today.
+- HMI: `logixforge/hmi/reader.py` reads a View Designer export (screens, folders, navigation, shortcuts, bindings, AOG use,
+  security) for documentation and review; `logixforge/docs/hmi_nav.py` builds one navigation model from either that or hmi.json.
 - HMI: `logixforge/hmi/spec.py` (hmi.json + faceplate derivation + validation) and
   `logixforge/hmi/viewdesigner.py` (text .hmi emitter). A FactoryTalk/Optix emitter would consume the same `HmiSpec`.

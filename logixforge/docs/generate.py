@@ -313,7 +313,7 @@ def interlocks_markdown(proj: Project, h: str) -> str:
 
 # ------------------------------------------------------------------ test plan
 
-def test_plan_markdown(proj: Project, h: str) -> str:
+def test_plan_markdown(proj: Project, h: str, nav=None) -> str:
     L = [_hdr(h, proj.controller.name), f"# {proj.controller.name} - test plan", "",
          "Skeleton derived from the spec: one case per alarm, per physical output and per HMI screen. "
          "Fill Expected/Result during FAT/SAT (Emulate or bench). Add sequence tests from SPEC.md by hand in the last section.", "",
@@ -333,10 +333,10 @@ def test_plan_markdown(proj: Project, h: str) -> str:
         spec = load_hmi_spec(proj)
     except Exception:  # noqa: BLE001 - docs must never fail on HMI spec problems
         spec = None
-    if spec:
-        for s in spec.screens:
-            n += 1
-            L.append(f"| {n} | HMI screen {s.name} | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |")
+    screens = [s.name for s in spec.screens] if spec else [s.name for s in (nav.screens if nav else []) if s.kind == "user"]
+    for name in screens:
+        n += 1
+        L.append(f"| {n} | HMI screen {name} | open the screen; exercise every button/input | values track the controller; commands write the bound tags | | |")
     L += ["", "## Sequence and mode tests (from SPEC.md)", "", "| # | Case | Stimulus | Expected | Result | Tester / date |", "|---|---|---|---|---|---|", ""]
     return "\n".join(L)
 
@@ -349,7 +349,9 @@ def readme_markdown(proj: Project, h: str, files: list[str]) -> str:
          f"{len(proj.data_types)} UDTs, {len(proj.aois)} AOIs, {len(proj.modules)} modules, {len(proj.tags)} controller tags, "
          f"{len(proj.programs)} programs, {len(proj.tasks)} tasks, {len(proj.alarms)} alarms.", "",
          "| File | Content |", "|---|---|"]
-    desc = {"IO_LIST.md": "modules, I/O alias tags, direct module references", "IO_LIST.csv": "I/O points for spreadsheets",
+    desc = {"SYSTEM.md": "system overview: identification, architecture diagram, hardware inventory, networks, software, HMI, external interface",
+            "HMI_NAVIGATION.md": "HMI screen hierarchy, menu, navigation graph, reachability checks, AOG usage, bindings per screen",
+            "IO_LIST.md": "modules, I/O alias tags, direct module references", "IO_LIST.csv": "I/O points for spreadsheets",
             "TAGS.md": "UDTs, AOI interfaces, controller and program tags", "ROUTINES.md": "task/program/routine tree, call graph, rung index",
             "INTERLOCKS.md": "cause and effect derived from the logic, multiple-writer check", "ALARMS.csv": "tag-based alarm list",
             "HMI_TAGS.md": "HMI tag interface and alarm summary", "TEST_PLAN.md": "FAT/SAT checklist skeleton"}
@@ -358,9 +360,33 @@ def readme_markdown(proj: Project, h: str, files: list[str]) -> str:
     return "\n".join(L)
 
 
-def generate_docs(proj: Project, out_dir: str | Path | None = None) -> list[Path]:
+def _nav_model(proj: Project, root: Path, hmi_export: str | Path | None):
+    """Navigation model from a View Designer export (explicit, or <root>/hmi-export, or docs/input/*/ViewApplication.hmi),
+    else from hmi/hmi.json; None when the project has no HMI."""
+    from .hmi_nav import nav_from_export, nav_from_spec
+    from ..hmi.reader import read_hmi_export
+    cands = [Path(hmi_export)] if hmi_export else []
+    if root.is_dir():
+        cands += [root / "hmi-export"] + [p.parent for p in (root / "docs" / "input").glob("*/ViewApplication.hmi")]
+    for c in cands:
+        if c.is_dir() and (c / "ViewApplication.hmi").exists():
+            return nav_from_export(read_hmi_export(c))
+        if c.is_file() and c.name == "ViewApplication.hmi":
+            return nav_from_export(read_hmi_export(c.parent))
+    if hmi_export:
+        raise FileNotFoundError(f"{hmi_export}: not a View Designer export folder (ViewApplication.hmi missing)")
+    try:
+        from ..hmi.spec import load_hmi_spec
+        spec = load_hmi_spec(proj) if root.is_dir() else None
+    except Exception:  # noqa: BLE001 - docs never fail on HMI spec problems
+        spec = None
+    return nav_from_spec(spec) if spec else None
+
+
+def generate_docs(proj: Project, out_dir: str | Path | None = None, hmi_export: str | Path | None = None) -> list[Path]:
     """Write the document set. `proj.source_dir` is a spec directory (-> docs/generated/) or an .L5X file
-    (existing project: -> <stem>_docs/ next to it unless `out_dir` is given; the hash is the file's)."""
+    (existing project: -> <stem>_docs/ next to it unless `out_dir` is given; the hash is the file's).
+    `hmi_export` = a View Designer export folder for HMI_NAVIGATION.md (auto-detected at <root>/hmi-export)."""
     root = Path(proj.source_dir)
     if root.is_file():
         import hashlib
@@ -377,6 +403,10 @@ def generate_docs(proj: Project, out_dir: str | Path | None = None) -> list[Path
         p.write_text(text, encoding="utf-8")
         written.append(p)
 
+    nav = _nav_model(proj, root, hmi_export)
+    from .system import system_markdown
+    from .extract import read_index
+    index_rows = read_index(root) if root.is_dir() else []
     put("IO_LIST.md", io_list_markdown(proj, h))
     write_io_csv(proj, d / "IO_LIST.csv"); written.append(d / "IO_LIST.csv")
     put("TAGS.md", tags_markdown(proj, h))
@@ -391,7 +421,12 @@ def generate_docs(proj: Project, out_dir: str | Path | None = None) -> list[Path
             for a in proj.alarms:
                 wr.writerow([a.name, a.input_path, a.condition, a.severity, a.alarm_class, a.hmi_group, a.latched, a.ack_required, a.on_delay_ms, a.message])
         written.append(p)
-    put("TEST_PLAN.md", test_plan_markdown(proj, h))
+    put("TEST_PLAN.md", test_plan_markdown(proj, h, nav))
+    if nav:
+        from .hmi_nav import hmi_navigation_markdown
+        put("HMI_NAVIGATION.md", hmi_navigation_markdown(nav, _hdr(h, proj.controller.name)))
+    names = [w.name for w in written] + ["SYSTEM.md", "README.md"]
+    put("SYSTEM.md", system_markdown(proj, _hdr(h, proj.controller.name), nav, ["SPEC.md"] + names, index_rows))
     names = [w.name for w in written]
     put("README.md", readme_markdown(proj, h, names))
     (d / STAMP).write_text(json.dumps({"spec_hash": h, "generated": date.today().isoformat(), "controller": proj.controller.name,

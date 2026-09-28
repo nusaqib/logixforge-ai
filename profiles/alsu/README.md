@@ -12,7 +12,8 @@ communicating with EPICS IOCs; operator interface is CS-Studio, with PanelView H
 - [x] Templates: `UDT_PermGroup` + `PermLatch_AOI` (fallback for the official ALS-U latch AOIs)
 - [ ] Official ALS-U Git UDTs / DIAG_ / Latch AOIs -> `templates/`
 - [ ] ALS-U Controls Alarm Philosophy AL-1692-1312 -> `standards/alarms.md`
-- [ ] `examples/masterCode/hmi/hmi.json` reverse-engineered from the export (needs the .hmi reader)
+- [x] `examples/masterCode/docs/generated/` as-built set incl. SYSTEM.md and HMI_NAVIGATION.md from the export
+- [ ] `examples/masterCode/hmi/hmi.json` reverse-engineered from the export (needs the layout half of the .hmi reader)
 
 ## Sources
 | Document | Number | Rev | Status | Loaded |

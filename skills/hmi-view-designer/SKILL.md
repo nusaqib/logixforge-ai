@@ -40,7 +40,7 @@ the **controller's own alarms**. So the HMI milestone has two halves:
 ```
 python -m logixforge.cli validate <project>          # HMI_* findings: unknown tags, wrong types, constant tags, bad access
 python -m logixforge.cli hmi build <project>         # -> <project>/build/hmi/<project_name>/...
-python -m logixforge.cli docs build <project>        # -> docs/generated/HMI_TAGS.md, ALARMS.csv (with the rest of the doc set)
+python -m logixforge.cli docs build <project>        # -> docs/generated/HMI_TAGS.md, HMI_NAVIGATION.md (hierarchy, nav graph, reachability), ALARMS.csv
 ```
 `lf hmi build` writes one package `build/hmi/<name>/`. In View Designer: create the project for the
 same terminal, add a **controller reference named as `controller_ref`** pointing at the .ACD built

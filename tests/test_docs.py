@@ -163,3 +163,52 @@ def test_docs_build_from_l5x(tmp_path):
     assert "O_Conveyor01_Run | OTE | P_Conveyor/R_Outputs:0" in (d / "INTERLOCKS.md").read_text(encoding="utf-8")
     r = subprocess.run([sys.executable, "-m", "logixforge.cli", "docs", "build", out, "-o", str(tmp_path / "x")], capture_output=True, text=True, cwd=ROOT)
     assert r.returncode == 0 and (tmp_path / "x" / "ROUTINES.md").exists(), r.stdout + r.stderr
+
+
+def test_hmi_export_reader_and_navigation_doc():
+    from logixforge.hmi.reader import read_hmi_export
+    from logixforge.docs.hmi_nav import nav_from_export, reachability, hmi_navigation_markdown
+    ex = read_hmi_export(ROOT / "profiles" / "alsu" / "examples" / "masterCode" / "hmi-export")
+    assert ex.project_name == "masterHMI" and ex.home_screen == "HOME" and ex.controllers == ["masterCode"]
+    assert "PanelView 5510" in ex.device_type and len(ex.shortcuts) == 2 and "LED_Status" in ex.aogs
+    menu = ex.screen("User-Defined Screens\Menus\Menu_Main")
+    assert "User-Defined Screens\Menus\Menu_Details" in menu.nav_targets and menu.banner is False
+    banner = ex.screen("Predefined Screens\Banner")
+    assert banner.kind == "banner" and "Navigation Menu\AlarmSummary" in banner.nav_targets
+    cav = ex.screen("Cavity")
+    assert "UDT_bi" in cav.aogs and any(b.startswith("masterCode.Cav1.") for b in cav.bindings)
+    assert ex.screen("Config_System").security == {"Operator": "ReadOnly", "Engineer": "FullAccess"}
+    nav = nav_from_export(ex)
+    seen, unreachable, dangling = reachability(nav)
+    assert nav.home == "User-Defined Screens\HOME" and dangling == []
+    assert {u.rsplit("\\", 1)[-1] for u in unreachable} == {"LLRF_Analog_Config", "Manual", "HOME_Prev"}
+    md = hmi_navigation_markdown(nav)
+    assert "## Screen hierarchy" in md and "## Navigation graph" in md and "`Configuration\System1\LLRF_Analog_Config`" in md
+    assert '15#quot; PanelView' not in md  # device only appears in prose here
+    assert "| Config_System | User-Defined Screens\Configuration | no | Operator=ReadOnly, Engineer=FullAccess |" in md
+
+
+def test_system_and_navigation_docs_from_spec(tmp_path):
+    root = _copy_demo(tmp_path)
+    written = {p.name for p in generate_docs(load_project(root))}
+    assert {"SYSTEM.md", "HMI_NAVIGATION.md"} <= written
+    gen = root / "docs" / "generated"
+    sysmd = (gen / "SYSTEM.md").read_text(encoding="utf-8")
+    assert "## 2. Architecture" in sysmd and "```mermaid" in sysmd and "| Controller | `ConveyorDemo` |" in sysmd
+    assert "## 7. External data interface" in sysmd and "| HMI_Conveyor01 |" in sysmd
+    nav = (gen / "HMI_NAVIGATION.md").read_text(encoding="utf-8")
+    assert "Overview (home)" in nav and "-->|Settings|" in nav and "Unreachable screens" in nav and ": none." in nav
+    assert "AOG_UDT_Motor" in nav
+
+
+def test_docs_build_l5x_with_hmi_export(tmp_path):
+    from logixforge.l5x.writer import write_l5x
+    out = write_l5x(load_project(DEMO), str(tmp_path / "X.L5X"))
+    hmi = ROOT / "profiles" / "alsu" / "examples" / "masterCode" / "hmi-export"
+    r = subprocess.run([sys.executable, "-m", "logixforge.cli", "docs", "build", out, "-o", str(tmp_path / "d"), "--hmi", str(hmi)],
+                       capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode == 0 and (tmp_path / "d" / "HMI_NAVIGATION.md").exists(), r.stdout + r.stderr
+    assert "masterHMI" in (tmp_path / "d" / "SYSTEM.md").read_text(encoding="utf-8")
+    r = subprocess.run([sys.executable, "-m", "logixforge.cli", "docs", "build", out, "-o", str(tmp_path / "e"), "--hmi", str(tmp_path)],
+                       capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode != 0 and "ViewApplication.hmi missing" in (r.stdout + r.stderr)

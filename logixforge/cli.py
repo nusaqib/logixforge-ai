@@ -8,7 +8,8 @@
   lf decompile <file.L5X> -o <project_dir>      # L5X -> editable spec (round-trip / review of uploads)
   lf diff <a.L5X|dir> <b.L5X|dir>
   lf rung check "<rung text>"
-  lf docs build <project_dir | file.L5X> # spec -> docs/generated/ (I/O list, tags, routines, interlocks, alarms, HMI, test plan);
+  lf docs build <project_dir | file.L5X> [--hmi <viewdesigner export>]  # spec -> docs/generated/ (SYSTEM overview, I/O list, tags,
+                                         # routines, interlocks, alarms, HMI tags + navigation, test plan);
                                          # an .L5X export of an existing project -> <stem>_docs/ (or -o)
   lf docs ingest <project_dir> <file>... # given documents -> docs/input/ + docs/extracted/*.md + docs/INDEX.md
   lf docs export <project_dir> --to pdf|docx|html   (pandoc)
@@ -321,7 +322,11 @@ def cmd_docs(a):
     from .docs.generate import generate_docs
     if a.op == "build":
         proj = _load_any(a.project)          # spec directory, or an .L5X export of an existing project
-        for p in generate_docs(proj, a.output):
+        try:
+            written = generate_docs(proj, a.output, hmi_export=a.hmi)
+        except FileNotFoundError as e:
+            sys.exit(str(e))
+        for p in written:
             print(f"wrote {p}")
         return
     if a.op == "ingest":
@@ -439,6 +444,7 @@ def main(argv=None):
     s.add_argument("--date"); s.add_argument("--used-for", dest="used_for", help="what the document feeds (naming, interlocks, I/O list ...)")
     s.add_argument("--no-copy", action="store_true", help="ingest: index the file where it is instead of copying to docs/input/")
     s.add_argument("--to", default="docx", choices=["pdf", "docx", "html"]); s.add_argument("--pdf-engine", dest="pdf_engine")
+    s.add_argument("--hmi", help="build: View Designer export folder for HMI_NAVIGATION.md (auto-detected at <project>/hmi-export)")
     s.set_defaults(fn=cmd_docs)
 
     s = sub.add_parser("online", help="live controller access via pycomm3 (EtherNet/IP)")

@@ -36,13 +36,20 @@ python -m logixforge.cli docs ingest <project> <file>... [--title T] [--doc-no A
 
 ## Generate (documents out)
 ```
-python -m logixforge.cli docs build <project>            # -> docs/generated/
+python -m logixforge.cli docs build <project> [--hmi <View Designer export>]   # -> docs/generated/
 python -m logixforge.cli docs export <project> --to docx|pdf|html [-o file] [file.md ...]   # pandoc
 ```
-`docs/generated/` = `README.md` (index and counts), `IO_LIST.md/.csv`, `TAGS.md` (UDTs, AOIs, tags),
-`ROUTINES.md` (task/program/routine tree and call graph as Mermaid, rung index), `INTERLOCKS.md`
-(cause and effect derived from the logic, multiple-writer table), `ALARMS.csv`, `HMI_TAGS.md`,
-`TEST_PLAN.md` (one case per output, alarm and screen; sequence tests are added by hand from SPEC.md).
+`docs/generated/` = `README.md` (index and counts), **`SYSTEM.md`** (system overview: identification,
+architecture diagram with chassis/remote racks/IPs/HMI, hardware inventory, networks and comms instructions,
+control software, operator interface, external data interface, document set), `IO_LIST.md/.csv`, `TAGS.md`
+(UDTs, AOIs, tags), `ROUTINES.md` (task/program/routine tree and call graph as Mermaid, rung index),
+`INTERLOCKS.md` (cause and effect derived from the logic, multiple-writer table), `ALARMS.csv`, `HMI_TAGS.md`,
+**`HMI_NAVIGATION.md`** (screen hierarchy by folder, menu shortcuts, banner, navigation graph, reachability
+checks, Add-On Graphic usage, bindings per screen; from `hmi/hmi.json` or a View Designer export found at
+`<project>/hmi-export`, `docs/input/*/ViewApplication.hmi` or `--hmi`), `TEST_PLAN.md` (one case per output,
+alarm and screen; sequence tests are added by hand from SPEC.md).
+SYSTEM.md is the inventory; the narrative system overview (purpose, physical layout, operating concept) is
+section 0 of `docs/SPEC.md` and must reference SYSTEM.md rather than repeat its tables.
 Every file carries the spec hash; `lf validate` reports `DOC_STALE` when the spec changed after the last
 build, so rebuild before every commit and before review. Markdown is canonical (diffable, renders on
 GitHub); PDF/DOCX are export targets for document control only.

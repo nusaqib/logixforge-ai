@@ -69,7 +69,7 @@ hmi/hmi.json             HMI screens/widgets; faceplates derive from UDTs (lf hm
 naming.json              regex per kind, enforced by the validator
 docs/SPEC.md             functional specification (the agent keeps it in sync)
 docs/INDEX.md, input/, extracted/   given documents (PDF/DOCX/XLSX/drawings) as received + their Markdown text (lf docs ingest)
-docs/generated/          I/O list, tags, routine map, cause-and-effect, alarms, HMI tags, test plan (lf docs build; committed)
+docs/generated/          SYSTEM overview, I/O list, tags, routine map, cause-and-effect, alarms, HMI tags + navigation, test plan (lf docs build; committed)
 build/                   generated L5X, HMI package, exported PDF/DOCX (git-ignored)
 ```
 Ladder is written as Studio 5000 neutral rung text, one rung per block, `//` comments above:

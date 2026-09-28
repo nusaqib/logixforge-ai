@@ -20,7 +20,7 @@ Two outcomes, pick with the user:
 ```
 # docs only
 python -m logixforge.cli validate <export.L5X>              # errors here mean the export is unusual; report them
-python -m logixforge.cli docs build <export.L5X> [-o <name>_docs]
+python -m logixforge.cli docs build <export.L5X> [-o <name>_docs] [--hmi <View Designer export folder>]
 
 # onboard
 python -m logixforge.cli decompile <export.L5X> -o <repo>   # spec + modules/*.xml verbatim
@@ -29,20 +29,30 @@ python -m logixforge.cli validate <repo>
 python -m logixforge.cli docs ingest <repo> <export.L5X> --title "Studio 5000 export" --no-copy   # provenance row in INDEX.md
 python -m logixforge.cli docs build <repo>
 ```
-Generated set: `README.md`, `IO_LIST.md/.csv`, `TAGS.md`, `ROUTINES.md` (Mermaid task/program/routine tree,
+Generated set: `README.md`, `SYSTEM.md` (overview: architecture diagram, racks and IPs, networks, software,
+HMI, external interface), `IO_LIST.md/.csv`, `TAGS.md`, `ROUTINES.md` (Mermaid task/program/routine tree,
 call graph, rung index), `INTERLOCKS.md` (cause and effect from the ladder/ST, multiple-writer table),
-`ALARMS.csv` (tag-based alarms, v31+ 5x80 only), `HMI_TAGS.md`, `TEST_PLAN.md` skeleton.
+`ALARMS.csv` (tag-based alarms, v31+ 5x80 only), `HMI_TAGS.md`, `HMI_NAVIGATION.md` (when an HMI export is
+given: folder tree, shortcuts, banner, navigation graph, unreachable screens, AOG usage, bindings per screen),
+`TEST_PLAN.md` skeleton.
 
 ## 3. Write the as-built description (the part only you can do)
 Create `SPEC.md` (docs only: in `<name>_docs/`; onboard: `docs/SPEC.md`) titled "<Controller> - as-built
 functional description" with:
+0. **System overview** for a reader who has never seen the system: what it protects/controls, physical
+   layout (racks, remote adapters, drives), networks, clients (HMI, SCADA/EPICS), operating concept
+   (permits -> latches -> first fault -> reset; local/remote). Paste the SYSTEM.md architecture diagram;
+   reference SYSTEM.md for the inventory instead of repeating it.
 1. **Purpose and equipment** inferred from program/routine names, descriptions and rung comments; quote them.
 2. **Structure**: paste the Mermaid tree from ROUTINES.md; state the scan order from each MainRoutine.
 3. **I/O**: from IO_LIST.md; call out module points referenced directly in logic (no buffering).
 4. **Behaviour per program**: read every routine with `lf inspect <export> --routine P/R`; describe modes,
    sequences, interlocks (cite INTERLOCKS.md rows), timers and setpoints with their values.
-5. **Alarms and HMI interface**: ALARMS.csv + HMI_TAGS.md; if an HMI export exists, list its screens and
-   which tags they bind (grep the `.hmi` files for `::` bindings).
+5. **Alarms and HMI: screens, hierarchy and navigation**: ALARMS.csv + HMI_TAGS.md; with an HMI export,
+   describe the folder tree and what each folder's screens show (HMI_NAVIGATION.md bindings per screen plus
+   a look at representative `.hmi` files), how the operator moves (menu shortcuts, hub screens, banner),
+   security per screen/folder, the Add-On Graphics used, and the reachability findings (unreachable
+   screens, leftovers, program-scope bindings). Paste the hierarchy Mermaid block, not the full graph.
 6. **Findings**: run `lf validate <export>` and the `plc-review` method; list undocumented tags, duplicate
    writers (INTERLOCKS.md first table), uncalled routines, hard-coded values, missing descriptions.
 7. **Open questions** you could not answer from the code; mark every inferred statement "(inferred)".

@@ -123,13 +123,13 @@ def lf_hmi_build(project_dir: str, output: str = "") -> str:
 
 
 @_tool
-def lf_docs_build(path: str, output: str = "") -> str:
+def lf_docs_build(path: str, output: str = "", hmi_export: str = "") -> str:
     """Generate the document set (I/O list, tags, routines, cause-and-effect, alarms, HMI tags, test plan)
     from a spec directory (-> docs/generated/) or from an .L5X export of an existing project (-> <stem>_docs/ or output)."""
     from .docs.generate import generate_docs
     p = Path(path)
     proj = load_project(p) if p.is_dir() else read_l5x(p)
-    return json.dumps({"written": [str(x) for x in generate_docs(proj, output or None)]})
+    return json.dumps({"written": [str(x) for x in generate_docs(proj, output or None, hmi_export=hmi_export or None)]})
 
 
 @_tool

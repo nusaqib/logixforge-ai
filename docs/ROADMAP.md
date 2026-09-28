@@ -13,10 +13,12 @@
 
 - [x] Site profile mechanism + ALS-U profile (AL-1605-0840 Rev B, masterCode reference project, masterHMI export)
 - [x] Documentation layer: `lf docs ingest|build|export`, DOC_* validator rules, per-project repo scaffold (`lf init --git`)
+- [x] SYSTEM.md overview and HMI_NAVIGATION.md (View Designer export reader); as-built docs for existing L5X projects
 - [x] Toolkit hardened on a real v36 project: MOVE/EQ/... mnemonics, BIT members, module-defined types, /* */ ST comments, PowerLossProgram
 
 ## 0.2
-- .hmi reader: turn a View Designer export into hmi.json (reference layouts, faceplate contracts)
+- .hmi reader -> hmi.json (reference layouts, faceplate contracts); the structural half (screens, navigation, bindings,
+  AOG use, security) exists in `logixforge/hmi/reader.py` and feeds HMI_NAVIGATION.md
 - ALS-U: custom top bar generator, editing-mode gating, LED AOG reuse from the reference export
 - Docs: SPEC.md section checks per profile, sequence tests derived from SPEC state tables, .dwg/.pdf drawing OCR via an external tool
 - Module XML library (`templates/modules/`) for common 1756/5069/1734 modules and PowerFlex AOPs
