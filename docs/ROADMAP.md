@@ -11,7 +11,12 @@
 - [ ] Import the demo L5X (with AlarmConditions) and the View Designer folder; fix rejected names in `UNVERIFIED`
 - [ ] Confirm Logix Designer SDK method names against an installed SDK; pin adapter
 
+- [x] Site profile mechanism + ALS-U profile (AL-1605-0840 Rev B, masterCode reference project, masterHMI export)
+- [x] Toolkit hardened on a real v36 project: MOVE/EQ/... mnemonics, BIT members, module-defined types, /* */ ST comments, PowerLossProgram
+
 ## 0.2
+- .hmi reader: turn a View Designer export into hmi.json (reference layouts, faceplate contracts)
+- ALS-U: custom top bar generator, editing-mode gating, LED AOG reuse from the reference export
 - Module XML library (`templates/modules/`) for common 1756/5069/1734 modules and PowerFlex AOPs
 - Emulate test harness: `lf test` runs pytest pycomm3 tests against Logix Emulate with sim tags
 - Tag-based alarm definitions (v36+) and ALMD/ALMA generation from `Alm_` tags

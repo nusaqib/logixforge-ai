@@ -4,6 +4,16 @@ Site profile for ALS-U (Advanced Light Source Upgrade, LBNL) PLC and HMI work wi
 Logix Designer and Studio 5000 View Designer. Primary platform: Allen-Bradley CompactLogix (5069)
 communicating with EPICS IOCs; operator interface is CS-Studio, with PanelView HMIs as local panels.
 
+## Status
+- [x] AL-1605-0840 Rev B -> `standards/` (split by topic, spec IDs verbatim)
+- [x] `naming.json` from table 8.3 (+ observed variants from masterCode: `R00_`, `_Hi_SP`, bare `Sts` members)
+- [x] Reference project masterCode.L5X -> `examples/masterCode/` (0 validator errors)
+- [x] Reference HMI masterHMI export -> `examples/masterCode/hmi-export/`; conventions in `standards/hmi.md`
+- [x] Templates: `UDT_PermGroup` + `PermLatch_AOI` (fallback for the official ALS-U latch AOIs)
+- [ ] Official ALS-U Git UDTs / DIAG_ / Latch AOIs -> `templates/`
+- [ ] ALS-U Controls Alarm Philosophy AL-1692-1312 -> `standards/alarms.md`
+- [ ] `examples/masterCode/hmi/hmi.json` reverse-engineered from the export (needs the .hmi reader)
+
 ## Sources
 | Document | Number | Rev | Status | Loaded |
 |---|---|---|---|---|
