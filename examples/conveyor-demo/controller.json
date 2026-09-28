@@ -1,0 +1,10 @@
+{
+  "name": "ConveyorDemo",
+  "processor_type": "1756-L83E",
+  "major_rev": 33,
+  "minor_rev": 11,
+  "software_revision": "33.00",
+  "description": "LogixForge demo: one conveyor with start/stop, feedback fault and HMI interface",
+  "chassis_size": 10,
+  "slot": 0
+}

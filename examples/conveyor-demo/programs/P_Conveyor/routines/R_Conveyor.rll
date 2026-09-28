@@ -1,0 +1,27 @@
+//! Conveyor 01 motor control
+// Start request: local pushbutton or HMI command, only when safety OK
+[XIC(PB_Start),XIC(HMI_Conveyor01.Cmd_Start)]XIC(ESTOP_OK)OTE(Conveyor01_Start);
+
+// Stop request: local stop pressed, HMI stop, or E-stop
+[XIO(PB_Stop_OK),XIC(HMI_Conveyor01.Cmd_Stop),XIO(ESTOP_OK)]OTE(Conveyor01_Stop);
+
+// Fault delay configuration from HMI
+MOV(HMI_Conveyor01.Cfg_FaultDelay_ms,Conveyor01.FaultDelay);
+
+// Motor control block
+AOI_Motor(Conveyor01,Conveyor01_Start,Conveyor01_Stop,I_Conveyor01_Aux,HMI_Conveyor01.Cmd_Reset,HMI_Conveyor01.Sts_Run,HMI_Conveyor01.Sts_Fault);
+
+// Ready status for HMI
+XIC(ESTOP_OK)XIO(Conveyor01.Fault)OTE(HMI_Conveyor01.Sts_Ready);
+
+// Clear momentary HMI commands once consumed
+XIC(HMI_Conveyor01.Cmd_Start)XIC(Conveyor01.Run)OTU(HMI_Conveyor01.Cmd_Start);
+
+XIC(HMI_Conveyor01.Cmd_Stop)XIO(Conveyor01.Run)OTU(HMI_Conveyor01.Cmd_Stop);
+
+XIC(HMI_Conveyor01.Cmd_Reset)XIO(Conveyor01.Fault)OTU(HMI_Conveyor01.Cmd_Reset);
+
+// Run-hour accumulator: 1 h retentive timer, add 1.0 h on DN then reset
+XIC(Conveyor01.Run)RTO(T_RunHours,?,?);
+
+XIC(T_RunHours.DN)ADD(HMI_Conveyor01.Sts_RunHours,1.0,HMI_Conveyor01.Sts_RunHours)RES(T_RunHours);

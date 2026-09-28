@@ -1,0 +1,10 @@
+{
+  "name": "UDT_Alarms",
+  "description": "Alarm bits for the line; tag-based alarm conditions are attached to the members (alarms.json)",
+  "members": [
+    { "name": "Conveyor01_Fault", "data_type": "BOOL", "description": "Conveyor 01 run feedback missing" },
+    { "name": "EStopActive", "data_type": "BOOL", "description": "Emergency stop circuit open" },
+    { "name": "SimModeActive", "data_type": "BOOL", "description": "Simulation mode is active" },
+    { "name": "Spare", "data_type": "DINT", "description": "Spare for future alarm bits" }
+  ]
+}

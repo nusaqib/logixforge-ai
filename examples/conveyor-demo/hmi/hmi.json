@@ -1,0 +1,44 @@
+{
+  "target": "view-designer",
+  "project_name": "ConveyorDemo_HMI",
+  "controller_ref": "LGX",
+  "terminal": { "catalog": "2715P-T10CD", "width": 1280, "height": 800 },
+  "home_screen": "Overview",
+  "screens": [
+    {
+      "name": "Overview",
+      "title": "Conveyor 01 - Overview",
+      "columns": 3,
+      "widgets": [
+        { "type": "faceplate", "tag": "HMI_Conveyor01", "label": "Conveyor 01" },
+        { "type": "indicator", "tag": "I_ESTOP_OK", "label": "E-Stop circuit", "on_text": "OK", "off_text": "E-STOP",
+          "on_color": "#2ecc71", "off_color": "#e74c3c" },
+        { "type": "indicator", "tag": "Sys_HeartBeat", "label": "PLC heartbeat", "on_text": "1", "off_text": "0",
+          "on_color": "#29abe2", "off_color": "#7f8c8d" },
+        { "type": "indicator", "tag": "Sim_Mode", "label": "Simulation mode", "on_text": "ON", "off_text": "OFF",
+          "on_color": "#f39c12", "off_color": "#7f8c8d" },
+        { "type": "indicator", "tag": "Alarms.EStopActive", "label": "Alarm: E-stop", "on_text": "ACTIVE", "off_text": "-",
+          "on_color": "#e74c3c", "off_color": "#7f8c8d" },
+        { "type": "indicator", "tag": "Alarms.Conveyor01_Fault", "label": "Alarm: conveyor fault", "on_text": "ACTIVE", "off_text": "-",
+          "on_color": "#e74c3c", "off_color": "#7f8c8d" },
+        { "type": "button", "text": "Ack all alarms", "tag": "Sys_AlarmAck", "action": "set1" },
+        { "type": "nav_button", "text": "Alarm summary", "screen": "Navigation Menu\\AlarmSummary" },
+        { "type": "nav_button", "text": "Settings", "screen": "Settings" }
+      ]
+    },
+    {
+      "name": "Settings",
+      "title": "Conveyor 01 - Settings",
+      "columns": 2,
+      "widgets": [
+        { "type": "numeric_input", "tag": "HMI_Conveyor01.Cfg_FaultDelay_ms", "label": "Feedback fault delay", "units": "ms",
+          "min": 0, "max": 60000 },
+        { "type": "numeric", "tag": "HMI_Conveyor01.Sts_RunHours", "label": "Run hours", "units": "h", "decimals": 1 },
+        { "type": "button", "text": "Simulation ON", "tag": "Sim_Mode", "action": "set1" },
+        { "type": "button", "text": "Simulation OFF", "tag": "Sim_Mode", "action": "set0" },
+        { "type": "text", "text": "Simulation mode blocks physical outputs and simulates the contactor feedback." },
+        { "type": "nav_button", "text": "Overview", "screen": "Overview" }
+      ]
+    }
+  ]
+}

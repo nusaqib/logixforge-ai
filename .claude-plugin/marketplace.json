@@ -1,0 +1,14 @@
+{
+  "name": "logixforge-marketplace",
+  "owner": { "name": "LogixForge contributors" },
+  "metadata": { "description": "Marketplace hosting the LogixForge Studio 5000 plugin" },
+  "plugins": [
+    {
+      "name": "logixforge",
+      "source": "./",
+      "description": "Agentic PLC programming for Rockwell Studio 5000 (L5X build/validate, milestone skills, live SDK access)",
+      "version": "0.1.0",
+      "category": "industrial-automation"
+    }
+  ]
+}

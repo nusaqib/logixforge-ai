@@ -1,0 +1,5 @@
+{
+  "name": "P_Conveyor",
+  "main_routine": "MainRoutine",
+  "description": "Conveyor 01 control: input mapping, motor control, alarms, output mapping"
+}

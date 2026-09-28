@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "logixforge": {
+      "command": "python",
+      "args": ["-m", "logixforge.mcp_server"],
+      "cwd": "${CLAUDE_PLUGIN_ROOT}",
+      "env": {
+        "PYTHONPATH": "${CLAUDE_PLUGIN_ROOT}",
+        "LOGIXFORGE_MCP_TRANSPORT": "stdio"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+//! Main routine: calls sub-routines in scan order (inputs -> control -> alarms -> outputs)
+// First-scan flag from controller status bit
+XIC(S:FS)OTE(Sys_FirstScan);
+
+// Input mapping
+JSR(R_Inputs,0);
+
+// Conveyor control
+JSR(R_Conveyor,0);
+
+// Alarm handling (Structured Text)
+JSR(R_Alarms,0);
+
+// Output mapping
+JSR(R_Outputs,0);

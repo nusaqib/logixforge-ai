@@ -1,0 +1,14 @@
+{
+  "name": "UDT_Motor",
+  "description": "HMI interface for a single-direction motor: commands, status and configuration",
+  "members": [
+    { "name": "Cmd_Start", "data_type": "BOOL", "description": "HMI start command (momentary, cleared by PLC)" },
+    { "name": "Cmd_Stop", "data_type": "BOOL", "description": "HMI stop command (momentary, cleared by PLC)" },
+    { "name": "Cmd_Reset", "data_type": "BOOL", "description": "HMI fault reset (momentary, cleared by PLC)" },
+    { "name": "Sts_Run", "data_type": "BOOL", "description": "Motor is commanded to run" },
+    { "name": "Sts_Fault", "data_type": "BOOL", "description": "Motor fault latched (feedback missing)" },
+    { "name": "Sts_Ready", "data_type": "BOOL", "description": "Motor is ready to start (no fault, safety OK)" },
+    { "name": "Cfg_FaultDelay_ms", "data_type": "DINT", "description": "Feedback fault delay in milliseconds" },
+    { "name": "Sts_RunHours", "data_type": "REAL", "description": "Accumulated run hours" }
+  ]
+}

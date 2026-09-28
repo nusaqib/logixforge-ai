@@ -1,0 +1,12 @@
+[
+  { "name": "Conveyor01", "data_type": "AOI_Motor", "description": "Conveyor 01 motor control instance" },
+  { "name": "PB_Start", "data_type": "BOOL", "description": "Mapped start pushbutton" },
+  { "name": "PB_Stop_OK", "data_type": "BOOL", "description": "Mapped stop pushbutton, 1 = not pressed" },
+  { "name": "ESTOP_OK", "data_type": "BOOL", "description": "Mapped E-stop healthy" },
+  { "name": "Conveyor01_Start", "data_type": "BOOL", "description": "Combined start request" },
+  { "name": "Conveyor01_Stop", "data_type": "BOOL", "description": "Combined stop request" },
+  { "name": "Alarm_Any", "data_type": "BOOL", "description": "Any alarm active (HMI banner)" },
+  { "name": "T_HeartBeat", "data_type": "TIMER", "description": "Heartbeat toggle timer" },
+  { "name": "T_RunHours", "data_type": "TIMER", "description": "Run-hour accumulator (1 h preset)" },
+  { "name": "T_SimAux", "data_type": "TIMER", "description": "Simulated contactor aux delay" }
+]

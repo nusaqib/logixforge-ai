@@ -1,0 +1,7 @@
+//! Map program tags to physical outputs (last routine in scan; all outputs gated by safety, blocked in simulation)
+XIC(Conveyor01.Run)XIC(ESTOP_OK)XIO(Sim_Mode)OTE(O_Conveyor01_Run);
+
+// Simulation: contactor aux follows the run command after 300 ms
+XIC(Sim_Mode)XIC(Conveyor01.Run)TON(T_SimAux,300,?);
+
+XIC(Sim_Mode)XIC(T_SimAux.DN)OTE(I_Conveyor01_Aux);

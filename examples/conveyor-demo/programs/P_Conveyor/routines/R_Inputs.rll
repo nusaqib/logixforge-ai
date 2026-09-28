@@ -1,0 +1,12 @@
+//! Map physical inputs to program tags (single place to invert/debounce)
+XIC(I_PB_Start)OTE(PB_Start);
+
+// Stop PB is normally closed: healthy = 1
+XIC(I_PB_Stop)OTE(PB_Stop_OK);
+
+XIC(I_ESTOP_OK)OTE(ESTOP_OK);
+
+// 1 Hz heartbeat for HMI watchdog
+XIO(T_HeartBeat.DN)TON(T_HeartBeat,?,?);
+
+XIC(T_HeartBeat.DN)OTE(Sys_HeartBeat);

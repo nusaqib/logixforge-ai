@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Conveyor01_Fault",
+    "input": "Alarms.Conveyor01_Fault",
+    "message": "Conveyor 01: run feedback missing (check contactor and aux contact)",
+    "severity": 750,
+    "class": "Conveyor",
+    "hmi_group": "Line",
+    "on_delay_ms": 0,
+    "latched": false,
+    "ack_required": true
+  },
+  {
+    "name": "ESTOP_Active",
+    "input": "Alarms.EStopActive",
+    "message": "Emergency stop active - clear the cause and reset the safety relay",
+    "severity": 1000,
+    "class": "Safety",
+    "hmi_group": "Line",
+    "ack_required": true
+  },
+  {
+    "name": "SimMode_Active",
+    "input": "Alarms.SimModeActive",
+    "message": "Simulation mode is ON - physical outputs are blocked",
+    "severity": 300,
+    "class": "System",
+    "hmi_group": "Line",
+    "ack_required": false
+  }
+]

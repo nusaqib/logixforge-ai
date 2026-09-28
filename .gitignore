@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+.venv/
+.env
+*.ACD
+*.Sem
+*.Wrk
+*.bak
+.claude/settings.local.json

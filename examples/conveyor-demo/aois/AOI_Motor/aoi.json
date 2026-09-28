@@ -1,0 +1,20 @@
+{
+  "name": "AOI_Motor",
+  "revision": "1.0",
+  "description": "Single-direction motor with seal-in start/stop, run-feedback supervision and latched fault.",
+  "vendor": "LogixForge",
+  "revision_note": "Initial release",
+  "parameters": [
+    { "name": "Start", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Start command (level or pulse)" },
+    { "name": "Stop", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Stop command, 1 = stop (drops seal-in)" },
+    { "name": "Feedback", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Run feedback (contactor aux / drive running)" },
+    { "name": "Reset", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Fault reset" },
+    { "name": "FaultDelay", "data_type": "DINT", "usage": "Input", "required": false, "default": 2000, "description": "Feedback supervision delay (ms)" },
+    { "name": "Run", "data_type": "BOOL", "usage": "Output", "required": true, "description": "Run output to contactor/drive" },
+    { "name": "Fault", "data_type": "BOOL", "usage": "Output", "required": true, "description": "Latched feedback fault" }
+  ],
+  "local_tags": [
+    { "name": "T_Fault", "data_type": "TIMER", "description": "Feedback supervision timer" },
+    { "name": "ONS_Start", "data_type": "BOOL", "description": "One-shot storage for Start" }
+  ]
+}

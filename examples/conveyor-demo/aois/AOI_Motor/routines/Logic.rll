@@ -1,0 +1,15 @@
+//! AOI_Motor main logic
+// Load fault delay preset every scan so the parameter can be changed online
+MOV(FaultDelay,T_Fault.PRE);
+
+// Seal-in run: Start (one-shot) or already running, dropped by Stop or Fault
+[XIC(Start)ONS(ONS_Start),XIC(Run)]XIO(Stop)XIO(Fault)OTE(Run);
+
+// Feedback supervision: running without feedback for FaultDelay ms -> fault
+XIC(Run)XIO(Feedback)TON(T_Fault,?,?);
+
+// Latch fault when timer expires
+XIC(T_Fault.DN)OTL(Fault);
+
+// Reset fault only when the timer is not done (feedback restored or motor stopped)
+XIC(Reset)XIO(T_Fault.DN)OTU(Fault);

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logixforge"
+version = "0.1.0"
+description = "Agentic PLC programming toolkit for Rockwell Studio 5000 (L5X build/validate/inspect, online access, MCP server)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+mcp = ["mcp>=1.2"]
+online = ["pycomm3>=1.2"]
+sdk = []  # Logix Designer SDK is installed from Rockwell's wheel, not PyPI
+dev = ["pytest>=8"]
+
+[project.scripts]
+lf = "logixforge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["logixforge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

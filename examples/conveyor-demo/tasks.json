@@ -1,0 +1,10 @@
+[
+  {
+    "name": "MainTask",
+    "kind": "CONTINUOUS",
+    "priority": 10,
+    "watchdog_ms": 500,
+    "programs": ["P_Conveyor"],
+    "description": "Main continuous task"
+  }
+]

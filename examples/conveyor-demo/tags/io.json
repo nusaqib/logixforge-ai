@@ -1,0 +1,7 @@
+[
+  { "name": "I_PB_Start", "data_type": "BOOL", "description": "Local start pushbutton (NO). TODO: alias_for Local:2:I.Data.0 once I/O module XML is added" },
+  { "name": "I_PB_Stop", "data_type": "BOOL", "description": "Local stop pushbutton (NC, 1 = healthy). TODO: alias_for Local:2:I.Data.1", "value": 1 },
+  { "name": "I_ESTOP_OK", "data_type": "BOOL", "description": "E-stop circuit healthy from safety relay. TODO: alias_for Local:2:I.Data.2", "value": 1 },
+  { "name": "I_Conveyor01_Aux", "data_type": "BOOL", "description": "Conveyor 01 contactor auxiliary contact. TODO: alias_for Local:2:I.Data.3" },
+  { "name": "O_Conveyor01_Run", "data_type": "BOOL", "description": "Conveyor 01 contactor coil. TODO: alias_for Local:3:O.Data.0" }
+]

@@ -1,0 +1,4 @@
+Name,Input,Condition,Severity,Class,Group,Latched,AckRequired,OnDelay_ms,Message
+Conveyor01_Fault,Alarms.Conveyor01_Fault,TRIP,750,Conveyor,Line,False,True,0,Conveyor 01: run feedback missing (check contactor and aux contact)
+ESTOP_Active,Alarms.EStopActive,TRIP,1000,Safety,Line,False,True,0,Emergency stop active - clear the cause and reset the safety relay
+SimMode_Active,Alarms.SimModeActive,TRIP,300,System,Line,False,False,0,Simulation mode is ON - physical outputs are blocked

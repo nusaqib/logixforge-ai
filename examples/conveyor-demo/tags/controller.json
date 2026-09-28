@@ -1,0 +1,9 @@
+[
+  { "name": "HMI_Conveyor01", "data_type": "UDT_Motor", "description": "HMI interface for conveyor 01",
+    "value": { "Cmd_Start": 0, "Cmd_Stop": 0, "Cmd_Reset": 0, "Sts_Run": 0, "Sts_Fault": 0, "Sts_Ready": 0, "Cfg_FaultDelay_ms": 2000, "Sts_RunHours": 0.0 } },
+  { "name": "Alarms", "data_type": "UDT_Alarms", "description": "Line alarm bits (tag-based alarm conditions attached)" },
+  { "name": "Sys_HeartBeat", "data_type": "BOOL", "description": "1 Hz heartbeat for HMI watchdog" },
+  { "name": "Sys_FirstScan", "data_type": "BOOL", "description": "True for the first scan after power-up/download" },
+  { "name": "Sys_AlarmAck", "data_type": "BOOL", "description": "Global alarm acknowledge from HMI" },
+  { "name": "Sim_Mode", "data_type": "BOOL", "description": "Simulation mode: feedback simulated, physical outputs blocked" }
+]

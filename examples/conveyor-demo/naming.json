@@ -1,0 +1,7 @@
+{
+  "_comment": "House naming patterns (regex). Kinds: tag, udt, aoi, program, routine, task, member, parameter, local",
+  "udt": "^UDT_[A-Za-z][A-Za-z0-9_]*$",
+  "aoi": "^AOI_[A-Za-z][A-Za-z0-9_]*$",
+  "program": "^P_[A-Za-z][A-Za-z0-9_]*$",
+  "routine": "^(MainRoutine|R_[A-Za-z][A-Za-z0-9_]*)$"
+}
