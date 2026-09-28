@@ -24,8 +24,8 @@ from .spec import Faceplate, HmiSpec, Screen, Widget
 # element types; 'TagName' is not the behavior's property; MinValue/MaxValue are not NumericInput members;
 # 'ForceAnimations' is not accepted on elements or screens; a StateTable named 'StateTable' fails to parse.
 # Import round 2 proved: '^Tag', StateTable state props 'fillcolor'/'text' and the UDT-typed AOG user
-# property all import clean. Round 3: a screen can only instantiate an AOG that already exists in the project
-# (any unresolved reference discards the whole import), so AOGs ship as a separate first-pass package.
+# property all import clean. Round 3: screens resolve user AOGs only with `using ViewDesigner::AOG;` (AOG_USING);
+# with it, the whole package imports in one pass into a fresh project. Any error discards the whole import.
 UNVERIFIED = {
     "numeric_input_element": "NumericInput",          # element type confirmed; its min/max property names unknown
     "behavior_tag_property": "^Tag",                 # 'tag' is a caret-keyword; 'TagName' rejected
@@ -34,7 +34,7 @@ UNVERIFIED = {
     "aog_udt_datatype_prefix": "::{ref}.{udt}",      # AOG user property DataType for a UDT
 }
 EMIT_FORCE_ANIMATIONS = False                        # rejected by View Designer on import
-AOG_USING = "using ViewDesigner::AOG;"               # screens instantiating user AOGs: round 2 failed without it
+AOG_USING = "using ViewDesigner::AOG;"               # required for screens that instantiate user AOGs (verified)
 BEHAVIORS = {"set1": "BehaviorSetTagTo1OnRelease", "set0": "BehaviorSetTagTo0OnRelease", "toggle": "BehaviorToggleTagOnRelease"}
 
 FONT = "Arial Unicode MS"
@@ -410,10 +410,9 @@ def view_application_file(spec: HmiSpec, home_screen: bool = True) -> str:
 
 
 def build_viewdesigner(proj: Project, spec: HmiSpec, out_dir: str | Path) -> list[str]:
-    """Write two import packages:
-       <name>_1_AddOnGraphics/   import FIRST on a fresh project (screens can only reference AOGs that already exist;
-                                 an import with any unresolved reference is discarded as a whole)
-       <name>/                   everything (screens, shortcuts, AOGs); use for re-imports/updates
+    """Write one import package <name>/ (ViewApplication.hmi, screens, shortcuts, Add-On Graphics).
+    Verified: imports in one pass into a fresh View Designer project (screens need `using ViewDesigner::AOG;`
+    to resolve user Add-On Graphics). An import with any error is discarded as a whole.
     """
     written = []
 
@@ -424,11 +423,6 @@ def build_viewdesigner(proj: Project, spec: HmiSpec, out_dir: str | Path) -> lis
         written.append(str(p))
 
     aogs = {udt: aog_file(spec, fp, proj) for udt, fp in spec.faceplates.items()}
-    if aogs:
-        stage1 = Path(out_dir) / f"{spec.project_name}_1_AddOnGraphics"
-        w(stage1, "ViewApplication.hmi", view_application_file(spec, home_screen=False))
-        for udt, text in aogs.items():
-            w(stage1, f"Assets/Add-On Graphics/{aog_name(udt)}.hmi", text)
     root = Path(out_dir) / spec.project_name
     w(root, "ViewApplication.hmi", view_application_file(spec))
     for udt, text in aogs.items():
@@ -450,10 +444,9 @@ Verified import procedure (View Designer; an import with any error is discarded 
 2. Add a controller reference named '{spec.controller_ref}' that points at the Logix Designer .ACD
    built from the same LogixForge project (Project Properties > References). All bindings use
    '::{spec.controller_ref}.<Tag>'.
-3. FIRST TIME ONLY: File > Import Project > ../{spec.project_name}_1_AddOnGraphics/ViewApplication.hmi
-   (screens can only reference Add-On Graphics that already exist in the project).
-4. File > Import Project > this folder's ViewApplication.hmi (screens, shortcuts, AOGs; re-run for updates).
-5. Alarms: PanelView 5000 shows the controller's tag-based alarms (alarms.json in the PLC spec);
+3. File > Import Project > this folder's ViewApplication.hmi (screens, shortcuts, Add-On Graphics;
+   one pass, re-run for updates; same-named elements are overwritten).
+4. Alarms: PanelView 5000 shows the controller's tag-based alarms (alarms.json in the PLC spec);
    the Alarm Summary / Alarm Manager predefined screens need no configuration.
 If the log rejects an element or property name, see logixforge/hmi/viewdesigner.py (UNVERIFIED /
 EMIT_* constants), change it, and regenerate with `lf hmi build`.

@@ -42,15 +42,13 @@ python -m logixforge.cli validate <project>          # HMI_* findings: unknown t
 python -m logixforge.cli hmi build <project>         # -> <project>/build/hmi/<project_name>/...
 python -m logixforge.cli hmi docs <project>          # -> docs/HMI_TAGS.md, docs/ALARMS.csv
 ```
-`lf hmi build` writes two packages under `build/hmi/`: `<name>_1_AddOnGraphics/` and `<name>/`.
-In View Designer: create the project for the same terminal, add a **controller reference named as
-`controller_ref`** pointing at the .ACD built from this spec, then **File > Import Project**:
-first time import `<name>_1_AddOnGraphics/ViewApplication.hmi`, then `<name>/ViewApplication.hmi`
-(updates only need the second: once the AOGs exist in the project, the full package imports in one
-pass). An import with any error is discarded as a whole, and a screen can only reference Add-On
-Graphics that already exist in the project, hence the two passes on a fresh project. Imported
-elements overwrite same-named ones (a backup .vpd is created). Import scales screens if the terminal
-differs; better to generate for the right terminal.
+`lf hmi build` writes one package `build/hmi/<name>/`. In View Designer: create the project for the
+same terminal, add a **controller reference named as `controller_ref`** pointing at the .ACD built
+from this spec, then **File > Import Project > `<name>/ViewApplication.hmi`**. One pass imports
+screens, shortcuts and Add-On Graphics (verified on a fresh project). An import with any error is
+discarded as a whole, so fix the log and re-import. Imported elements overwrite same-named ones (a
+backup .vpd is created). Import scales screens if the terminal differs; better to generate for the
+right terminal.
 
 ## Rules
 - Every widget tag must be a controller-scope tag with `ExternalAccess` Read/Write (writes) or at least
@@ -69,8 +67,8 @@ Element and property names come from Rockwell's 9324-RM001 examples, corrected b
 - Rejected by import (never emit): `ForceAnimations` on elements or screens; `TagName` on button
   behaviors; `MinValue`/`MaxValue` on NumericInput (clamp setpoints in the PLC instead).
 - Confirmed in later rounds: `^Tag` as the behavior's tag property, StateTable state properties
-  `fillcolor`/`text`, UDT-typed AOG user property `::REF.UDT_x`, `using ViewDesigner::AOG;` on screens,
-  and the two-pass import. An empty `HomeScreen := "";` is rejected; omit the line instead.
+  `fillcolor`/`text`, UDT-typed AOG user property `::REF.UDT_x`, and `using ViewDesigner::AOG;` on
+  screens (required to resolve user AOGs). An empty `HomeScreen := "";` is rejected; omit the line.
 Reading an import log: "no viable alternative at input 'X'" is a syntax error at X; "Couldn't resolve
 reference to Member 'X'" means X is not a property of that element; "Couldn't resolve reference to
 HMIDefinition 'X'" means the element type X is unknown (or its Add-On Graphic file failed to parse).

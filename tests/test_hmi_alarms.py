@@ -72,11 +72,8 @@ def test_hmi_build(tmp_path):
     assert ("Cmd_Start", "button") in kinds and ("Sts_Fault", "indicator") in kinds
     assert ("Cfg_FaultDelay_ms", "numeric_input") in kinds and ("Sts_RunHours", "numeric") in kinds
     written = build_viewdesigner(proj, spec, tmp_path / "hmi")
-    stage1 = tmp_path / "hmi" / "ConveyorDemo_HMI_1_AddOnGraphics"
-    assert (stage1 / "Assets" / "Add-On Graphics" / "AOG_UDT_Motor.hmi").exists()
-    assert "HomeScreen" not in (stage1 / "ViewApplication.hmi").read_text(encoding="utf-8")
-    rel = {str(Path(w).relative_to(tmp_path / "hmi" / "ConveyorDemo_HMI")).replace("\\", "/")
-           for w in written if "_1_AddOnGraphics" not in w}
+    assert not (tmp_path / "hmi" / "ConveyorDemo_HMI_1_AddOnGraphics").exists()
+    rel = {str(Path(w).relative_to(tmp_path / "hmi" / "ConveyorDemo_HMI")).replace("\\", "/") for w in written}
     assert {"ViewApplication.hmi", "User-Defined Screens/Overview.hmi", "User-Defined Screens/Settings.hmi",
             "Assets/Add-On Graphics/AOG_UDT_Motor.hmi", "Navigation Menu/Overview.hmi"} <= rel
     base = tmp_path / "hmi" / "ConveyorDemo_HMI"
@@ -84,6 +81,7 @@ def test_hmi_build(tmp_path):
     assert 'HomeScreen := "Overview";' in va and "ViewProject ConveyorDemo_HMI" in va
     ov = (base / "User-Defined Screens" / "Overview.hmi").read_text(encoding="utf-8")
     assert ov.startswith("namespace ViewDesigner;") and "Screen Overview {" in ov and _balanced(ov)
+    assert "using ViewDesigner::AOG;" in ov          # required to resolve user Add-On Graphics (verified by import)
     assert '"::LGX.I_ESTOP_OK"' in ov and 'TagInstance := "::LGX.HMI_Conveyor01"' in ov
     assert 'screenName := "Navigation Menu\\AlarmSummary";' in ov
     assert 'screenName := "User-Defined Screens\\Settings";' in ov
