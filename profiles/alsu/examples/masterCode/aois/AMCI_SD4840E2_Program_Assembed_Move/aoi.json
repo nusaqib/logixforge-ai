@@ -1,0 +1,712 @@
+{
+  "name": "AMCI_SD4840E2_Program_Assembed_Move",
+  "revision": "1.0",
+  "description": "",
+  "vendor": "AMCI",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "Axis_Status_Bits",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Number_of_Segments",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_1_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_1_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_1_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_1_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_2_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_2_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_2_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_2_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_3_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_3_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_3_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_3_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_4_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_4_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_4_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_4_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_5_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_5_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_5_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_5_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_6_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_6_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_6_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_6_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_7_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_7_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_7_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_7_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_8_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_8_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_8_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_8_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_9_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_9_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_9_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_9_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_10_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_10_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_10_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_10_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_11_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_11_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_11_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_11_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_12_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_12_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_12_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_12_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_13_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_13_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_13_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_13_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_14_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_14_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_14_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_14_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_15_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_15_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_15_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_15_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_16_Distance",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_16_Programmed_Speed",
+      "data_type": "DINT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_16_Acceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Segment_16_Deceleration",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "AMCI_SD4840E2_output_data",
+      "data_type": "_000A:SD4840E2_4342D302:O:0",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    },
+    {
+      "name": "Assembled_Move_Programmed",
+      "data_type": "BOOL",
+      "usage": "Output",
+      "required": false,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    }
+  ],
+  "local_tags": [
+    {
+      "name": "command_data_block",
+      "data_type": "INT",
+      "dimensions": "10"
+    },
+    {
+      "name": "Assembled_Move_setup",
+      "data_type": "INT",
+      "dimensions": "10"
+    },
+    {
+      "name": "Assembled_Move_counter",
+      "data_type": "COUNTER"
+    },
+    {
+      "name": "comment_coil",
+      "data_type": "BOOL"
+    }
+  ]
+}

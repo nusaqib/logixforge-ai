@@ -1,0 +1,55 @@
+{
+  "name": "UDT_Modules",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "R01",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "R03",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_Tuner",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_Tuner",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LLRF1_DIG",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LLRF1_ANLG",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LLRF2_DIG",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LLRF2_ANLG",
+      "data_type": "UDT_Module_Status",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

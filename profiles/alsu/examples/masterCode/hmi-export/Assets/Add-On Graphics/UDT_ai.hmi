@@ -1,0 +1,210 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic UDT_ai {
+	Description := "";
+	Vendor := "";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 153.12;
+	Height := 22;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		UDT_ai {
+			DataType := "::masterCode.UDT_ai";
+			Description := "";
+			Category := "General";
+		}
+	}
+	NumericDisplay NumericDisplay_001 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 1;
+		LeadingZero := true;
+		TrailingZeros := true;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "UDT_ai.Val";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#e7e8e9";
+		X := 75.62;
+		Y := 0;
+		Width := 40;
+		Height := 22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_002 {
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "UDT_ai.Sts";
+			State State0 (
+				fillcolor := "#ff0000")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 25.15;
+		Y := 3.5;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_001 {
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "UDT_ai.Ltch+(UDT_ai.Ltch*UDT_ai.Byp)";
+			State State0 (
+				fillcolor := "#ff0000")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State State2 (
+				fillcolor := "#fff200")
+			{
+				value := "2";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 50.31;
+		Y := 3.5;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_003 {
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "UDT_ai.Wrn";
+			State State0 (
+				fillcolor := "#f89800")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 0;
+		Y := 3.5;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_001 {
+		Text := "" -> "UDT_ai.@EngineeringUnit";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 123.12;
+		Y := 0;
+		Width := 30;
+		Height := 22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "P010_Device_Control",
+  "main_routine": "MainRoutine",
+  "fault_routine": "",
+  "description": "",
+  "disabled": false,
+  "kind": "Normal"
+}

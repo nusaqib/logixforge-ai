@@ -1,0 +1,90 @@
+{
+  "_source": "AL-1605-0840 Rev B table 8.3 (PLC Naming Convention). Regex per kind -> NAME_STYLE warnings; 'suffixes' apply to atomic tags and UDT members by data type; 'exempt' patterns skip suffix checks (buffered I/O R##S##xx).",
+  "controller": "^[A-Za-z0-9]+(_[A-Za-z0-9]+)?$",
+  "task": "^T\\d{2,3}_[A-Z][A-Za-z0-9]*(_[A-Za-z0-9]+)*$",
+  "program": "^P\\d{2,3}_[A-Z][A-Za-z0-9]*(_[A-Za-z0-9]+)*$",
+  "routine": "^(MainRoutine|R\\d{2,3}_[A-Z][A-Za-z0-9]*(_[A-Za-z0-9]+)*)$",
+  "aoi": "^(DIAG_[A-Za-z0-9_]+|[A-Za-z][A-Za-z0-9_]*_AOI)$",
+  "udt": "^(MainUDT|UDT)_[A-Z][A-Za-z0-9_]*$",
+  "suffixes": {
+    "BOOL": [
+      "_Sts",
+      "_Ltch",
+      "_FF",
+      "_Byp",
+      "_Cmd",
+      "_Out",
+      "_Sel",
+      "_Rst",
+      "_OSS",
+      "_H_Sts",
+      "_L_Sts",
+      "_HH_Sts",
+      "_LL_Sts",
+      "_HH_Ltch",
+      "_LL_Ltch",
+      "_Hi_Sts",
+      "_Lo_Sts",
+      "_Wrn",
+      "_Sum"
+    ],
+    "REAL": [
+      "_Val",
+      "_SP",
+      "_H_SP",
+      "_L_SP",
+      "_HH_SP",
+      "_LL_SP",
+      "_Hi_SP",
+      "_Lo_SP",
+      "_HiHi_SP",
+      "_LoLo_SP"
+    ],
+    "INT": [
+      "_Val",
+      "_SP",
+      "_H_SP",
+      "_L_SP",
+      "_HH_SP",
+      "_LL_SP",
+      "_Hi_SP",
+      "_Lo_SP",
+      "_HiHi_SP",
+      "_LoLo_SP"
+    ],
+    "DINT": [
+      "_Val",
+      "_SP",
+      "_H_SP",
+      "_L_SP",
+      "_HH_SP",
+      "_LL_SP",
+      "_Hi_SP",
+      "_Lo_SP",
+      "_HiHi_SP",
+      "_LoLo_SP"
+    ],
+    "TIMER": [
+      "_Tmr"
+    ],
+    "array": [
+      "_bi",
+      "_bo",
+      "_ai",
+      "_ao",
+      "_mbbi",
+      "_mbbo",
+      "_real",
+      "_dint",
+      "_int",
+      "_sint",
+      "_bool"
+    ]
+  },
+  "exempt": [
+    "^R\\d{2}S\\d{2}[A-Z]{2,4}$",
+    "^Sys_",
+    "^Spare"
+  ],
+  "_observed": "masterCode (2025): routines R00_..R10_ two-digit plus MainRoutine; programs P000_/P010_; setpoints _Hi_SP/_Lo_SP; guideline forms preferred, observed variants accepted"
+}

@@ -1,0 +1,307 @@
+{
+  "name": "UDT_LLRF_ANLG",
+  "description": "LLRF Controller Analog Chassis",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "PSU_UP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_TEMP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_VCCINT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_VCCAUX",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_VCCBRAM",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_IN_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_IN_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_A_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_A_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_B_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_B_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_C_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_C_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_D_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_D_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_E_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_E_CURRENT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DC_A_TEMP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DC_A_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DC_B_TEMP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DC_B_VOLTAGE",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_Flags",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_VAL",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_VAL_MAX",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_VAL_MIN",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_Flags",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_VAL",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_VAL_MAX",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_VAL_MIN",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_ERR_FLAGS",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PWR_FLAG",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_FREQ",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PHASE_A",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PHASE_B",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PHASE_C",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PHASE_D",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_SET_PHASE_E",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_RESET_PERMIT",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_RESET_MINMAX",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_MIN_THR",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_A_MAX_THR",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_RESET_PERMIT",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_RESET_MINMAX",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_MIN_THR",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "INLK_B_MAX_THR",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "UP_A_SW",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "UP_B_SW",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "UP_A_ATT",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "UP_B_ATT",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PSU_RESET_ERR_FLAGS",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

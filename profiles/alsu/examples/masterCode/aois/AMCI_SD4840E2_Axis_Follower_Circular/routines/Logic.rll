@@ -1,0 +1,43 @@
+// There are two possible follower commands, the jog CW and jog CCW.   The jog CW reads the position and velocity at a faster than normal rate but at a cost of slower updating status bits.  The jog CCW reads the position and velocity, and updates the status bits, at the normal rate used by all of the SD4840E2’s standard moves.    
+// 
+// The following uses the jog CCW command to select the normal update rate.
+XIO(_0_for_Normal_1_for_Continuous)MOVE(256,command_data_block[0]);
+
+// There are two possible follower commands, the jog CW and jog CCW.   The jog CW reads the position and velocity at a faster than normal rate but at a cost of slower updating status bits.  The jog CCW reads the position and velocity, and updates the status bits, at the normal rate used by all of the SD3840E2’s standard moves.    
+// 
+// The following uses the jog CW command to select the faster than normal update rate with the slower updating of the status bits.
+XIC(_0_for_Normal_1_for_Continuous)MOVE(128,command_data_block[0]);
+
+// The following rung moves a decimal value of --28672 (16#9000) to the Least Significant word of Command Bits.  This enables the driver and sets the follower mode to be based on the SD17060E2's motor position.
+XIO(_0_follow_motor_1_follow_encoder)MOVE(-28672,command_data_block[1]);
+
+// The following rung moves a decimal value of --16384 (16#C000) to Least Significant word of Command Bits.  This enables the driver and sets the follower mode to be based on the SD17060E2's encoder.
+XIC(_0_follow_motor_1_follow_encoder)MOVE(-16384,command_data_block[1]);
+
+// The following rung takes the position data from the virtual axis, multiplies it by the conversion factor, and sends it to the SD17060E2.
+MUL(Follower_Position,Conversion_Constant,axis_follower_position)COP(axis_follower_position,command_data_block[2],2);
+
+// The following rung takes the velocity data from the virtual axis, multiplies it by the conversion factor, and sends it to the SD17060E2.
+MUL(Follower_Velocity,Conversion_Constant,axis_follower_velocity)COP(axis_follower_velocity,command_data_block[4],2);
+
+// Move the acceleration value from outside the AOI instruction to word six of the ten word command block.
+MOVE(Acceleration,command_data_block[6]);
+
+// Move the deceleration value from outside the AOI instruction to word seven of the ten word command block.
+MOVE(Deceleration,command_data_block[7]);
+
+// Words 8 of the 10 word command block is the proportional coefficient.
+MOVE(Proportional_Coefficient,command_data_block[8]);
+
+// Words 9 of the 10 word command block is the unwind value.
+MOVE(Position_Unwind,command_data_block[9]);
+
+// The following rung sets the Axis_Folower_occurring output bit to give the user an indication that the linear follower motion is occurring.
+[XIC(Axis_Status_Bits.0) ,XIC(Axis_Status_Bits.1) ]OTL(Axis_Follower_occurring);
+
+[XIC(Axis_Status_Bits.11) ,XIC(Axis_Status_Bits.12) ,XIC(Axis_Status_Bits.13) ]OTE(ER)MOVE(0,command_data_block[0]);
+
+OTL(EN);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD17060E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

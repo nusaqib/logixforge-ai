@@ -1,0 +1,229 @@
+[
+  {
+    "name": "Cav1",
+    "data_type": "UDT_Cavity",
+    "description": "Cavity 1"
+  },
+  {
+    "name": "Cav2",
+    "data_type": "UDT_Cavity",
+    "description": "Cavity 2"
+  },
+  {
+    "name": "DrvCtrl1",
+    "data_type": "UDT_DriveControl",
+    "description": "RF Drive Control 1"
+  },
+  {
+    "name": "DrvCtrl2",
+    "data_type": "UDT_DriveControl",
+    "description": "RF Drive Control 2"
+  },
+  {
+    "name": "EPICS",
+    "data_type": "UDT_Local_Remote",
+    "description": "EPICS"
+  },
+  {
+    "name": "Feeder1",
+    "data_type": "UDT_Feeder"
+  },
+  {
+    "name": "Feeder2",
+    "data_type": "UDT_Feeder"
+  },
+  {
+    "name": "HMI",
+    "data_type": "UDT_Local_Remote",
+    "description": "HMI"
+  },
+  {
+    "name": "HPA1",
+    "data_type": "UDT_HPA",
+    "description": "HPA 1"
+  },
+  {
+    "name": "HPA2",
+    "data_type": "UDT_HPA",
+    "description": "HPA 2"
+  },
+  {
+    "name": "HP_Cx_Sw1",
+    "data_type": "UDT_HP_Coax_SW",
+    "description": "High Power RF Switch 1"
+  },
+  {
+    "name": "HP_Cx_Sw2",
+    "data_type": "UDT_HP_Coax_SW",
+    "description": "High Power RF Switch 2"
+  },
+  {
+    "name": "LLRF1",
+    "data_type": "UDT_LLRF",
+    "description": "LLRF Controller 1"
+  },
+  {
+    "name": "LLRF1_Arc_Detector",
+    "data_type": "UDT_ArcDetector",
+    "dimensions": "3"
+  },
+  {
+    "name": "LLRF1_Arc_Detector_Ltch",
+    "data_type": "INT"
+  },
+  {
+    "name": "LLRF1_Arc_Detector_Sts",
+    "data_type": "INT"
+  },
+  {
+    "name": "LLRF1_Power",
+    "data_type": "UDT_RF_Power_Ch",
+    "dimensions": "10"
+  },
+  {
+    "name": "LLRF1_Power_Byp",
+    "data_type": "INT",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF1_Power_Hi_SP",
+    "data_type": "REAL",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF1_Power_Intlk_Mode",
+    "data_type": "INT",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF1_Power_Lo_SP",
+    "data_type": "REAL",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF1_Power_Phase",
+    "data_type": "REAL",
+    "dimensions": "10"
+  },
+  {
+    "name": "LLRF1_Power_Sum",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "LLRF2",
+    "data_type": "UDT_LLRF",
+    "description": "LLRF Controller 2"
+  },
+  {
+    "name": "LLRF2_Arc_Detector",
+    "data_type": "UDT_ArcDetector",
+    "dimensions": "3"
+  },
+  {
+    "name": "LLRF2_Arc_Detector_Ltch",
+    "data_type": "INT"
+  },
+  {
+    "name": "LLRF2_Arc_Detector_Sts",
+    "data_type": "INT"
+  },
+  {
+    "name": "LLRF2_Power",
+    "data_type": "UDT_RF_Power_Ch",
+    "dimensions": "10"
+  },
+  {
+    "name": "LLRF2_Power_Byp",
+    "data_type": "INT",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF2_Power_Hi_SP",
+    "data_type": "REAL",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF2_Power_Intlk_Mode",
+    "data_type": "INT",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF2_Power_Lo_SP",
+    "data_type": "REAL",
+    "dimensions": "2 10"
+  },
+  {
+    "name": "LLRF2_Power_Phase",
+    "data_type": "REAL",
+    "dimensions": "10"
+  },
+  {
+    "name": "LLRF2_Power_Sum",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Local_RF_OFF",
+    "data_type": "UDT_bi"
+  },
+  {
+    "name": "Main_LCWR_Pressure",
+    "data_type": "UDT_ai"
+  },
+  {
+    "name": "Main_LCWR_Temp",
+    "data_type": "UDT_ai"
+  },
+  {
+    "name": "Main_LCWS_Pressure",
+    "data_type": "UDT_ai"
+  },
+  {
+    "name": "Main_LCWS_Temp",
+    "data_type": "UDT_ai"
+  },
+  {
+    "name": "Modules",
+    "data_type": "UDT_Modules"
+  },
+  {
+    "name": "MPS",
+    "data_type": "UDT_MPS",
+    "description": "AR Global MPS"
+  },
+  {
+    "name": "PPS",
+    "data_type": "UDT_PPS",
+    "description": "PSS"
+  },
+  {
+    "name": "RF_Power_Editing_Mode",
+    "data_type": "INT"
+  },
+  {
+    "name": "RF_Power_Editing_Mode_Prev",
+    "data_type": "INT"
+  },
+  {
+    "name": "System",
+    "data_type": "UDT_System",
+    "description": "ARRF 1&2"
+  },
+  {
+    "name": "Tuner1",
+    "data_type": "UDT_Tuner",
+    "description": "Cavity Tuner 1"
+  },
+  {
+    "name": "Tuner2",
+    "data_type": "UDT_Tuner",
+    "description": "Cavity Tuner 2"
+  },
+  {
+    "name": "TunerPot_PS",
+    "data_type": "UDT_bi"
+  },
+  {
+    "name": "Vacuum",
+    "data_type": "UDT_Vacuum"
+  }
+]

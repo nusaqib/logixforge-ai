@@ -1,0 +1,26 @@
+//! This routine evaluates internal system state commands based on EPICS / HMI commands
+// ### Commands for system states ###
+// Latch/generate system state commands based on Local/Remote mode/commands
+NOP();
+
+// ARRF1 Transmit On Command
+[XIC(System.Remote) XIC(EPICS.ARRF1_TransmitOn_Cmd) ,XIO(System.Remote) XIC(HMI.ARRF1_TransmitOn_Cmd) ]OTE(System.ARRF1_TransmitOn_Cmd);
+
+// ARRF1 Transmit Off Command
+// HMI Transmit Off command works in both Local/Remote mode
+[XIC(System.Remote) XIC(EPICS.ARRF1_TransmitOff_Cmd) ,XIC(HMI.ARRF1_TransmitOff_Cmd) ]OTE(System.ARRF1_TransmitOff_Cmd);
+
+// ARRF 2 Transmit On Command
+[XIC(System.Remote) XIC(EPICS.ARRF2_TransmitOn_Cmd) ,XIO(System.Remote) XIC(HMI.ARRF2_TransmitOn_Cmd) ]OTE(System.ARRF2_TransmitOn_Cmd);
+
+// ARRF 2 Transmit Off Command
+// HMI Transmit Off command works in both Local/Remote mode
+[XIC(System.Remote) XIC(EPICS.ARRF2_TransmitOff_Cmd) ,XIC(HMI.ARRF2_TransmitOff_Cmd) ]OTE(System.ARRF2_TransmitOff_Cmd);
+
+// ### Timer for Reset command ###
+NOP();
+
+// Timer for Reset command to provide ample time for fault resets
+[XIC(System.Remote) XIC(EPICS.Rst_Cmd) ,XIC(HMI.Rst_Cmd) ]TOF(ResetCmdTimer,?,?);
+
+XIC(ResetCmdTimer.TT)OTE(System.Rst);

@@ -1,0 +1,31 @@
+{
+  "name": "UDT_HPA",
+  "description": "HPA",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Fault",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "Internal Fault"
+    },
+    {
+      "name": "State",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "DC/RF state"
+    },
+    {
+      "name": "Permit",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Permit logic"
+    },
+    {
+      "name": "Permit_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Permit Output from PLC to HPA"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "name": "UDT_HP_Coax_SW",
+  "description": "High Power RF Switch",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "S2_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Switch S2 Status"
+    },
+    {
+      "name": "S6_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Switch S6 Status"
+    },
+    {
+      "name": "S8_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Switch S8 Status"
+    },
+    {
+      "name": "S10_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Switch S10 Status"
+    },
+    {
+      "name": "Pos_DumLoad",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Dumy Load Position Status"
+    },
+    {
+      "name": "Pos_Cav",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Cavity Position Status"
+    },
+    {
+      "name": "Pos_DumLoad_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Dummy Load Position Command"
+    },
+    {
+      "name": "Pos_DumLoad_Cmd_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Dummy Load Position Command from HMI"
+    },
+    {
+      "name": "Pos_Cav_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Cavity Position Command"
+    },
+    {
+      "name": "Pos_Cav_Cmd_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Cavity Position Command from HMI"
+    },
+    {
+      "name": "Pos_DumLoad_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Dummy Load Position Output"
+    },
+    {
+      "name": "Pos_DumLoad_OutLogic",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Dummy Load Position Logic"
+    },
+    {
+      "name": "Ctrl_Mode_Auto",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Auto/Manual Mode"
+    },
+    {
+      "name": "AC_120V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "Power OK"
+    },
+    {
+      "name": "Pos_Cav_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Cavity Load Position Output"
+    },
+    {
+      "name": "Pos_Cav_OutLogic",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Cavity Load Position Logic"
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Aggregated interlocks signal"
+    },
+    {
+      "name": "OK_to_move",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Enable",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PPS_Match",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "UDT_LLRF",
+  "description": "LLRF Controller",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "ANLG",
+      "data_type": "UDT_LLRF_ANLG",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DIG",
+      "data_type": "UDT_LLRF_DIG",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LO_Fault",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "FastPermit",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Permit",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Permit_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

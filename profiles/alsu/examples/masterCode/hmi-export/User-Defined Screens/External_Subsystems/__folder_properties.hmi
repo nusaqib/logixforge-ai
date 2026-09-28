@@ -1,0 +1,8 @@
+namespace ViewDesigner;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+ViewFolder External_Subsystems {
+}

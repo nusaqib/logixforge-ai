@@ -1,0 +1,163 @@
+{
+  "name": "UDT_System",
+  "description": "AR RF System",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Simulation_Mode",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Remote",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Remote"
+    },
+    {
+      "name": "Rst",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Reset command"
+    },
+    {
+      "name": "ARRF1_Enable",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "System 1 Enable command"
+    },
+    {
+      "name": "ARRF2_Enable",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "System 2 Enable command"
+    },
+    {
+      "name": "ARRF1_TransmitOn_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Transmit command"
+    },
+    {
+      "name": "ARRF1_TransmitOff_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF2_TransmitOn_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Transmit command"
+    },
+    {
+      "name": "ARRF2_TransmitOff_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PLC_SA_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PLC_LA_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ResetFF",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Fault",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF1_Intlks_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF2_Intlks_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Ext_Intlks_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DriveCtrlPermitDecouple",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "MainSensors_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF1_Sensors_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF2_Sensors_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Ext_Intlks_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CAE_Sensors_DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CAE_Sensors_DC_24V_Cmd",
+      "data_type": "On_Off_Control",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Power_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Comm_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Aux_Intlks_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

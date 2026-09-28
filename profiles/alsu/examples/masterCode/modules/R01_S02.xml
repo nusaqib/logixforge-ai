@@ -1,0 +1,357 @@
+<Module Name="R01_S02" CatalogNumber="5069-SERIAL/A" Vendor="1" ProductType="12" ProductCode="320" Major="2" Minor="11" ParentModule="R01" ParentModPortId="1" Inhibited="false" MajorFault="false" SafetyEnabled="false">
+<EKey State="Disabled" />
+<Ports>
+<Port Id="1" Address="2" Type="5069" Upstream="true" />
+</Ports>
+<Communications>
+<ConfigData ConfigSize="3484">
+<Data Format="L5K">
+[3488,191,1,0,0,1,262912,0,0,0,256,0,1,0,0,1,262912,0,0,0,256,0,1,7602344,0,6145,6291713,6554625,7604993,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6657,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,514,0,0,1,459520,3500,500,200,1,196865,45,0,0,1048834,52,2949120,0,196865,5,6488064,0,196873
+		,20,655360,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0
+		,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256
+		,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0
+		,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,1,786564,0,7937,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,514,0,0,1,459520
+		,3500,200,500,0,196865,60,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0
+		,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256
+		,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0
+		,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,256,1,0,0,3,0,0,1,17040128
+		,3500,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1
+		,0,0,1,0,0,1,0,0,1,0,0,1,0,3,0,0,1,17040128,3500,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0
+		,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,4,0,0,1,1027,50528257,168624178,5,0,0,1,1027,196865,5,50,0
+		,6,0,0,1,1027,196608769,7,0,0,0,1027,1,0,8,0,0,1,1029,18808835]
+</Data>
+</ConfigData>
+<ConfigScript Size="2712">
+<Data Format="L5K">
+[-108,10,0,0,4,0,0,0,0,0,0,0,0,0,0,0,-125,10,0,0,11,0,0,0,0,1,0,0,0,2,0,0,0,-90,1,0,0,16,4,32,4,37,0,103,3,48,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-32,12,0,0,-128
+		,2,0,0,80,0,0,0,2,0,0,0,-66,1,0,0,16,4,32,4,37,0,105,3,48,3,2,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,4,0,-84,13,0,0,-56,0,0,0,-56,0,0,0,0,0,0,0,0,1,0,0
+		,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1
+		,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0
+		,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+		,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0
+		,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,-96,13,0,0,96
+		,15,0,0,80,0,0,0,2,0,0,0,-102,1,0,0,16,4,32,4,37,0,107,3,48,3,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+		,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0
+		,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+		,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+		,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+		,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,-128,12,0,0,0,29,0,0,80,0,0,0,2,0,0,0,-90,1,0,0,16,4,32,4,37,0,104,3,48,3,1,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		,0,0,1,-32,12,0,0,-128,41,0,0,80,0,0,0,2,0,0,0,-66,1,0,0,16,4,32,4,37,0,106,3,48,3,2,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,4,0,-84,13,0,0,-56,0,0
+		,0,-56,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0
+		,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0
+		,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0
+		,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0
+		,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0
+		,0,0,0,0,0,0,1,-96,13,0,0,96,54,0,0,80,0,0,0,2,0,0,0,-102,1,0,0,16,4,32,4,37,0,108,3,48,3,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0
+		,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0
+		,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+		,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+		,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+		,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,-128,12,0,0,0,68,0,0,80,0,0,0,0]
+</Data>
+</ConfigScript>
+<Connections>
+<Connection Name="Channel0ModbusMaster" RPI="6000" Type="StandardDataDriven" OutputSize="116" InputSize="168" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Multicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 bf 2d 00 f2 03 2d 00 18 04" InputTagSuffix="I00" OutputTagSuffix="O00">
+<InputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="Decorated">
+<Structure DataType="AB:5000_ModbusMaster_Status_C9A190D9:I:1">
+<DataValueMember Name="RunMode" DataType="BOOL" Value="1" />
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0" />
+<DataValueMember Name="DiagnosticActive" DataType="BOOL" Value="0" />
+<DataValueMember Name="DiagnosticSequenceCount" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="LastExecutedCommand" DataType="SINT" Radix="Decimal" Value="0" />
+<StructureMember Name="Command00" DataType="AB:5000_Modbus_R_I400000_045_Struct:I:1">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disabled" DataType="BOOL" Value="0" />
+<DataValueMember Name="ParityError" DataType="BOOL" Value="0" />
+<DataValueMember Name="ResponseTimeout" DataType="BOOL" Value="0" />
+<DataValueMember Name="FramingError" DataType="BOOL" Value="0" />
+<DataValueMember Name="BufferOverrun" DataType="BOOL" Value="0" />
+<DataValueMember Name="SlaveErrorCode" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ExecutionCount" DataType="SINT" Radix="Decimal" Value="-126" />
+<DataValueMember Name="Data400000" DataType="INT" Radix="Decimal" Value="2" />
+<DataValueMember Name="Data400001" DataType="INT" Radix="Decimal" Value="2" />
+<DataValueMember Name="Data400002" DataType="INT" Radix="Decimal" Value="2" />
+<DataValueMember Name="Data400003" DataType="INT" Radix="Decimal" Value="2" />
+<DataValueMember Name="Data400004" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400005" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400006" DataType="INT" Radix="Decimal" Value="4" />
+<DataValueMember Name="Data400007" DataType="INT" Radix="Decimal" Value="6234" />
+<DataValueMember Name="Data400008" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400009" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400010" DataType="INT" Radix="Decimal" Value="310" />
+<DataValueMember Name="Data400011" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400012" DataType="INT" Radix="Decimal" Value="16398" />
+<DataValueMember Name="Data400013" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400014" DataType="INT" Radix="Decimal" Value="16398" />
+<DataValueMember Name="Data400015" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400016" DataType="INT" Radix="Decimal" Value="16398" />
+<DataValueMember Name="Data400017" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400018" DataType="INT" Radix="Decimal" Value="16398" />
+<DataValueMember Name="Data400019" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400020" DataType="INT" Radix="Decimal" Value="16398" />
+<DataValueMember Name="Data400021" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400022" DataType="INT" Radix="Decimal" Value="-6801" />
+<DataValueMember Name="Data400023" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400024" DataType="INT" Radix="Decimal" Value="546" />
+<DataValueMember Name="Data400025" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400026" DataType="INT" Radix="Decimal" Value="-29170" />
+<DataValueMember Name="Data400027" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400028" DataType="INT" Radix="Decimal" Value="-29170" />
+<DataValueMember Name="Data400029" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400030" DataType="INT" Radix="Decimal" Value="988" />
+<DataValueMember Name="Data400031" DataType="INT" Radix="Decimal" Value="988" />
+<DataValueMember Name="Data400032" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400033" DataType="INT" Radix="Decimal" Value="924" />
+<DataValueMember Name="Data400034" DataType="INT" Radix="Decimal" Value="995" />
+<DataValueMember Name="Data400035" DataType="INT" Radix="Decimal" Value="995" />
+<DataValueMember Name="Data400036" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400037" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400038" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400039" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400040" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400041" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400042" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400043" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400044" DataType="INT" Radix="Decimal" Value="0" />
+</StructureMember>
+<StructureMember Name="Command01" DataType="AB:5000_Modbus_W_Response_Struct:I:1">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disabled" DataType="BOOL" Value="0" />
+<DataValueMember Name="ParityError" DataType="BOOL" Value="0" />
+<DataValueMember Name="ResponseTimeout" DataType="BOOL" Value="0" />
+<DataValueMember Name="FramingError" DataType="BOOL" Value="0" />
+<DataValueMember Name="BufferOverrun" DataType="BOOL" Value="0" />
+<DataValueMember Name="SlaveErrorCode" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ExecutionCount" DataType="SINT" Radix="Decimal" Value="7" />
+</StructureMember>
+<StructureMember Name="Command02" DataType="AB:5000_Modbus_R_I400099_005_Struct:I:1">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disabled" DataType="BOOL" Value="0" />
+<DataValueMember Name="ParityError" DataType="BOOL" Value="0" />
+<DataValueMember Name="ResponseTimeout" DataType="BOOL" Value="0" />
+<DataValueMember Name="FramingError" DataType="BOOL" Value="0" />
+<DataValueMember Name="BufferOverrun" DataType="BOOL" Value="0" />
+<DataValueMember Name="SlaveErrorCode" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ExecutionCount" DataType="SINT" Radix="Decimal" Value="-127" />
+<DataValueMember Name="Data400099" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400100" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400101" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400102" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400103" DataType="INT" Radix="Decimal" Value="0" />
+</StructureMember>
+<StructureMember Name="Command03" DataType="AB:5000_Modbus_R_R400010_010_Struct:I:1">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disabled" DataType="BOOL" Value="0" />
+<DataValueMember Name="ParityError" DataType="BOOL" Value="0" />
+<DataValueMember Name="ResponseTimeout" DataType="BOOL" Value="0" />
+<DataValueMember Name="FramingError" DataType="BOOL" Value="0" />
+<DataValueMember Name="BufferOverrun" DataType="BOOL" Value="0" />
+<DataValueMember Name="SlaveErrorCode" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ExecutionCount" DataType="SINT" Radix="Decimal" Value="-127" />
+<DataValueMember Name="Data400010" DataType="REAL" Radix="Float" Value="1.14813988e-040" />
+<DataValueMember Name="Data400012" DataType="REAL" Radix="Float" Value="5.09596200e-041" />
+<DataValueMember Name="Data400014" DataType="REAL" Radix="Float" Value="1.14813988e-040" />
+<DataValueMember Name="Data400016" DataType="REAL" Radix="Float" Value="9.22698987e-041" />
+<DataValueMember Name="Data400018" DataType="REAL" Radix="Float" Value="1.14813988e-040" />
+<DataValueMember Name="Data400020" DataType="REAL" Radix="Float" Value="1.38187647e-040" />
+<DataValueMember Name="Data400022" DataType="REAL" Radix="Float" Value="1.60731736e-040" />
+<DataValueMember Name="Data400024" DataType="REAL" Radix="Float" Value="8.18358300e-043" />
+<DataValueMember Name="Data400026" DataType="REAL" Radix="Float" Value="5.09596200e-041" />
+<DataValueMember Name="Data400028" DataType="REAL" Radix="Float" Value="5.09596200e-041" />
+</StructureMember>
+</Structure>
+</Data>
+</InputTag>
+<OutputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="L5K">
+[1,0,0,0,0,[0,0,2525,5941,5125,0,0,0,0,0,0,0,2987,7669,5536,0,0,0,0,0,3,3,3,3,3,3,0,0,0,0,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0]]
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_ModbusMaster_Run_02DAEA98:O:1">
+<DataValueMember Name="Run" DataType="BOOL" Value="1" />
+<DataValueMember Name="Command00Disable" DataType="BOOL" Value="0" />
+<DataValueMember Name="Command01Disable" DataType="BOOL" Value="0" />
+<DataValueMember Name="Command02Disable" DataType="BOOL" Value="0" />
+<DataValueMember Name="Command03Disable" DataType="BOOL" Value="0" />
+<StructureMember Name="Command01" DataType="AB:5000_Modbus_W_I400045_052_Struct:O:0">
+<DataValueMember Name="Data400045" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400046" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400047" DataType="INT" Radix="Decimal" Value="2525" />
+<DataValueMember Name="Data400048" DataType="INT" Radix="Decimal" Value="5941" />
+<DataValueMember Name="Data400049" DataType="INT" Radix="Decimal" Value="5125" />
+<DataValueMember Name="Data400050" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400051" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400052" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400053" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400054" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400055" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400056" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400057" DataType="INT" Radix="Decimal" Value="2987" />
+<DataValueMember Name="Data400058" DataType="INT" Radix="Decimal" Value="7669" />
+<DataValueMember Name="Data400059" DataType="INT" Radix="Decimal" Value="5536" />
+<DataValueMember Name="Data400060" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400061" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400062" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400063" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400064" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400065" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400066" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400067" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400068" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400069" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400070" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400071" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400072" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400073" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400074" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400075" DataType="INT" Radix="Decimal" Value="28" />
+<DataValueMember Name="Data400076" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400077" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400078" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400079" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400080" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400081" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400082" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400083" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400084" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400085" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400086" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400087" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400088" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400089" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400090" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400091" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400092" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400093" DataType="INT" Radix="Decimal" Value="3" />
+<DataValueMember Name="Data400094" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400095" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400096" DataType="INT" Radix="Decimal" Value="0" />
+</StructureMember>
+</Structure>
+</Data>
+</OutputTag>
+</Connection>
+<Connection Name="Channel1ModbusMaster" RPI="80000" Type="StandardDataDriven" OutputSize="12" InputSize="132" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Multicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 bf 2d 00 f4 03 2d 00 19 04" InputTagSuffix="I10" OutputTagSuffix="O10">
+<InputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="Decorated">
+<Structure DataType="AB:5000_ModbusMaster_Status_2A0BFA90:I:1">
+<DataValueMember Name="RunMode" DataType="BOOL" Value="1" />
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0" />
+<DataValueMember Name="DiagnosticActive" DataType="BOOL" Value="0" />
+<DataValueMember Name="DiagnosticSequenceCount" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Fault" DataType="BOOL" Value="1" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="LastExecutedCommand" DataType="SINT" Radix="Decimal" Value="0" />
+<StructureMember Name="Command00" DataType="AB:5000_Modbus_R_I400000_060_Struct:I:1">
+<DataValueMember Name="Fault" DataType="BOOL" Value="1" />
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disabled" DataType="BOOL" Value="0" />
+<DataValueMember Name="ParityError" DataType="BOOL" Value="0" />
+<DataValueMember Name="ResponseTimeout" DataType="BOOL" Value="1" />
+<DataValueMember Name="FramingError" DataType="BOOL" Value="0" />
+<DataValueMember Name="BufferOverrun" DataType="BOOL" Value="0" />
+<DataValueMember Name="SlaveErrorCode" DataType="SINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ExecutionCount" DataType="SINT" Radix="Decimal" Value="28" />
+<DataValueMember Name="Data400000" DataType="INT" Radix="Decimal" Value="582" />
+<DataValueMember Name="Data400001" DataType="INT" Radix="Decimal" Value="14826" />
+<DataValueMember Name="Data400002" DataType="INT" Radix="Decimal" Value="997" />
+<DataValueMember Name="Data400003" DataType="INT" Radix="Decimal" Value="1781" />
+<DataValueMember Name="Data400004" DataType="INT" Radix="Decimal" Value="997" />
+<DataValueMember Name="Data400005" DataType="INT" Radix="Decimal" Value="11544" />
+<DataValueMember Name="Data400006" DataType="INT" Radix="Decimal" Value="1634" />
+<DataValueMember Name="Data400007" DataType="INT" Radix="Decimal" Value="5916" />
+<DataValueMember Name="Data400008" DataType="INT" Radix="Decimal" Value="417" />
+<DataValueMember Name="Data400009" DataType="INT" Radix="Decimal" Value="5956" />
+<DataValueMember Name="Data400010" DataType="INT" Radix="Decimal" Value="416" />
+<DataValueMember Name="Data400011" DataType="INT" Radix="Decimal" Value="5916" />
+<DataValueMember Name="Data400012" DataType="INT" Radix="Decimal" Value="748" />
+<DataValueMember Name="Data400013" DataType="INT" Radix="Decimal" Value="5932" />
+<DataValueMember Name="Data400014" DataType="INT" Radix="Decimal" Value="733" />
+<DataValueMember Name="Data400015" DataType="INT" Radix="Decimal" Value="5484" />
+<DataValueMember Name="Data400016" DataType="INT" Radix="Decimal" Value="644" />
+<DataValueMember Name="Data400017" DataType="INT" Radix="Decimal" Value="9608" />
+<DataValueMember Name="Data400018" DataType="INT" Radix="Decimal" Value="5850" />
+<DataValueMember Name="Data400019" DataType="INT" Radix="Decimal" Value="9592" />
+<DataValueMember Name="Data400020" DataType="INT" Radix="Decimal" Value="5860" />
+<DataValueMember Name="Data400021" DataType="INT" Radix="Decimal" Value="1031" />
+<DataValueMember Name="Data400022" DataType="INT" Radix="Decimal" Value="2461" />
+<DataValueMember Name="Data400023" DataType="INT" Radix="Decimal" Value="2475" />
+<DataValueMember Name="Data400024" DataType="INT" Radix="Decimal" Value="-8026" />
+<DataValueMember Name="Data400025" DataType="INT" Radix="Decimal" Value="1031" />
+<DataValueMember Name="Data400026" DataType="INT" Radix="Decimal" Value="2698" />
+<DataValueMember Name="Data400027" DataType="INT" Radix="Decimal" Value="2709" />
+<DataValueMember Name="Data400028" DataType="INT" Radix="Decimal" Value="-8031" />
+<DataValueMember Name="Data400029" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400030" DataType="INT" Radix="Decimal" Value="31" />
+<DataValueMember Name="Data400031" DataType="INT" Radix="Decimal" Value="28101" />
+<DataValueMember Name="Data400032" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400033" DataType="INT" Radix="Decimal" Value="13107" />
+<DataValueMember Name="Data400034" DataType="INT" Radix="Decimal" Value="26214" />
+<DataValueMember Name="Data400035" DataType="INT" Radix="Decimal" Value="-26215" />
+<DataValueMember Name="Data400036" DataType="INT" Radix="Decimal" Value="-13108" />
+<DataValueMember Name="Data400037" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400038" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400039" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400040" DataType="INT" Radix="Decimal" Value="3840" />
+<DataValueMember Name="Data400041" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400042" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400043" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400044" DataType="INT" Radix="Decimal" Value="3840" />
+<DataValueMember Name="Data400045" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400046" DataType="INT" Radix="Decimal" Value="1" />
+<DataValueMember Name="Data400047" DataType="INT" Radix="Decimal" Value="8" />
+<DataValueMember Name="Data400048" DataType="INT" Radix="Decimal" Value="8" />
+<DataValueMember Name="Data400049" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400050" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400051" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400052" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400053" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400054" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400055" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400056" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400057" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400058" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="Data400059" DataType="INT" Radix="Decimal" Value="0" />
+</StructureMember>
+</Structure>
+</Data>
+</InputTag>
+<OutputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="L5K">
+[1,0,0,0,0]
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_ModbusMaster_Run_99D49340:O:1">
+<DataValueMember Name="Run" DataType="BOOL" Value="1" />
+<DataValueMember Name="Command00Disable" DataType="BOOL" Value="0" />
+</Structure>
+</Data>
+</OutputTag>
+</Connection>
+</Connections>
+</Communications>
+<ExtendedProperties>
+<public><Vendor /><CatNum /><ConfigID>149</ConfigID><InputSize00>168</InputSize00><OutputSize00>116</OutputSize00><InputSize01>132</InputSize01><OutputSize01>12</OutputSize01><ChannelData>&lt;Data&gt;A0 0D 00 00 BF 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 01 00 00 00 A8 00 74 00 00 00 00 00 01 18 00 00 01 01 60 00 01 04 64 00 01 0B 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 1A 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 02 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 07 00 AC 0D 00 00 F4 01 00 00 C8 00 00 00 01 00 00 00 01 01 03 00 2D 00 00 00 00 00 00 00 00 00 00 00 02 01 10 00 34 00 00 00 00 00 2D 00 00 00 00 00 01 01 03 00 05 00 00 00 00 00 63 00 00 00 00 00 09 01 03 00 14 00 00 00 00 00 0A 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 84 00 0C 00 00 00 00 00 01 1F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 02 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 07 00 AC 0D 00 00 C8 00 00 00 F4 01 00 00 00 00 00 00 01 01 03 00 3C 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 04 01 AC 0D 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 03 04 01 AC 0D 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 03 04 00 00 01 00 03 03 32 00 0D 0A 05 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 03 04 00 00 01 01 03 00 05 00 00 00 32 00 00 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 03 04 00 00 01 03 B8 0B 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 04 00 00 01 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00 00 00 00 00 01 00 00 00 05 04 00 00 03 00 1F 01&lt;/Data&gt;
+</ChannelData></public>
+</ExtendedProperties>
+</Module>

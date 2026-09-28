@@ -1,0 +1,85 @@
+{
+  "name": "UDT_ai",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "RawVal",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "Raw Value"
+    },
+    {
+      "name": "Val",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "Calibrated Value"
+    },
+    {
+      "name": "Gain",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "Gain"
+    },
+    {
+      "name": "Offset",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "Offset"
+    },
+    {
+      "name": "HH_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "HH Setpoint"
+    },
+    {
+      "name": "H_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "High Setpoint"
+    },
+    {
+      "name": "L_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "Low Setpoint"
+    },
+    {
+      "name": "LL_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": "LL Setpoint"
+    },
+    {
+      "name": "Wrn",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Warning Status"
+    },
+    {
+      "name": "Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Trip Status"
+    },
+    {
+      "name": "Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Trip Latch"
+    },
+    {
+      "name": "FF",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "First Fault"
+    },
+    {
+      "name": "Byp",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Bypass"
+    }
+  ]
+}

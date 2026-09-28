@@ -1,0 +1,5 @@
+// The following rung moves a decimal value of "8" (bit 3 set) to the MSW command word.  This commands the SD4840E2 to Resume a previously Hold operation.
+MOVE(8,AMCI_SD4840E2_output_data.COMMAND_WORD_0);
+
+// The following rung moves a decimal value of -32768 (16#8000) to Least Significant word of Command Bits.  This enables the driver causing it to send power to the motor.
+MOVE(-32768,AMCI_SD4840E2_output_data.COMMAND_WORD_1);

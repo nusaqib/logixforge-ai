@@ -1,0 +1,474 @@
+namespace ViewDesigner;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+Screen Vacuum {
+	ShowDefaultBanner := false;
+	FillColor := "#ffffff";
+	UpdateRate := EnumUpdateRate._500_ms;
+	Trend Trend_001 {
+		MaxValue := 100;
+		MinValue := 0;
+		SampleRate := 1000;
+		TimeSpan := 30;
+		TimeSpanStart := EnumTrendChartTimeFormats.GeneralTimeDateUS;
+		FillColor := "#ffffff";
+		Border {
+			Color := "#bcbec0";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FontColor := "#606060";
+		GridColor := "#bfcfdf";
+		AxesColor := "#c0d0e0";
+		ShowGridVertical := false;
+		ShowGridHorizontal := true;
+		ShowAxes := true;
+		ShowDate := true;
+		ShowButtons := true;
+		TraceLine Trace_001 {
+			Label := "Vacuum";
+			Color := "#ff0000";
+			Width := 1;
+			Marker := EnumTraceMarkers.None;
+			Value := "" -> "::masterCode.Vacuum.Cav1_Pressure";
+		}
+		X := 48.33;
+		Y := 83.95;
+		Width := 910.83;
+		Height := 375.22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	DateTimeDisplay BAN_CurTimeDisplay {
+		Format := EnumDateTimeFormat.hh_mm_ss_AP;
+		FontName := "Arial Unicode MS";
+		FontSize := 8.3;
+		Bold := false;
+		FontColor := "#1e2e3e";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0.94;
+		}
+		FillColor := "#00000000";
+		X := 942.04;
+		Y := 8.49;
+		Width := 72;
+		Height := 16;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	DateTimeDisplay BAN_CurDateDisplay {
+		Format := EnumDateTimeFormat.M_d_yyyy;
+		FontName := "Arial Unicode MS";
+		FontSize := 8.3;
+		Bold := false;
+		FontColor := "#1e2e3e";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0.94;
+		}
+		FillColor := "#00000000";
+		X := 942.04;
+		Y := 23.35;
+		Width := 72;
+		Height := 16;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	ControllerStatusIndicator BAN_ControllerStatusIndicator {
+		NavigateTo := "Predefined Screens\ControllersGeneral";
+		X := 916.77;
+		Y := 8.35;
+		Width := 36.27;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NetworkStatusIndicator BAN_NetworkStatusIndicator {
+		NavigateTo := "Predefined Screens\NetworkDiagnostic";
+		X := 882.5;
+		Y := 8.35;
+		Width := 36.27;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup LogonGroup {
+		Button BAN_LogonBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				DisplayLogOnPopupCommand DisplayLogOnPopupCommand_001 {
+					Width := 500;
+					Height := 400;
+					PopupName := "";
+				}
+			}
+			X := 0;
+			Y := 0.35;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedIn LoggedIn {
+			FillColor := "#e5e5e5";
+			X := 8.85;
+			Y := 6.52;
+			Width := 15.75;
+			Height := 20.25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 1";
+			Opacity := 0 -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 100";
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedOut LoggedOut {
+			FillColor := "#e5e5e5";
+			X := 8.35;
+			Y := 6.52;
+			Width := 15.65;
+			Height := 20.12;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 1 : 0";
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay BAN_LogonLabel {
+			Text := "Log on" -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? $"Log on$" : ::Local:HMIDevice.Security.CurrentUserName";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#1e2e3e";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 36.08;
+			Y := 0;
+			Width := 113.27;
+			Height := 29.86;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 130.71;
+		Y := 8;
+		Width := 149.34;
+		Height := 32.35;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationMenuGroup {
+		Button BAN_NavMenuBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				ShowNavMenuCommand ShowNavMenuCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NavigationMenuIcon NavigationMenuIcon {
+			FillColor := "#e5e5e5";
+			X := 4.95;
+			Y := 9.86;
+			Width := 22.1;
+			Height := 12.28;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 89.76;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationForwardGroup {
+		Button BAN_NavForwardBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateFwdCommand NavigateFwdCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NextPage NextPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 48.66;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationBackwardGroup {
+		Button BAN_NavBackBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateBackCommand NavigateBackCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		PrevPage PrevPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 11;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_063 {
+		Text := "System 1 - Trends ";
+		FontName := "Arial Unicode MS";
+		FontSize := 18;
+		Bold := true;
+		Underline := false;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 433.32;
+		Y := 8.85;
+		Width := 194;
+		Height := 31;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_014 {
+		FillColor := "#00baff";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "HOME";
+		UsePredefinedDisabled := true;
+		BehaviorNavigateToScreen BehaviorNavigateToScreen_001 {
+			screenName := "User-Defined Screens\HOME";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+		}
+		X := 15.39;
+		Y := 713.04;
+		Width := 98.54;
+		Height := 45;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Width := 1024;
+	Height := 768;
+}

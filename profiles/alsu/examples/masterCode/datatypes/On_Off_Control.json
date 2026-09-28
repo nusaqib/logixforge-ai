@@ -1,0 +1,31 @@
+{
+  "name": "On_Off_Control",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "On_Cmd_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Off_Cmd_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "On_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "On_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

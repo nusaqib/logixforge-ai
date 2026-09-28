@@ -1,0 +1,4177 @@
+namespace ViewDesigner;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+Screen Tuner1 {
+	ShowDefaultBanner := false;
+	FillColor := "#ffffff";
+	UpdateRate := EnumUpdateRate._500_ms;
+	PanelDeviceGroup Group_002 {
+		Rectangle Rectangle_031 {
+			CornerRadius := 5;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 0;
+			Y := 16.05;
+			Width := 202.38;
+			Height := 219.83;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_030 {
+			Text := "Faults";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#ffffff";
+			X := 14.68;
+			Y := 0;
+			Width := 52;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_031 {
+			Text := "Reset";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 63;
+			Y := 133.55;
+			Width := 50;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_034 {
+			Text := "Homing";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 48;
+			Y := 101.84;
+			Width := 65;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_019 {
+			Text := "Power";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 59;
+			Y := 38.42;
+			Width := 54;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_035 {
+			Text := "Connection";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 19;
+			Y := 70.13;
+			Width := 94;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_001 (
+			UDT_bi := "::masterCode.Tuner1.PS")
+		{
+			X := 132.02;
+			Y := 45.5;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_002 (
+			UDT_bi := "::masterCode.Tuner1.ConnectionFaulted")
+		{
+			X := 132.02;
+			Y := 76.42;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_004 (
+			UDT_bi := "::masterCode.Tuner1.Error")
+		{
+			X := 132.02;
+			Y := 138.27;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_007 (
+			UDT_bi := "::masterCode.Tuner1.Position_Invalid")
+		{
+			X := 132.02;
+			Y := 107.34;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::LED_Fault_Square LED_Fault_Square_001 (
+			^Tag := "::masterCode.Tuner1.OK")
+		{
+			X := 161.07;
+			Y := 200.11;
+			Width := 17.92;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_047 {
+			Text := "OK to Move";
+			FontName := "Arial Unicode MS";
+			FontSize := 14;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 23;
+			Y := 196.97;
+			Width := 90;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_043 {
+			Text := "Soft Range";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 20;
+			Y := 165.26;
+			Width := 93;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_005 (
+			UDT_bi := "::masterCode.Tuner1.InRange")
+		{
+			X := 132.02;
+			Y := 169.19;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_027 {
+			Text := "S";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 133.94;
+			Y := 20.5;
+			Width := 14;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_056 {
+			Text := "L";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 164.06;
+			Y := 20.5;
+			Width := 13;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 288.61;
+		Y := 53.73;
+		Width := 202.38;
+		Height := 235.88;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true -> "::masterCode.Tuner1.CtrlModeResonance";
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_001 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "JOG +";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.Moving_CW";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.JogCW_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 431.68;
+		Y := 533.14;
+		Width := 70;
+		Height := 38;
+		Angle := 0;
+		Enabled := false;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_003 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "JOG -";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.Moving_CCW";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.JogCCW_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 431.68;
+		Y := 578.99;
+		Width := 70;
+		Height := 38;
+		Angle := 0;
+		Enabled := false;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericDisplay NumericDisplay_001 {
+		DigitsBeforeDecimal := 6;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "::masterCode.Tuner1.Position";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 391.99;
+		Y := 346.81;
+		Width := 63;
+		Height := 27.29;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_008 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "START";
+		UsePredefinedDisabled := true;
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.AbsoluteMove_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 85.78;
+		Y := 578.99;
+		Width := 70;
+		Height := 38;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_021 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 40.14;
+		Y := 518.23;
+		Width := 163.55;
+		Height := 113.31;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_009 {
+		Text := "Absolute Move";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 55.14;
+		Y := 504.23;
+		Width := 113;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_010 {
+		Text := "Move to";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 53.43;
+		Y := 539.19;
+		Width := 62;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_008 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 150000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.AbsolutePosition_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 130.09;
+		Y := 539.19;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_022 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 406.24;
+		Y := 517.29;
+		Width := 135.37;
+		Height := 114.25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_011 {
+		Text := "Jog Move";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 415;
+		Y := 504.29;
+		Width := 76;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_006 {
+		Text := "JOG +";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 521.37;
+		Y := 341.85;
+		Width := 55;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_016 {
+		Text := "JOG -";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 525.37;
+		Y := 372.55;
+		Width := 51;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_007 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.Moving_CW";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)")
+			{
+			}
+		}
+		X := 593.99;
+		Y := 348.84;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_008 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.Moving_CCW";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)")
+			{
+			}
+		}
+		X := 593.99;
+		Y := 378.06;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_024 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 649.58;
+		Y := 317.44;
+		Width := 214.65;
+		Height := 139.07;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_044 {
+		Text := "Limits";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 663.27;
+		Y := 302.39;
+		Width := 50;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_026 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 139.64;
+		Y := 70.24;
+		Width := 124.67;
+		Height := 123.37;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_045 {
+		Text := "Mode";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 154.95;
+		Y := 57.24;
+		Width := 48;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_024 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "Position";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.CtrlModeResonance";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "0";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo0OnRelease BehaviorSetTagTo0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.CtrlModeResonance";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+		}
+		X := 155.43;
+		Y := 140.64;
+		Width := 90;
+		Height := 40.95;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_025 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "Resonance";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.CtrlModeResonance";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnRelease BehaviorSetTagTo1OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.CtrlModeResonance";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+		}
+		X := 155.56;
+		Y := 92.35;
+		Width := 90;
+		Height := 41.35;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_020 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.LimitSw_CW";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "0";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 794.64;
+		Y := 365.41;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_021 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.LimitSw_CCW";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "0";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 794.64;
+		Y := 394.03;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_006 {
+		FillColor := "#ff0000";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		FontColor := "#ffffff";
+		Bold := true;
+		Text := "IMMEDIATE$nSTOP";
+		UsePredefinedDisabled := true;
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.Stop_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 559.92;
+		Y := 624.79;
+		Width := 95;
+		Height := 58.4;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	DateTimeDisplay BAN_CurTimeDisplay {
+		Format := EnumDateTimeFormat.hh_mm_ss_AP;
+		FontName := "Arial Unicode MS";
+		FontSize := 8.3;
+		Bold := false;
+		FontColor := "#1e2e3e";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0.94;
+		}
+		FillColor := "#00000000";
+		X := 942.04;
+		Y := 8.49;
+		Width := 72;
+		Height := 16;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	DateTimeDisplay BAN_CurDateDisplay {
+		Format := EnumDateTimeFormat.M_d_yyyy;
+		FontName := "Arial Unicode MS";
+		FontSize := 8.3;
+		Bold := false;
+		FontColor := "#1e2e3e";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0.94;
+		}
+		FillColor := "#00000000";
+		X := 942.04;
+		Y := 23.35;
+		Width := 72;
+		Height := 16;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	ControllerStatusIndicator BAN_ControllerStatusIndicator {
+		NavigateTo := "Predefined Screens\ControllersGeneral";
+		X := 916.77;
+		Y := 8.35;
+		Width := 36.27;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NetworkStatusIndicator BAN_NetworkStatusIndicator {
+		NavigateTo := "Predefined Screens\NetworkDiagnostic";
+		X := 882.5;
+		Y := 8.35;
+		Width := 36.27;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup LogonGroup {
+		Button BAN_LogonBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				DisplayLogOnPopupCommand DisplayLogOnPopupCommand_001 {
+					Width := 500;
+					Height := 400;
+					PopupName := "";
+				}
+			}
+			X := 0;
+			Y := 0.35;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedIn LoggedIn {
+			FillColor := "#e5e5e5";
+			X := 8.85;
+			Y := 6.52;
+			Width := 15.75;
+			Height := 20.25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 1";
+			Opacity := 0 -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 100";
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedOut LoggedOut {
+			FillColor := "#e5e5e5";
+			X := 8.35;
+			Y := 6.52;
+			Width := 15.65;
+			Height := 20.12;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 1 : 0";
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay BAN_LogonLabel {
+			Text := "Log on" -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? $"Log on$" : ::Local:HMIDevice.Security.CurrentUserName";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#1e2e3e";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 36.08;
+			Y := 0;
+			Width := 113.27;
+			Height := 29.86;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 130.71;
+		Y := 8;
+		Width := 149.34;
+		Height := 32.35;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationMenuGroup {
+		Button BAN_NavMenuBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				ShowNavMenuCommand ShowNavMenuCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NavigationMenuIcon NavigationMenuIcon {
+			FillColor := "#e5e5e5";
+			X := 4.95;
+			Y := 9.86;
+			Width := 22.1;
+			Height := 12.28;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 89.76;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationForwardGroup {
+		Button BAN_NavForwardBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateFwdCommand NavigateFwdCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NextPage NextPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 48.66;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationBackwardGroup {
+		Button BAN_NavBackBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.3;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateBackCommand NavigateBackCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		PrevPage PrevPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 11;
+		Y := 8.35;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_063 {
+		Text := "Cavity 1 - Tuner";
+		FontName := "Arial Unicode MS";
+		FontSize := 18;
+		Bold := true;
+		Underline := false;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 427.02;
+		Y := 8.85;
+		Width := 165;
+		Height := 31;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_014 {
+		FillColor := "#00baff";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "HOME";
+		UsePredefinedDisabled := true;
+		BehaviorNavigateToScreen BehaviorNavigateToScreen_001 {
+			screenName := "User-Defined Screens\HOME";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+		}
+		X := 15.39;
+		Y := 713.04;
+		Width := 98.54;
+		Height := 45;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_012 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "START";
+		UsePredefinedDisabled := true;
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.RelativeMove_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 258.03;
+		Y := 579.73;
+		Width := 70;
+		Height := 38;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_027 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 220.11;
+		Y := 517.34;
+		Width := 171.43;
+		Height := 114.21;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_013 {
+		Text := "Relative Move";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 234.11;
+		Y := 503.34;
+		Width := 109;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_014 {
+		Text := "Move by";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 236.82;
+		Y := 540.29;
+		Width := 66;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_010 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 50000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.RelativePosition_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 317.65;
+		Y := 540.29;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericDisplay NumericDisplay_002 {
+		DigitsBeforeDecimal := 2;
+		DigitsAfterDecimal := 2;
+		LeadingZero := true;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "::masterCode.Tuner1.Position_Pot";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 393.5;
+		Y := 399.68;
+		Width := 54.41;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_029 {
+		Text := "Stopped";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 506.37;
+		Y := 403.25;
+		Width := 70;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_022 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Cav1_Tuner:I.In_Hold_State | ::masterCode.Cav1_Tuner:I.Stopped";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)")
+			{
+			}
+		}
+		X := 593.99;
+		Y := 407.29;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup Group_001 {
+		TextDisplay TextDisplay_020 {
+			Text := "PPS Mode:";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#ffffff";
+			X := 0;
+			Y := 2.5;
+			Width := 94;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_018 {
+			Text := "Mode";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := true;
+			Underline := false;
+			FontColor := "#1e2e3e";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			StateTable StateTable_001 {
+				Expression := "" -> "::masterCode.PPS.iMode";
+				State State0 (
+					Text := "UNDEFINED")
+				{
+					value := "0";
+				}
+				State State1 (
+					Text := "OPERATIONAL")
+				{
+					value := "1";
+				}
+				State State2 (
+					Text := "RF TEST")
+				{
+					value := "2";
+				}
+				State State3 (
+					Text := "RF TEST W/ACCESS")
+				{
+					value := "3";
+				}
+				State State4 (
+					Text := "RF TEST DUMMY LOAD")
+				{
+					value := "4";
+				}
+				State DefaultState (
+					Text := "Mode")
+				{
+				}
+			}
+			X := 102.96;
+			Y := 0;
+			Width := 284;
+			Height := 31;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 623.39;
+		Y := 49.31;
+		Width := 386.96;
+		Height := 31;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_019 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 26.8;
+		Y := 70.08;
+		Width := 97.64;
+		Height := 123.94;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_042 {
+		Text := "Power";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#1e2e3e";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 41.11;
+		Y := 57.08;
+		Width := 54;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_032 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "ON";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.PS_Cmd.On_Cmd";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.PS_Cmd.On_Cmd_HMI";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 44.04;
+		Y := 92.04;
+		Width := 60;
+		Height := 41.35;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_033 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "OFF";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.PS_Cmd.On_Cmd";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "0";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.PS_Cmd.Off_Cmd_HMI";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 44.04;
+		Y := 140.6;
+		Width := 60;
+		Height := 41.35;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_011 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 11;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "RESET";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.HMI.Rst_Cmd";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.HMI.Rst_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 921.95;
+		Y := 710.03;
+		Width := 80.07;
+		Height := 47.33;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	BarGraph BarGraph_001 {
+		LevelColor := "#00baff";
+		FillColor := "#263a4e";
+		Border {
+			Color := "#918f8f";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		Value := 0 -> "::masterCode.Tuner1.Position";
+		MinValue := 0;
+		MaxValue := 133000;
+		X := 169.11;
+		Y := 340.53;
+		Width := 198.68;
+		Height := 41.98;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	BarGraph BarGraph_002 {
+		LevelColor := "#00baff";
+		FillColor := "#263a4e";
+		Border {
+			Color := "#918f8f";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		Value := 0 -> "::masterCode.Tuner1.Position_Pot";
+		MinValue := 0.5;
+		MaxValue := 9.03;
+		X := 169.11;
+		Y := 392.76;
+		Width := 198.68;
+		Height := 41.98;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_021 {
+		Text := "Counts";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 95.59;
+		Y := 348.52;
+		Width := 60;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_028 {
+		Text := "Potentiometer";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 40.59;
+		Y := 400.75;
+		Width := 115;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_028 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 24.4;
+		Y := 481.73;
+		Width := 650.18;
+		Height := 211.3;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_017 {
+		Text := "Position Control";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 40.14;
+		Y := 469.23;
+		Width := 122;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_017 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "PARK";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.Parked";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.AbsoluteMove_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 559.92;
+		Y := 565.29;
+		Width := 95;
+		Height := 50;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_032 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 25.12;
+		Y := 322.72;
+		Width := 454.61;
+		Height := 133.79;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_036 {
+		Text := "Position Status";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 40.13;
+		Y := 308.72;
+		Width := 115;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_033 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 495.95;
+		Y := 319.25;
+		Width := 137.04;
+		Height := 137.26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_037 {
+		Text := "Move Status";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 510.96;
+		Y := 305.25;
+		Width := 96;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_038 {
+		Text := "Limit +";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 667.58;
+		Y := 359.24;
+		Width := 56;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_023 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.SoftLimit_Hi";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 751.05;
+		Y := 365.24;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_039 {
+		Text := "Limit  -";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 666.58;
+		Y := 388.59;
+		Width := 57;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_024 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.SoftLimit_Lo";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 751.05;
+		Y := 393.86;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_005 {
+		Text := "Speed";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 576.1;
+		Y := 155.62;
+		Width := 55;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_019 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.ProgSpeed_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 640.42;
+		Y := 155.37;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_007 {
+		Text := "Acceleration";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 529.1;
+		Y := 190.47;
+		Width := 102;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_032 {
+		Text := "Deceleration";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 527.1;
+		Y := 225.33;
+		Width := 104;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_020 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.Accel";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 640.42;
+		Y := 190.39;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_021 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.Decel";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 640.42;
+		Y := 225.42;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_034 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 692.23;
+		Y := 482.66;
+		Width := 206.5;
+		Height := 104.69;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_040 {
+		Text := "Resonance Control";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 707.23;
+		Y := 469.66;
+		Width := 157;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_011 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode\P010_Device_Control.Tuner1_PID_PV";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 822.51;
+		Y := 510.82;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_041 {
+		Text := "Phase Error";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 718.75;
+		Y := 510.82;
+		Width := 93;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_049 {
+		Text := "At Resonance";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 703.75;
+		Y := 544.79;
+		Width := 108;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_025 {
+		Border {
+			Color := "#1e2e3e";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.At_Resonance";
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "linear-gradient(to bottom, #d1d3d4 0.00%, #939598 100.00%)")
+			{
+			}
+		}
+		X := 839.51;
+		Y := 549.33;
+		Width := 17.92;
+		Height := 17.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_004 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "HOME";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Tuner1.LimitSw_CCW";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.JogCCW_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 559.92;
+		Y := 504.32;
+		Width := 95;
+		Height := 50;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_019 {
+		FillColor := "#e7e8e9";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 17;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "STOP";
+		UsePredefinedDisabled := true;
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "::masterCode.Cav1_Tuner:I.In_Hold_State | ::masterCode.Cav1_Tuner:I.Stopped";
+			State State0 (
+				FillColor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				FillColor := "#e7e8e9")
+			{
+			}
+		}
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.Hold_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 85.78;
+		Y := 644.5;
+		Width := 415.9;
+		Height := 38;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_004 {
+		Text := "+";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 867.75;
+		Y := 184.09;
+		Width := 13;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_008 {
+		Text := "-";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 871.75;
+		Y := 215.15;
+		Width := 9;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_029 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 858.25;
+		Y := 153.41;
+		Width := 103.86;
+		Height := 99.97;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_051 {
+		Text := "Parking $nLimits";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 868.56;
+		Y := 123.41;
+		Width := 64;
+		Height := 50;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_012 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.ParkLimit_Hi_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 889.15;
+		Y := 182.73;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_013 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.ParkLimit_Lo_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 889.15;
+		Y := 214.78;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_012 {
+		Text := "+";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 742.89;
+		Y := 184.09;
+		Width := 13;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_015 {
+		Text := "-";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 746.89;
+		Y := 215.15;
+		Width := 9;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_035 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 733.39;
+		Y := 153.41;
+		Width := 103.86;
+		Height := 99.97;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_033 {
+		Text := "Soft $nLimits";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 743.7;
+		Y := 123.41;
+		Width := 50;
+		Height := 50;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_016 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 200000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.SoftLimit_Hi_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 764.29;
+		Y := 182.73;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_017 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.SoftLimit_Lo_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 764.29;
+		Y := 214.78;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_023 {
+		Text := "soft";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 745;
+		Y := 335.22;
+		Width := 30;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_024 {
+		Text := "hard";
+		FontName := "Arial Unicode MS";
+		FontSize := 14;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 788.6;
+		Y := 335.22;
+		Width := 36;
+		Height := 25;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_009 {
+		DigitsBeforeDecimal := 5;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "::masterCode.Tuner1.Position_Preset_SP";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 815.74;
+		Y := 650.97;
+		Width := 53;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_009 {
+		FillColor := "#00baff";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#263a4e";
+		Bold := true;
+		Text := "Set";
+		UsePredefinedDisabled := true;
+		BehaviorSetTagTo1OnPress0OnRelease BehaviorSetTagTo1OnPress0OnRelease_001 {
+			^Tag := "::masterCode.Tuner1.PresetPosition_Cmd";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+			minimumHoldTime := 0;
+		}
+		X := 748.93;
+		Y := 686.9;
+		Width := 89.58;
+		Height := 26.88;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_023 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 703.94;
+		Y := 632;
+		Width := 183.08;
+		Height := 99.22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_025 {
+		Text := "Set Position";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 718.94;
+		Y := 618;
+		Width := 99;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_026 {
+		Text := "Setpoint";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 727.44;
+		Y := 649.97;
+		Width := 69;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup Group_003 {
+		Rectangle Rectangle_036 {
+			CornerRadius := 5;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 0;
+			Y := 16.05;
+			Width := 201.68;
+			Height := 219.83;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_055 {
+			Text := "Faults";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#ffffff";
+			X := 14.68;
+			Y := 0;
+			Width := 52;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_054 {
+			Text := "Reset";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 63.06;
+			Y := 101.55;
+			Width := 50;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_052 {
+			Text := "Power";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 59.06;
+			Y := 38.42;
+			Width := 54;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_050 {
+			Text := "Connection";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 19.06;
+			Y := 70.13;
+			Width := 94;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_011 (
+			UDT_bi := "::masterCode.Tuner1.PS")
+		{
+			X := 131.02;
+			Y := 45.5;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_010 (
+			UDT_bi := "::masterCode.Tuner1.ConnectionFaulted")
+		{
+			X := 131.02;
+			Y := 76.42;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::UDT_bi UDT_bi_009 (
+			UDT_bi := "::masterCode.Tuner1.Error")
+		{
+			X := 131.02;
+			Y := 106.27;
+			Width := 46.97;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		AOG::LED_Fault_Square LED_Fault_Square_002 (
+			^Tag := "::masterCode.Tuner1.OK")
+		{
+			X := 160.07;
+			Y := 135.11;
+			Width := 17.92;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_048 {
+			Text := "OK to Move";
+			FontName := "Arial Unicode MS";
+			FontSize := 14;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 20.99;
+			Y := 131.97;
+			Width := 92.07;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_046 {
+			Text := "Homing";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 48.06;
+			Y := 165.77;
+			Width := 65;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_053 {
+			Text := "Soft Range";
+			FontName := "Arial Unicode MS";
+			FontSize := 15;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 20.06;
+			Y := 199.72;
+			Width := 93;
+			Height := 26;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		Ellipse Ellipse_026 {
+			Border {
+				Color := "#1e2e3e";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#ff0000";
+			ColorStateTable ColorTable_001 {
+				Expression := "" -> "::masterCode.Tuner1.Position_Invalid.Sts";
+				State State1 (
+					fillcolor := "#51e79a")
+				{
+					value := "1";
+				}
+				State DefaultState (
+					fillcolor := "#ff0000")
+				{
+				}
+			}
+			X := 131.02;
+			Y := 169.81;
+			Width := 17.92;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		Ellipse Ellipse_027 {
+			Border {
+				Color := "#1e2e3e";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#ff0000";
+			ColorStateTable ColorTable_001 {
+				Expression := "" -> "::masterCode.Tuner1.InRange.Sts";
+				State State1 (
+					fillcolor := "#51e79a")
+				{
+					value := "1";
+				}
+				State DefaultState (
+					fillcolor := "#ff0000")
+				{
+				}
+			}
+			X := 131.02;
+			Y := 203.77;
+			Width := 17.92;
+			Height := 17.92;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_057 {
+			Text := "S";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 132.94;
+			Y := 19.95;
+			Width := 14;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay TextDisplay_058 {
+			Text := "L";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#000000";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 163.06;
+			Y := 19.95;
+			Width := 13;
+			Height := 25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 288.96;
+		Y := 53.73;
+		Width := 201.68;
+		Height := 235.88;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true -> "!::masterCode.Tuner1.CtrlModeResonance";
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_025 {
+		CornerRadius := 5;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 509.52;
+		Y := 106.38;
+		Width := 469.6;
+		Height := 181.92;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_059 {
+		Text := "Parameters";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ffffff";
+		X := 523.2;
+		Y := 91.33;
+		Width := 96;
+		Height := 26;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button Button_015 {
+		FillColor := "#00baff";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		FontColor := "#1e2e3e";
+		Bold := true;
+		Text := "Tuner 2";
+		UsePredefinedDisabled := true;
+		BehaviorNavigateToScreen BehaviorNavigateToScreen_001 {
+			screenName := "User-Defined Screens\Details\Tuner2";
+			Key := EnumBezelKeys.VK_NONE;
+			RequiresFocus := false;
+			AlwaysTriggerReleaseEvent := true;
+		}
+		X := 129.67;
+		Y := 713.04;
+		Width := 98.54;
+		Height := 45;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Width := 1024;
+	Height := 768;
+}

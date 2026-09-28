@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Calibration_Cav1",
+    "data_type": "Calibration_AOI",
+    "dimensions": "50"
+  },
+  {
+    "name": "Calibration_Cav2",
+    "data_type": "Calibration_AOI",
+    "dimensions": "50"
+  },
+  {
+    "name": "Calibration_Feeder1",
+    "data_type": "Calibration_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Calibration_Feeder2",
+    "data_type": "Calibration_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Calibration_System",
+    "data_type": "Calibration_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "FF_ai_Cav1",
+    "data_type": "FF_AOI",
+    "dimensions": "40"
+  },
+  {
+    "name": "FF_ai_Cav2",
+    "data_type": "FF_AOI",
+    "dimensions": "40"
+  },
+  {
+    "name": "FF_ai_Feeder1",
+    "data_type": "FF_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "FF_ai_Feeder2",
+    "data_type": "FF_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "FF_bi_Cav1",
+    "data_type": "FF_AOI",
+    "dimensions": "20"
+  },
+  {
+    "name": "FF_bi_Cav2",
+    "data_type": "FF_AOI",
+    "dimensions": "20"
+  },
+  {
+    "name": "FF_bi_DrvCtrl1",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_DrvCtrl2",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_Feeder1",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_Feeder2",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_HPA1",
+    "data_type": "FF_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "FF_bi_HPA2",
+    "data_type": "FF_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "FF_bi_HP_Sw1",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_HP_Sw2",
+    "data_type": "FF_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "FF_bi_LLRF1",
+    "data_type": "FF_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "FF_bi_LLRF2",
+    "data_type": "FF_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "FF_bi_MPS",
+    "data_type": "FF_AOI",
+    "dimensions": "3"
+  },
+  {
+    "name": "FF_bi_PPS",
+    "data_type": "FF_AOI",
+    "dimensions": "25"
+  },
+  {
+    "name": "FF_bi_TCU1",
+    "data_type": "FF_AOI",
+    "dimensions": "8"
+  },
+  {
+    "name": "FF_bi_TCU2",
+    "data_type": "FF_AOI",
+    "dimensions": "8"
+  },
+  {
+    "name": "FF_bi_Tuner1",
+    "data_type": "FF_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "FF_bi_Tuner2",
+    "data_type": "FF_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_ai_Cav1",
+    "data_type": "Latch_ai_AOI",
+    "dimensions": "40"
+  },
+  {
+    "name": "Latch_ai_Cav2",
+    "data_type": "Latch_ai_AOI",
+    "dimensions": "40"
+  },
+  {
+    "name": "Latch_ai_Feeder1",
+    "data_type": "Latch_ai_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_ai_Feeder2",
+    "data_type": "Latch_ai_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_ai_System",
+    "data_type": "Latch_ai_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_bi_Cav1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "20"
+  },
+  {
+    "name": "Latch_bi_Cav2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "20"
+  },
+  {
+    "name": "Latch_bi_DrvCtrl1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_DrvCtrl2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_Feeder1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_Feeder2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_HPA1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "Latch_bi_HPA2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "Latch_bi_HP_Coax_SW1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_HP_Coax_SW2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "5"
+  },
+  {
+    "name": "Latch_bi_LLRF1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "Latch_bi_LLRF2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "2"
+  },
+  {
+    "name": "Latch_bi_Misc",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_bi_MPS",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "3"
+  },
+  {
+    "name": "Latch_bi_PPS",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "25"
+  },
+  {
+    "name": "Latch_bi_System",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_bi_TCU1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "8"
+  },
+  {
+    "name": "Latch_bi_TCU2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "8"
+  },
+  {
+    "name": "Latch_bi_Tuner1",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Latch_bi_Tuner2",
+    "data_type": "Latch_bi_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "ModuleStatusAOI",
+    "data_type": "Module_Status_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "ResetCmdTimer",
+    "data_type": "TIMER",
+    "description": "Pulse for Reset command"
+  }
+]

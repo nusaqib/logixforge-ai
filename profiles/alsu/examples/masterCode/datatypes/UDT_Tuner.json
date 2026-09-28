@@ -1,0 +1,325 @@
+{
+  "name": "UDT_Tuner",
+  "description": "Cavity Tuner Drive",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "PS",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PS_Cmd",
+      "data_type": "On_Off_Control",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PotPower_OK",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Timer_JogCW_Res",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Timer_JogCCW_Res",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Timer_Hold_Res",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Timer_Stop",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CtrlModeResonance",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Position/Resonance Mode"
+    },
+    {
+      "name": "Res_Move_Start",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "dataBuffer",
+      "data_type": "INT",
+      "dimension": 10,
+      "description": "Data Buffer"
+    },
+    {
+      "name": "AbsolutePosition_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "AbsolutePosition_Tweak",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "AbsoluteMove_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RelativePosition_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RelativeMove_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "JogCW_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "JogCW_Cmd_Res",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "JogCCW_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "JogCCW_Cmd_Res",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Hold_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Stop_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Resume_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ResetErrors_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Preset_SP_CCW",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PresetPosition_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ProgSpeed_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "StartSpeed_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Accel",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Decel",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ParkLimit_Lo_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ParkLimit_Hi_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SoftLimit_Lo_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SoftLimit_Lo",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SoftLimit_Hi_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SoftLimit_Hi",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LimitSw_CW",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "CW Limit Switch"
+    },
+    {
+      "name": "LimitSw_CCW",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "CCW Limit Switch"
+    },
+    {
+      "name": "Moving_CW",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Moving_CCW",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Move_Complete",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Parked",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "At_Resonance",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Position",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Position_Pot",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Position_Preset_SP",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Input_Error",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Command_Error",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Configuration_Error",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Error",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Position_Invalid",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ConnectionFaulted",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "InRange",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Aggregated interlocks signal"
+    }
+  ]
+}

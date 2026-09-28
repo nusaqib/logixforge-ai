@@ -1,0 +1,67 @@
+{
+  "name": "UDT_Cavity",
+  "description": "Cavity",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "LCWR_Flow",
+      "data_type": "UDT_ai",
+      "dimension": 15,
+      "description": "LCW Return Flow"
+    },
+    {
+      "name": "LCWR_Flow_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LCWR_Temp",
+      "data_type": "UDT_ai",
+      "dimension": 15,
+      "description": "LCW Return Temperature"
+    },
+    {
+      "name": "LCWR_Temp_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Surf_Temp",
+      "data_type": "UDT_ai",
+      "dimension": 9,
+      "description": "Surface Temperature"
+    },
+    {
+      "name": "Surf_Temp_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cooling_OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CouplerBlower",
+      "data_type": "UDT_AirBlower",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CouplerTemp",
+      "data_type": "UDT_ai",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Aggregated interlocks signal"
+    }
+  ]
+}

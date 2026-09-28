@@ -42,6 +42,28 @@ def test_init_with_profile(tmp_path):
     assert (tmp_path / "p" / "naming.json").exists() and (tmp_path / "p" / "profile.json").exists()
     r = subprocess.run([sys.executable, "-m", "logixforge.cli", "validate", str(tmp_path / "p")], capture_output=True, text=True, cwd=ROOT)
     assert r.returncode == 0, r.stdout + r.stderr
+    assert "NAME_STYLE" not in r.stdout and "NAME_SUFFIX" not in r.stdout, r.stdout   # skeleton + templates follow the profile
+    assert (tmp_path / "p" / "programs" / "P100_Main" / "routines" / "R000_MainRoutine.rll").exists()
+    assert (tmp_path / "p" / "aois" / "PermLatch_AOI" / "routines" / "Logic.rll").exists()
+
+
+def test_alsu_suffix_rules(tmp_path):
+    import json
+    subprocess.run([sys.executable, "-m", "logixforge.cli", "init", str(tmp_path / "p"), "--name", "A0204_Vac", "--profile", "alsu"],
+                   capture_output=True, text=True, cwd=ROOT)
+    (tmp_path / "p" / "tags" / "controller.json").write_text(json.dumps([
+        {"name": "AR01C_VVR1_Opn_Cmd", "data_type": "BOOL", "description": "1 = open command"},
+        {"name": "AR01C_VVR1_Opened", "data_type": "BOOL", "description": "bad suffix"},
+        {"name": "AR01C_IG1_Val", "data_type": "REAL", "description": "pressure"},
+        {"name": "AR01C_IG1_Pressure", "data_type": "REAL", "description": "bad suffix"},
+        {"name": "R01S03AI", "data_type": "REAL", "dimensions": "8", "description": "buffered analog inputs (exempt)"},
+        {"name": "GVLimit_bi", "data_type": "BOOL", "dimensions": "32", "description": "EPICS array"},
+        {"name": "AR01_Grp", "data_type": "UDT_PermGroup", "description": "UDT tag: no suffix rule"},
+        {"name": "Pump_Tmr", "data_type": "TIMER", "description": "timer"},
+    ]), encoding="utf-8")
+    r = subprocess.run([sys.executable, "-m", "logixforge.cli", "validate", str(tmp_path / "p")], capture_output=True, text=True, cwd=ROOT)
+    bad = [l for l in r.stdout.splitlines() if "NAME_SUFFIX" in l]
+    assert len(bad) == 2 and "AR01C_VVR1_Opened" in bad[0] and "AR01C_IG1_Pressure" in bad[1], r.stdout
 
 
 def test_validate_on_write_reports():

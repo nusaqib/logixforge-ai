@@ -1,0 +1,134 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic UDT_ArcDet {
+	Description := "";
+	Vendor := "";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 77.66;
+	Height := 24.13;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		ArcDetector {
+			DataType := "::masterCode.UDT_ArcDetector";
+			Description := "";
+			Category := "General";
+		}
+	}
+	CheckBox CheckBox_001 {
+		FillColor := "#ffffff";
+		MarkColor := "#1dc56f";
+		UsePredefinedDisabled := true;
+		ShowMark := false;
+		StateTable StateTable_001 {
+			Expression := "" -> "ArcDetector.Byp";
+			State State0 (
+				ShowMark := "False")
+			{
+				value := "0";
+			}
+			State State1 (
+				ShowMark := "True")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				ShowMark := "false")
+			{
+			}
+		}
+		X := 53.57;
+		Y := 0;
+		Width := 24.09;
+		Height := 24.13;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Ellipse Ellipse_001 {
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "ArcDetector.Sts";
+			State State0 (
+				fillcolor := "#ff0000")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 0;
+		Y := 3.42;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle Rectangle_001 {
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "ArcDetector.Ltch";
+			State State0 (
+				fillcolor := "#ff0000")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 24.32;
+		Y := 3.42;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

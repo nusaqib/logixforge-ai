@@ -1,0 +1,5 @@
+GT(ai.Val,ai.L_SP)LT(ai.Val,ai.H_SP)OTE(ai.Wrn);
+
+GT(ai.Val,ai.LL_SP)LT(ai.Val,ai.HH_SP)OTE(ai.Sts);
+
+[XIC(ai.Sts) ,XIC(ai.Byp) ][XIC(Rst) ,XIC(ai.Ltch) ]OTE(ai.Ltch);

@@ -1,0 +1,50 @@
+// Beam Status Output to MPSG
+// Logic '0' implies potential beam
+// Logic '1' implies no potential beam
+NOP();
+
+[XIO(PPS.KeyChA_Op.Sts) ,XIC(PPS.KeyChA_Op.Sts) XIO(HPA1.State.Sts) ]OTE(MPS.BeamStsA_Out);
+
+[XIO(PPS.KeyChB_Op.Sts) ,XIC(PPS.KeyChB_Op.Sts) XIO(HPA2.State.Sts) ]OTE(MPS.BeamStsB_Out);
+
+// Test Mode Active output to RF Drive Control Chassis
+// The chassis bypasses MPS in hardware with this signal
+NOP();
+
+[XIC(PPS.RF_Test_Mode.Sts) ,XIC(PPS.RF_TestwAc_Mode.Sts) ,XIC(PPS.RF_TestLd_Mode.Sts) ][OTE(DrvCtrl1.PPS_TestModeActive_Out) ,OTE(DrvCtrl2.PPS_TestModeActive_Out) ];
+
+// Tuner Controller Power Supply On/Off Control
+NOP();
+
+XIC(Tuner1.PS_Cmd.On_Cmd_HMI)OTL(Tuner1.PS_Cmd.On_Cmd);
+
+XIC(Tuner1.PS_Cmd.Off_Cmd_HMI)OTU(Tuner1.PS_Cmd.On_Cmd);
+
+XIC(Tuner1.PS_Cmd.On_Cmd)OTE(Tuner1.PS_Cmd.On_Out);
+
+XIC(Tuner2.PS_Cmd.On_Cmd_HMI)OTL(Tuner2.PS_Cmd.On_Cmd);
+
+XIC(Tuner2.PS_Cmd.Off_Cmd_HMI)OTU(Tuner2.PS_Cmd.On_Cmd);
+
+XIC(Tuner2.PS_Cmd.On_Cmd)OTE(Tuner2.PS_Cmd.On_Out);
+
+// Coupler Air Blower On/Off Control
+NOP();
+
+XIC(Cav1.CouplerBlower.PS_Cmd.On_Cmd_HMI)OTL(Cav1.CouplerBlower.PS_Cmd.On_Cmd);
+
+XIC(Cav1.CouplerBlower.PS_Cmd.Off_Cmd_HMI)OTU(Cav1.CouplerBlower.PS_Cmd.On_Cmd);
+
+XIC(Cav1.CouplerBlower.PS_Cmd.On_Cmd)OTE(Cav1.CouplerBlower.PS_Cmd.On_Out);
+
+XIC(Cav2.CouplerBlower.PS_Cmd.On_Cmd_HMI)OTL(Cav2.CouplerBlower.PS_Cmd.On_Cmd);
+
+XIC(Cav2.CouplerBlower.PS_Cmd.Off_Cmd_HMI)OTU(Cav2.CouplerBlower.PS_Cmd.On_Cmd);
+
+XIC(Cav2.CouplerBlower.PS_Cmd.On_Cmd)OTE(Cav2.CouplerBlower.PS_Cmd.On_Out);
+
+NOP();
+
+CPT(Vacuum.Cav1_Pressure,10 ** (( Vacuum.Cav1_Pressure_Raw - 7.2 )/0.6));
+
+CPT(Vacuum.Cav2_Pressure,10 ** (( Vacuum.Cav2_Pressure_Raw - 7.2 )/0.6));

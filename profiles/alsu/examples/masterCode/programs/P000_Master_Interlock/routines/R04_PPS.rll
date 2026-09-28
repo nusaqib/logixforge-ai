@@ -1,0 +1,37 @@
+//! Process digital inputs to generate required status bits
+// PPS Mode Status
+NOP();
+
+[XIC(PPS.KeyChA_Op.Sts) ,XIC(PPS.KeyChB_Op.Sts) ]OTE(PPS.Op_Mode.Sts)MOVE(1,PPS.iMode);
+
+[XIC(PPS.KeyChA_RF_Test.Sts) ,XIC(PPS.KeyChB_RF_Test.Sts) ]OTE(PPS.RF_Test_Mode.Sts)MOVE(2,PPS.iMode);
+
+[XIC(PPS.KeyChA_RF_TestwAc.Sts) ,XIC(PPS.KeyChB_RF_TestwAc.Sts) ]OTE(PPS.RF_TestwAc_Mode.Sts)MOVE(3,PPS.iMode);
+
+[XIC(PPS.KeyChA_RF_TestLd.Sts) ,XIC(PPS.KeyChB_RF_TestLd.Sts) ]OTE(PPS.RF_TestLd_Mode.Sts)MOVE(4,PPS.iMode);
+
+// Undefined Mode
+XIO(PPS.Op_Mode.Sts)XIO(PPS.RF_Test_Mode.Sts)XIO(PPS.RF_TestwAc_Mode.Sts)XIO(PPS.RF_TestLd_Mode.Sts)OTE(PPS.Undefined_Mode)MOVE(0,PPS.iMode);
+
+// PPS Mode Latched Status
+NOP();
+
+XIC(PPS.KeyChA_Op.Ltch)XIC(PPS.KeyChB_Op.Ltch)OTE(PPS.Op_Mode.Ltch);
+
+XIC(PPS.KeyChA_RF_Test.Ltch)XIC(PPS.KeyChB_RF_Test.Ltch)OTE(PPS.RF_Test_Mode.Ltch);
+
+XIC(PPS.KeyChA_RF_TestwAc.Ltch)XIC(PPS.KeyChB_RF_TestwAc.Ltch)OTE(PPS.RF_TestwAc_Mode.Ltch);
+
+XIC(PPS.KeyChA_RF_TestLd.Ltch)XIC(PPS.KeyChB_RF_TestLd.Ltch)OTE(PPS.RF_TestLd_Mode.Ltch);
+
+// PPS Interlock chain
+NOP();
+
+XIC(PPS.DC_24V.Ltch)[XIC(PPS.SR_Ops_En_ChA.Ltch) XIC(PPS.SR_Ops_En_ChB.Ltch) XIC(PPS.Op_Mode.Ltch) ,XIC(PPS.ARRF_Test_En_ChA.Ltch) XIC(PPS.ARRF_Test_En_ChB.Ltch) [XIC(PPS.RF_Test_Mode.Ltch) ,XIC(PPS.Cav1_RF_Pwr_Ltch) XIC(PPS.Cav2_RF_Pwr_Ltch) XIC(PPS.RF_TestwAc_Mode.Ltch) ] ,XIC(PPS.RF_TestLd_Mode.Ltch) XIC(PPS.HP_Cx_Sw1_PosDummyLd_Out) XIC(PPS.HP_Cx_Sw2_PosDummyLd_Out) ]OTE(PPS.OK);
+
+// Output to PPS (probably the PPS interface chassis) for each HP Coax Switch in Dummy Load position
+NOP();
+
+XIC(HP_Cx_Sw1.Pos_DumLoad)OTE(PPS.HP_Cx_Sw1_PosDummyLd_Out);
+
+XIC(HP_Cx_Sw2.Pos_DumLoad)OTE(PPS.HP_Cx_Sw2_PosDummyLd_Out);

@@ -1,0 +1,36 @@
+{
+  "name": "Count_to_kW_AOI",
+  "revision": "1.0",
+  "description": "",
+  "vendor": "",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "RF_Power_Ch",
+      "data_type": "UDT_RF_Power_Ch",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    }
+  ],
+  "local_tags": [
+    {
+      "name": "volt",
+      "data_type": "REAL"
+    },
+    {
+      "name": "PmW",
+      "data_type": "REAL"
+    },
+    {
+      "name": "Pdbm",
+      "data_type": "REAL"
+    }
+  ]
+}

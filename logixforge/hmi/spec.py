@@ -22,8 +22,14 @@ hmi.json
         { "type": "text", "text": "Free text" }
       ] }
   ],
-  "faceplates": { "UDT_Motor": { "rows": [ ... explicit rows, optional ... ] } }
+  "faceplates": { "UDT_Motor": { "rows": [ ... explicit rows, optional ... ] } },
+    "controller": { "cip_path": "Cubicle\\192.168.1.10", "acd_path": "C:\\proj\\Line.ACD" },   # optional -> Devices/<ref>.hmi
+    "banner": true,                                   # false = no system banner (screens use the full height)
+    "style": { "lamp_shape": "ellipse", "font_size": 14, "colors": { "on": "#51e79a", "fault": "#ff0000" } },
+    "folder_security": { "Configuration": { "Operator": "ReadOnly", "Engineer": "FullAccess" } }
 }
+Screens may carry "folder": "Details" and "security": {"Operator": "ReadOnly"}; button "action" may be
+set1 | set0 | toggle | momentary.
 
 Faceplate rows default from UDT member prefixes:
   Cmd_* BOOL -> button (set1)   Sts_* BOOL -> indicator (green)   Alm_*/*Fault* BOOL -> indicator (red)
@@ -73,8 +79,10 @@ class Screen:
     title: str = ""
     columns: int = 3
     widgets: list[Widget] = field(default_factory=list)
-    fill_color: str = "#f4f6f8"
+    fill_color: str = ""
     in_menu: bool = True
+    folder: str = ""
+    security: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -97,6 +105,14 @@ class HmiSpec:
     screens: list[Screen] = field(default_factory=list)
     faceplates: dict[str, Faceplate] = field(default_factory=dict)
     lang: str = "en-US"
+    cip_path: str = ""
+    cip_path_emulator: str = ""
+    acd_path: str = ""
+    banner: bool = True
+    lamp_shape: str = "rectangle"      # rectangle | ellipse
+    font_size: float = 12
+    colors: dict = field(default_factory=dict)
+    folder_security: dict = field(default_factory=dict)
 
     def screen(self, name: str) -> Screen | None:
         return next((s for s in self.screens if s.name.lower() == name.lower()), None)
@@ -127,10 +143,19 @@ def load_hmi_spec(proj: Project, path: str | Path | None = None) -> HmiSpec | No
         height=int(term.get("height", h)), home_screen=d.get("home_screen", ""), lang=d.get("lang", "en-US"),
     )
     spec.screen_height = float(term.get("screen_height", 0) or (spec.height - BANNER_HEIGHT_800 * spec.width / 800))
+    ctl = d.get("controller", {})
+    spec.cip_path, spec.cip_path_emulator, spec.acd_path = ctl.get("cip_path", ""), ctl.get("cip_path_emulator", ""), ctl.get("acd_path", "")
+    spec.banner = bool(d.get("banner", True))
+    style = d.get("style", {})
+    spec.lamp_shape = style.get("lamp_shape", "rectangle")
+    spec.font_size = float(style.get("font_size", 12))
+    spec.colors = dict(style.get("colors", {}))
+    spec.folder_security = dict(d.get("folder_security", {}))
     for s in d.get("screens", []):
         spec.screens.append(Screen(name=s["name"], title=s.get("title", s["name"]), columns=int(s.get("columns", 3)),
                                    widgets=[_widget(x) for x in s.get("widgets", [])],
-                                   fill_color=s.get("fill_color", "#f4f6f8"), in_menu=bool(s.get("in_menu", True))))
+                                   fill_color=s.get("fill_color", ""), in_menu=bool(s.get("in_menu", True)),
+                                   folder=s.get("folder", ""), security=dict(s.get("security", {}))))
     if not spec.home_screen and spec.screens:
         spec.home_screen = spec.screens[0].name
     for udt, f in d.get("faceplates", {}).items():
@@ -204,6 +229,11 @@ def hmi_findings(proj: Project, spec: HmiSpec):
         w = f"hmi screen {s.name}"
         if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", s.name) or len(s.name) > 40:
             out.append(("error", "HMI_NAME", w, "screen names: letters/digits/underscore, max 40 chars"))
+        if s.folder and not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", s.folder):
+            out.append(("error", "HMI_NAME", w, "folder names: letters/digits/underscore"))
+        for role, access in list(s.security.items()) + [x for f in spec.folder_security.values() for x in f.items()]:
+            if access not in {"FullAccess", "ReadOnly", "NoAccess", "Inherit"}:
+                out.append(("error", "HMI_SECURITY", w, f"security {role}={access!r}: use FullAccess|ReadOnly|NoAccess|Inherit"))
         if s.name.lower() in names:
             out.append(("error", "HMI_DUP", w, "duplicate screen name"))
         names.add(s.name.lower())
@@ -219,6 +249,8 @@ def hmi_findings(proj: Project, spec: HmiSpec):
                         and spec.screen(wd.screen) is None:
                     out.append(("error", "HMI_NAV", ww, f"target screen {wd.screen!r} not defined"))
                 continue
+            if wd.type == "button" and wd.action not in {"set1", "set0", "toggle", "momentary"}:
+                out.append(("error", "HMI_ACTION", ww, f"button action {wd.action!r} must be set1|set0|toggle|momentary"))
             if wd.type == "text":
                 continue
             if not wd.tag:

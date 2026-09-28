@@ -1,0 +1,539 @@
+namespace ViewDesigner;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+Banner {
+	FillColor := "#738596";
+	UpdateRate := EnumUpdateRate._500_ms;
+	PanelDeviceGroup LogonGroup {
+		Button BAN_LogonBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.6;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				DisplayLogOnPopupCommand DisplayLogOnPopupCommand_001 {
+					Width := 500;
+					Height := 400;
+					PopupName := "";
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedIn LoggedIn {
+			FillColor := "#e5e5e5";
+			X := 8.85;
+			Y := 6.17;
+			Width := 15.75;
+			Height := 20.25;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 1";
+			Opacity := 0 -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 0 : 100";
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		LoggedOut LoggedOut {
+			FillColor := "#e5e5e5";
+			X := 8.35;
+			Y := 6.17;
+			Width := 15.65;
+			Height := 20.12;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? 1 : 0";
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay BAN_LogonLabel {
+			Text := "Log on" -> "::Local:HMIDevice.Security.CurrentUserName==$"Guest$" ? $"Log on$" : ::Local:HMIDevice.Security.CurrentUserName";
+			FontName := "Arial Unicode MS";
+			FontSize := 9;
+			Bold := false;
+			Underline := false;
+			FontColor := "#ffffff";
+			TextAlignment := EnumAlignment.HLEFT_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 37.18;
+			Y := 7.58;
+			Width := 250;
+			Height := 16;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 236.76;
+		Y := 5.5;
+		Width := 287.18;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationMenuGroup {
+		Button BAN_NavMenuBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.6;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				ShowNavMenuCommand ShowNavMenuCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NavigationMenuIcon NavigationMenuIcon {
+			FillColor := "#e5e5e5";
+			X := 4.95;
+			Y := 9.86;
+			Width := 22.1;
+			Height := 12.28;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 191.76;
+		Y := 5.5;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationForwardGroup {
+		Button BAN_NavForwardBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.6;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateFwdCommand NavigateFwdCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NextPage NextPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 146.66;
+		Y := 5.5;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup NavigationBackwardGroup {
+		Button BAN_NavBackBtn {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 8.6;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease released_001 {
+				ReleaseOnOpenClose := false;
+				NavigateBackCommand NavigateBackCommand_001 {
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 32;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		PrevPage PrevPage {
+			FillColor := "#e5e5e5";
+			X := 7.95;
+			Y := 8.46;
+			Width := 16.13;
+			Height := 15.08;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 109;
+		Y := 5.5;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	AlarmStatusIndicator BAN_AlarmStatusIndicator {
+		NavigateTo := "Navigation Menu\AlarmSummary";
+		UsePredefinedDisabled := true;
+		FontSize := 8;
+		X := 12;
+		Y := 5.5;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	AutomaticDiagnosticsStatusIndicator BAN_AutomaticDiagnosticsStatusIndicator {
+		NavigateTo := "Navigation Menu\AutomaticDiagnostics";
+		UsePredefinedDisabled := true;
+		FontSize := 8;
+		X := 50;
+		Y := 5.5;
+		Width := 32;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup BAN_StatusAndDateTimeGroup {
+		DateTimeDisplay BAN_CurTimeDisplay {
+			Format := EnumDateTimeFormat.hh_mm_ss_AP;
+			FontName := "Arial Unicode MS";
+			FontSize := 9;
+			Bold := false;
+			FontColor := "#ffffff";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 3;
+			Border {
+				Color := "#738596";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 108.81;
+			Y := 0.14;
+			Width := 72;
+			Height := 16;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		DateTimeDisplay BAN_CurDateDisplay {
+			Format := EnumDateTimeFormat.M_d_yyyy;
+			FontName := "Arial Unicode MS";
+			FontSize := 9;
+			Bold := false;
+			FontColor := "#ffffff";
+			TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+			Padding := 0;
+			CornerRadius := 3;
+			Border {
+				Color := "#738596";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 108.81;
+			Y := 15;
+			Width := 72;
+			Height := 16;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		ControllerStatusIndicator BAN_ControllerStatusIndicator {
+			NavigateTo := "Predefined Screens\ControllersGeneral";
+			X := 72.54;
+			Y := 0;
+			Width := 36.27;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		NetworkStatusIndicator BAN_NetworkStatusIndicator {
+			NavigateTo := "Predefined Screens\NetworkDiagnostic";
+			X := 36.27;
+			Y := 0;
+			Width := 36.27;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		ProjectEventsStatusIndicator BAN_ProjectEventsStatusIndicator {
+			StateTable ^StateTable {
+				Expression := "" -> "::Local:HMIDevice.ProjectEvents.ErrorCount != 0$n&& ($n$t!::Local:HMIDevice.Alarms.ExportInProgress$n$t&& ::Local:HMIDevice.Alarms.ExportErrorStatus == $"$"$n$t&& !::Local:HMIDevice.DataLogs.ExportInProgress$n$t&& ::Local:HMIDevice.DataLogs.DataLoggingError == $"$"$n$t&& ::Local:HMIDevice.DataLogs.ExportErrorStatus == $"$"$n$t&& ::Local:HMIDevice.DataLogs.DataLoggingStatus != $"SAFELY_STOPPED$"$n$t&& !::Local:HMIDevice.DataLogs.TagsInError$n)$n";
+				State State0 (
+					opacity := "0",
+					^visible := "False")
+				{
+					value := "0";
+				}
+				State State1 (
+					opacity := "100",
+					^visible := "true")
+				{
+					value := "1";
+				}
+				State DefaultState (
+					opacity := "100",
+					^visible := "true")
+				{
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 36.27;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		DataLogStatusIndicator BAN_DataLogStatusIndicator {
+			NavigateTo := "Predefined Screens\DataLog";
+			StateTable ^StateTable {
+				Expression := "" -> "::Local:HMIDevice.ProjectEvents.ErrorCount == 0$n&& ($n    ::Local:HMIDevice.Alarms.ExportInProgress$n    || ::Local:HMIDevice.Alarms.ExportErrorStatus != $"$"$n    || ::Local:HMIDevice.DataLogs.ExportInProgress$n    || ::Local:HMIDevice.DataLogs.DataLoggingError != $"$"$n    || ::Local:HMIDevice.DataLogs.ExportErrorStatus != $"$"$n    || ::Local:HMIDevice.DataLogs.DataLoggingStatus == $"SAFELY_STOPPED$"$n    || ::Local:HMIDevice.DataLogs.TagsInError$n)$n";
+				State State0 (
+					opacity := "0",
+					^visible := "False")
+				{
+					value := "0";
+				}
+				State State1 (
+					opacity := "100",
+					^visible := "true")
+				{
+					value := "1";
+				}
+				State DefaultState (
+					opacity := "100",
+					^visible := "true")
+				{
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 36.27;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		PanelDeviceGroup BAN_ErrorIndicator {
+			Rectangle ErrorIndicatorBg {
+				CornerRadius := 0;
+				Border {
+					Color := "#000000";
+					BorderStyle {
+						Line := PenStyle.SolidLine;
+						Cap := CapStyle.SquareCap;
+						Join := JoinStyle.MiterJoin;
+					}
+					Width := 0;
+				}
+				FillColor := "#738596";
+				X := 0;
+				Y := 0;
+				Width := 40.8;
+				Height := 36;
+				Angle := 0;
+				Enabled := true;
+				^Visible := true;
+				Opacity := 0;
+				Access := EnumElementAccessFamily.Inherit;
+			}
+			ErrorIndicator ErrorIndicator {
+				X := 5.4;
+				Y := 3;
+				Width := 30;
+				Height := 30;
+				Angle := 0;
+				Enabled := true;
+				^Visible := true;
+				Opacity := 100;
+				Access := EnumElementAccessFamily.Inherit;
+			}
+			StateTable StateTable_001 {
+				Expression := "" -> "::Local:HMIDevice.ProjectEvents.ErrorCount != 0$n&& ($n$t::Local:HMIDevice.Alarms.ExportInProgress$n$t|| ::Local:HMIDevice.Alarms.ExportErrorStatus != $"$"$n$t|| ::Local:HMIDevice.DataLogs.ExportInProgress$n$t|| ::Local:HMIDevice.DataLogs.DataLoggingError != $"$"$n$t|| ::Local:HMIDevice.DataLogs.ExportErrorStatus != $"$"$n$t|| ::Local:HMIDevice.DataLogs.DataLoggingStatus == $"SAFELY_STOPPED$"$n$t|| ::Local:HMIDevice.DataLogs.TagsInError$n)$n";
+				State State0 (
+					opacity := "0",
+					^visible := "False")
+				{
+					value := "0";
+				}
+				State State1 (
+					opacity := "100",
+					^visible := "true")
+				{
+					value := "1";
+				}
+				State DefaultState (
+					opacity := "100",
+					^visible := "true")
+				{
+				}
+			}
+			BehaviorOpenPopUp BehaviorOpenPopUp_001 {
+				screenName := "Predefined Screens\WarningsAndErrors";
+				Key := EnumBezelKeys.VK_NONE;
+				RequiresFocus := false;
+				AlwaysTriggerReleaseEvent := false;
+			}
+			X := 0;
+			Y := 0;
+			Width := 36.27;
+			Height := 32;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 831.19;
+		Y := 5.5;
+		Width := 180.81;
+		Height := 32;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Width := 1024;
+	Height := 43;
+}

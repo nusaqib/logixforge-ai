@@ -1,0 +1,247 @@
+{
+  "name": "UDT_PPS",
+  "description": "PSS Interface Chassis",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "ARRF_Test_En_ChA",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "ARRF_Test_En_ChB",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SR_Ops_En_ChA",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "SR_Ops_En_ChB",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HP_Cx_Sw1_PosDummyLd_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HP_Cx_Sw2_PosDummyLd_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChA_Op",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChB_Op",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChA_RF_Test",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChB_RF_Test",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChA_RF_TestwAc",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChB_RF_TestwAc",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChA_RF_TestLd",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "KeyChB_RF_TestLd",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Op_Mode",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RF_Test_Mode",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RF_TestwAc_Mode",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RF_TestLd_Mode",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Undefined_Mode",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HPA1_ChA_CxSw_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HPA1_ChB_CxSw_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HPA2_ChA_CxSw_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "HPA2_ChB_CxSw_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "iMode",
+      "data_type": "SINT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_RF_Pwr_Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_RF_Pwr_Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_FwdPwr_mA",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_FwdPwr_dbm",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_FwdPwr_kW",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_CellPwr_mA",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_CellPwr_dbm",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav1_CellPwr_kW",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_FwdPwr_mA",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_FwdPwr_dbm",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_FwdPwr_kW",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_CellPwr_mA",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_CellPwr_dbm",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Cav2_CellPwr_kW",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

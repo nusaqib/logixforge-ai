@@ -1,0 +1,103 @@
+{
+  "name": "UDT_RF_Power_Ch",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "RawVal",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Val",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Gain",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Offset",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Intlk_Mode_HMI",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Intlk_Mode",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Byp_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Byp",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Lo_SP_HMI",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Lo_SP_Raw",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Lo_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Hi_SP_HMI",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Hi_SP_Raw",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Hi_SP",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

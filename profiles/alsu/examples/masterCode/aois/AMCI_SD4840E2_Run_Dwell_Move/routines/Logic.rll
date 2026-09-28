@@ -1,0 +1,30 @@
+// The following rung moves a decimal value of "8192" (bit 13 set) to the MSW command word.  This commands the SD4840E2 to run a previously programmed Assembled Move.
+XIO(Axis_Status_Bits.0)XIO(Axis_Status_Bits.1)XIO(EN)MOVE(8192,command_data_block[0]);
+
+// The following rung moves a value of 0 to output word 0 while motion is occurring.  This will allow the SD4840E2 to see the next 0 to 1 transition of the command bit.
+[XIC(Axis_Status_Bits.0) ,XIC(Axis_Status_Bits.1) ]MOVE(0,command_data_block[0]);
+
+// The following rung moves a decimal value of -32256 (16#8200) to Least Significant word of Command Bits.  This enables the driver and commands an assembled move.
+XIO(Type_0_for_standard_1_for_indexed)MOVE(-32256,command_data_block[1]);
+
+// The following rung moves a decimal value of -32000 (16#8300) to Least Significant word of Command Bits.  This enables the driver and commands an indexed assembled move.
+XIC(Type_0_for_standard_1_for_indexed)MOVE(-32000,command_data_block[1]);
+
+// The Run Assembled Move command does not use the data in registers two through nine and the following rung resets these registers to zero.
+FLL(0,command_data_block[2],6);
+
+// If the motor current field is zero or greater than 40, move zero into word 8, the motor current value, of the command data block.
+[EQ(motor_current,0) ,GT(motor_current,40) ]MOVE(0,command_data_block[8]);
+
+// If the motor current field is between 1 and 40, set the bit that enables the changing of the motor current to the new value and  move the motor current value into word 8 of the command data block.
+LIMIT(1,motor_current,40)OTL(command_data_block[1].1)MOVE(motor_current,command_data_block[8]);
+
+// The following rung moves the dwell move time value into output word 9.  This value will be used during Assembled Moves as the time delay between each of the programmed segments.
+MOVE(Assembled_Move_Dwell_Time,command_data_block[9]);
+
+[XIC(Axis_Status_Bits.11) ,XIC(Axis_Status_Bits.12) ,XIC(Axis_Status_Bits.13) ]OTE(ER)MOVE(0,command_data_block[0]);
+
+OTL(EN);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

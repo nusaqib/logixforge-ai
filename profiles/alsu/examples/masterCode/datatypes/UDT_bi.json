@@ -1,0 +1,31 @@
+{
+  "name": "UDT_bi",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Status"
+    },
+    {
+      "name": "Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Latch"
+    },
+    {
+      "name": "Byp",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Bypass"
+    },
+    {
+      "name": "FF",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "First Fault"
+    }
+  ]
+}

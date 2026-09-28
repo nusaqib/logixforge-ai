@@ -1,0 +1,351 @@
+[
+  {
+    "name": "Channel_Arc",
+    "data_type": "INT"
+  },
+  {
+    "name": "Channel_Power",
+    "data_type": "INT",
+    "usage": "Input"
+  },
+  {
+    "name": "Count_to_kW_1",
+    "data_type": "Count_to_kW_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "Count_to_kW_2",
+    "data_type": "Count_to_kW_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "kW_to_Count_1",
+    "data_type": "kW_to_Count_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "kW_to_Count_2",
+    "data_type": "kW_to_Count_AOI",
+    "dimensions": "10"
+  },
+  {
+    "name": "ModeIdx",
+    "data_type": "DINT"
+  },
+  {
+    "name": "Tuner1_AOI_absolute_move",
+    "data_type": "AMCI_SD4840E2_Absolute_Move"
+  },
+  {
+    "name": "Tuner1_AOI_Axis_Follower",
+    "data_type": "AMCI_SD4840E2_Axis_Follower_Linear"
+  },
+  {
+    "name": "Tuner1_AOI_CCW_Jog_Move",
+    "data_type": "AMCI_SD4840E2_Jog_CCW"
+  },
+  {
+    "name": "Tuner1_AOI_CCW_Jog_Move_Res",
+    "data_type": "AMCI_SD4840E2_Jog_CCW"
+  },
+  {
+    "name": "Tuner1_AOI_CCW_registration",
+    "data_type": "AMCI_SD4840E2_Registration_Move_CCW"
+  },
+  {
+    "name": "Tuner1_AOI_CW_Jog_Move",
+    "data_type": "AMCI_SD4840E2_Jog_CW"
+  },
+  {
+    "name": "Tuner1_AOI_CW_Jog_Move_Res",
+    "data_type": "AMCI_SD4840E2_Jog_CW"
+  },
+  {
+    "name": "Tuner1_AOI_disable_driver",
+    "data_type": "AMCI_SD4840E2_Disable_Driver"
+  },
+  {
+    "name": "Tuner1_AOI_Enable_driver",
+    "data_type": "AMCI_SD4840E2_Enable_Driver"
+  },
+  {
+    "name": "Tuner1_AOI_Enable_ENET_Driver",
+    "data_type": "AMCI_SD4840E2_Enable_Driver"
+  },
+  {
+    "name": "Tuner1_AOI_Hold_Position",
+    "data_type": "AMCI_SD4840E2_Hold"
+  },
+  {
+    "name": "Tuner1_AOI_Hold_Resonance",
+    "data_type": "AMCI_SD4840E2_Hold"
+  },
+  {
+    "name": "Tuner1_AOI_Home_CCW",
+    "data_type": "AMCI_SD4840E2_Home_CCW"
+  },
+  {
+    "name": "Tuner1_AOI_Home_CW",
+    "data_type": "AMCI_SD4840E2_Home_CW"
+  },
+  {
+    "name": "Tuner1_AOI_Immediate_stop",
+    "data_type": "AMCI_SD4840E2_Immediate_Stop"
+  },
+  {
+    "name": "Tuner1_AOI_motor_current",
+    "data_type": "AMCI_SD4840E2_Program_Motor_Current"
+  },
+  {
+    "name": "Tuner1_AOI_Preset_Position",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner1_AOI_Preset_Position_CCW",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner1_AOI_Preset_Position_CW",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner1_AOI_program_assembled",
+    "data_type": "AMCI_SD4840E2_Program_Assembed_Move"
+  },
+  {
+    "name": "Tuner1_AOI_Registration_CW",
+    "data_type": "AMCI_SD4840E2_Registration_Move_CW"
+  },
+  {
+    "name": "Tuner1_AOI_relative_move",
+    "data_type": "AMCI_SD4840E2_Relative_Move"
+  },
+  {
+    "name": "Tuner1_AOI_Reset_Errors",
+    "data_type": "AMCI_SD4840E2_Reset_Errors"
+  },
+  {
+    "name": "Tuner1_AOI_resume",
+    "data_type": "AMCI_SD4840E2_Resume"
+  },
+  {
+    "name": "Tuner1_AOI_run_blend",
+    "data_type": "AMCI_SD4840E2_Run_Blend_Move"
+  },
+  {
+    "name": "Tuner1_AOI_run_dwell",
+    "data_type": "AMCI_SD4840E2_Run_Dwell_Move"
+  },
+  {
+    "name": "Tuner1_Not_In_Range_ONS",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_OSRGRT",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_OSRLES_ABS",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_OSRLES_Relative",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_PID",
+    "data_type": "PID"
+  },
+  {
+    "name": "Tuner1_PID_CV",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner1_PID_CV_ABS",
+    "data_type": "DINT"
+  },
+  {
+    "name": "Tuner1_PID_PV",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner1_PID_PV_ABS",
+    "data_type": "DINT"
+  },
+  {
+    "name": "Tuner1_PID_TB",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner1_Preset_CCW_OB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_Preset_CCW_SB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_Preset_CW_OB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner1_Preset_CW_SB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_AOI_absolute_move",
+    "data_type": "AMCI_SD4840E2_Absolute_Move"
+  },
+  {
+    "name": "Tuner2_AOI_Axis_Follower",
+    "data_type": "AMCI_SD4840E2_Axis_Follower_Linear"
+  },
+  {
+    "name": "Tuner2_AOI_CCW_Jog_Move",
+    "data_type": "AMCI_SD4840E2_Jog_CCW"
+  },
+  {
+    "name": "Tuner2_AOI_CCW_Jog_Move_Res",
+    "data_type": "AMCI_SD4840E2_Jog_CCW"
+  },
+  {
+    "name": "Tuner2_AOI_CCW_registration",
+    "data_type": "AMCI_SD4840E2_Registration_Move_CCW"
+  },
+  {
+    "name": "Tuner2_AOI_CW_Jog_Move",
+    "data_type": "AMCI_SD4840E2_Jog_CW"
+  },
+  {
+    "name": "Tuner2_AOI_CW_Jog_Move_Res",
+    "data_type": "AMCI_SD4840E2_Jog_CW"
+  },
+  {
+    "name": "Tuner2_AOI_disable_driver",
+    "data_type": "AMCI_SD4840E2_Disable_Driver"
+  },
+  {
+    "name": "Tuner2_AOI_Enable_driver",
+    "data_type": "AMCI_SD4840E2_Enable_Driver"
+  },
+  {
+    "name": "Tuner2_AOI_Enable_ENET_Driver",
+    "data_type": "AMCI_SD4840E2_Enable_Driver"
+  },
+  {
+    "name": "Tuner2_AOI_Hold_Position",
+    "data_type": "AMCI_SD4840E2_Hold"
+  },
+  {
+    "name": "Tuner2_AOI_Hold_Resonance",
+    "data_type": "AMCI_SD4840E2_Hold"
+  },
+  {
+    "name": "Tuner2_AOI_Home_CCW",
+    "data_type": "AMCI_SD4840E2_Home_CCW"
+  },
+  {
+    "name": "Tuner2_AOI_Home_CW",
+    "data_type": "AMCI_SD4840E2_Home_CW"
+  },
+  {
+    "name": "Tuner2_AOI_Immediate_stop",
+    "data_type": "AMCI_SD4840E2_Immediate_Stop"
+  },
+  {
+    "name": "Tuner2_AOI_motor_current",
+    "data_type": "AMCI_SD4840E2_Program_Motor_Current"
+  },
+  {
+    "name": "Tuner2_AOI_Preset_Position",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner2_AOI_Preset_Position_CCW",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner2_AOI_Preset_Position_CW",
+    "data_type": "AMCI_SD4840E2_Preset_Motor_Position"
+  },
+  {
+    "name": "Tuner2_AOI_program_assembled",
+    "data_type": "AMCI_SD4840E2_Program_Assembed_Move"
+  },
+  {
+    "name": "Tuner2_AOI_Registration_CW",
+    "data_type": "AMCI_SD4840E2_Registration_Move_CW"
+  },
+  {
+    "name": "Tuner2_AOI_relative_move",
+    "data_type": "AMCI_SD4840E2_Relative_Move"
+  },
+  {
+    "name": "Tuner2_AOI_Reset_Errors",
+    "data_type": "AMCI_SD4840E2_Reset_Errors"
+  },
+  {
+    "name": "Tuner2_AOI_resume",
+    "data_type": "AMCI_SD4840E2_Resume"
+  },
+  {
+    "name": "Tuner2_AOI_run_blend",
+    "data_type": "AMCI_SD4840E2_Run_Blend_Move"
+  },
+  {
+    "name": "Tuner2_AOI_run_dwell",
+    "data_type": "AMCI_SD4840E2_Run_Dwell_Move"
+  },
+  {
+    "name": "Tuner2_OSRGRT",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_OSRLES_ABS",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_OSRLES_Relative",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_PID",
+    "data_type": "PID"
+  },
+  {
+    "name": "Tuner2_PID_CV",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner2_PID_CV_ABS",
+    "data_type": "DINT"
+  },
+  {
+    "name": "Tuner2_PID_PV",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner2_PID_PV_ABS",
+    "data_type": "DINT"
+  },
+  {
+    "name": "Tuner2_PID_TB",
+    "data_type": "REAL"
+  },
+  {
+    "name": "Tuner2_Preset_CCW_OB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_Preset_CCW_SB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_Preset_CW_OB",
+    "data_type": "BOOL"
+  },
+  {
+    "name": "Tuner2_Preset_CW_SB",
+    "data_type": "BOOL"
+  }
+]

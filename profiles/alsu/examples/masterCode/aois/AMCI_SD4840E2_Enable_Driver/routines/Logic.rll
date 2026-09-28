@@ -1,0 +1,9 @@
+// Enabling the driver simply setsbit 15 of word 1, the command word Least Significant Bits, to one.
+// 
+// In addition to doing this, this Add On Instruction also resets the remaing words of the ten word command block to zero.
+MOVE(0,command_data_block[0])FLL(0,command_data_block[2],8);
+
+MOVE(-32768,command_data_block[1]);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

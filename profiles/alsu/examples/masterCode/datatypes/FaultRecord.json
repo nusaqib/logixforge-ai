@@ -1,0 +1,37 @@
+{
+  "name": "FaultRecord",
+  "description": "FaultRecord attribute storage",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Time_Low",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": "Lower 32 bits of fault timestamp"
+    },
+    {
+      "name": "Time_High",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": "Upper 32 bits of fault timestamp"
+    },
+    {
+      "name": "Type",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": "Fault type"
+    },
+    {
+      "name": "Code",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": "Fault code"
+    },
+    {
+      "name": "Info",
+      "data_type": "DINT",
+      "dimension": 8,
+      "description": "Fault-specific information"
+    }
+  ]
+}

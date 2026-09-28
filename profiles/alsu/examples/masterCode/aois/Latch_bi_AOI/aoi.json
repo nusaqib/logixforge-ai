@@ -1,0 +1,33 @@
+{
+  "name": "Latch_bi_AOI",
+  "revision": "1.0",
+  "description": "Add-On-Instruction for latching of trip fault signals",
+  "vendor": "",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "bi",
+      "data_type": "UDT_bi",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    },
+    {
+      "name": "Rst",
+      "data_type": "BOOL",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "Reset",
+      "default": "0",
+      "dimension": 0
+    }
+  ],
+  "local_tags": []
+}

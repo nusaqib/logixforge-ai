@@ -1,0 +1,43 @@
+{
+  "name": "UDT_AirBlower",
+  "description": "Cavity Air Blower",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "PS",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "PS_Cmd",
+      "data_type": "On_Off_Control",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Mode_Auto",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Auto/Manual Mode"
+    },
+    {
+      "name": "Flow_Sw",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OnTimer",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OffTimer",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

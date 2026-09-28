@@ -1,0 +1,205 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic UDT_ai_Calib {
+	Description := "";
+	Vendor := "";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 315.25;
+	Height := 20;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		Channel {
+			DataType := "::masterCode.UDT_ai";
+			Description := "";
+			Category := "General";
+		}
+	}
+	NumericInput NumericInput_001 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 2;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "Channel.Gain";
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 75;
+		Y := 0;
+		Width := 60;
+		Height := 20;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput NumericInput_002 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 2;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := -10000;
+		KeypadMaxValue := 10000;
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 0 -> "Channel.Offset";
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		Bold := true;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#1e2e3e";
+		X := 149.25;
+		Y := 0;
+		Width := 60;
+		Height := 20;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericDisplay NumericDisplay_001 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 2;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "Channel.RawVal";
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 0;
+		Y := 0;
+		Width := 60;
+		Height := 20;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericDisplay NumericDisplay_002 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 2;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "Channel.Val";
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 220.75;
+		Y := 0;
+		Width := 60;
+		Height := 20;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay TextDisplay_005 {
+		Text := "" -> "Channel.@EngineeringUnit";
+		FontName := "Arial Unicode MS";
+		FontSize := 13;
+		Bold := false;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 285.25;
+		Y := 0;
+		Width := 30;
+		Height := 20;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

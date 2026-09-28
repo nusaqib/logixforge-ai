@@ -1,0 +1,54 @@
+//! Summray signals for latched status of sub systems
+// MPS & Vacuum interlock chain
+NOP();
+
+XIC(PPS.Op_Mode.Ltch)XIC(MPS.PermitA.Ltch)XIC(MPS.PermitB.Ltch)OTE(MPS.OK);
+
+XIC(Vacuum.Cav1_PiraniRelay.Ltch)XIC(Vacuum.Cav1_CCG_Relay.Ltch)OTE(Vacuum.Sys1_OK);
+
+XIC(Vacuum.Cav2_PiraniRelay.Ltch)XIC(Vacuum.Cav2_CCG_Relay.Ltch)OTE(Vacuum.Sys2_OK);
+
+XIC(Vacuum.Sys1_OK)XIC(Vacuum.Sys2_OK)OTE(Vacuum.OK);
+
+// Feeder interlock chain
+NOP();
+
+XIC(HP_Cx_Sw1.PPS_Match.Ltch)OTE(HP_Cx_Sw1.OK);
+
+XIC(HP_Cx_Sw2.PPS_Match.Ltch)OTE(HP_Cx_Sw2.OK);
+
+XIC(Main_LCWS_Pressure.Ltch)XIC(Main_LCWS_Temp.Ltch)XIC(Main_LCWR_Pressure.Ltch)XIC(Main_LCWR_Temp.Ltch)XIC(Feeder1.Circ_LCWR_Flow.Ltch)XIC(Feeder1.CircLoad_LCWR_Flow.Ltch)[XIC(Feeder1.DummyLoad_LCWR_Flow.Ltch) ,XIO(PPS.RF_TestLd_Mode.Sts) ]XIC(Feeder1.TxLineSw.Ltch)XIC(Feeder1.TCU.OperationOK.Ltch)XIC(HP_Cx_Sw1.OK)OTE(Feeder1.OK);
+
+XIC(Main_LCWS_Pressure.Ltch)XIC(Main_LCWS_Temp.Ltch)XIC(Main_LCWR_Pressure.Ltch)XIC(Main_LCWR_Temp.Ltch)XIC(Feeder2.Circ_LCWR_Flow.Ltch)XIC(Feeder2.CircLoad_LCWR_Flow.Ltch)[XIC(Feeder2.DummyLoad_LCWR_Flow.Ltch) ,XIO(PPS.RF_TestLd_Mode.Sts) ]XIC(Feeder2.TxLineSw.Ltch)XIC(Feeder2.TCU.OperationOK.Ltch)XIC(HP_Cx_Sw2.OK)OTE(Feeder2.OK);
+
+// Cavity interlock chain
+NOP();
+
+XIC(Cav1.LCWR_Temp[0].Ltch)XIC(Cav1.LCWR_Temp[1].Ltch)XIC(Cav1.LCWR_Temp[2].Ltch)XIC(Cav1.LCWR_Temp[3].Ltch)XIC(Cav1.LCWR_Temp[4].Ltch)XIC(Cav1.LCWR_Temp[5].Ltch)XIC(Cav1.LCWR_Temp[6].Ltch)XIC(Cav1.LCWR_Temp[7].Ltch)XIC(Cav1.LCWR_Temp[8].Ltch)XIC(Cav1.LCWR_Temp[9].Ltch)XIC(Cav1.LCWR_Temp[10].Ltch)XIC(Cav1.LCWR_Temp[11].Ltch)XIC(Cav1.LCWR_Temp[12].Ltch)XIC(Cav1.LCWR_Temp[13].Ltch)XIC(Cav1.LCWR_Temp[14].Ltch)OTE(Cav1.LCWR_Temp_OK);
+
+XIC(Cav1.LCWR_Flow[0].Ltch)XIC(Cav1.LCWR_Flow[1].Ltch)XIC(Cav1.LCWR_Flow[2].Ltch)XIC(Cav1.LCWR_Flow[3].Ltch)XIC(Cav1.LCWR_Flow[4].Ltch)XIC(Cav1.LCWR_Flow[5].Ltch)XIC(Cav1.LCWR_Flow[6].Ltch)XIC(Cav1.LCWR_Flow[7].Ltch)XIC(Cav1.LCWR_Flow[8].Ltch)XIC(Cav1.LCWR_Flow[9].Ltch)XIC(Cav1.LCWR_Flow[10].Ltch)XIC(Cav1.LCWR_Flow[11].Ltch)XIC(Cav1.LCWR_Flow[12].Ltch)XIC(Cav1.LCWR_Flow[13].Ltch)XIC(Cav1.LCWR_Flow[14].Ltch)OTE(Cav1.LCWR_Flow_OK);
+
+XIC(Cav1.Surf_Temp[0].Ltch)XIC(Cav1.Surf_Temp[1].Ltch)XIC(Cav1.Surf_Temp[2].Ltch)XIC(Cav1.Surf_Temp[3].Ltch)XIC(Cav1.Surf_Temp[4].Ltch)XIC(Cav1.Surf_Temp[5].Ltch)XIC(Cav1.Surf_Temp[6].Ltch)XIC(Cav1.Surf_Temp[7].Ltch)XIC(Cav1.Surf_Temp[8].Ltch)XIC(Cav1.CouplerTemp.Ltch)OTE(Cav1.Surf_Temp_OK);
+
+XIC(Tuner1.PS.Ltch)XIC(Tuner1.ConnectionFaulted.Ltch)XIC(Tuner1.Error.Ltch)[XIC(Tuner1.Position_Invalid.Ltch) XIC(Tuner1.InRange.Ltch) ,XIO(Tuner1.CtrlModeResonance) ]OTE(Tuner1.OK);
+
+XIC(Cav1.LCWR_Temp_OK)XIC(Cav1.LCWR_Flow_OK)XIC(Cav1.Surf_Temp_OK)XIC(Cav1.CouplerBlower.Flow_Sw.Ltch)XIC(Tuner1.OK)OTE(Cav1.OK);
+
+XIC(Cav2.LCWR_Temp[0].Ltch)XIC(Cav2.LCWR_Temp[1].Ltch)XIC(Cav2.LCWR_Temp[2].Ltch)XIC(Cav2.LCWR_Temp[3].Ltch)XIC(Cav2.LCWR_Temp[4].Ltch)XIC(Cav2.LCWR_Temp[5].Ltch)XIC(Cav2.LCWR_Temp[6].Ltch)XIC(Cav2.LCWR_Temp[7].Ltch)XIC(Cav2.LCWR_Temp[8].Ltch)XIC(Cav2.LCWR_Temp[9].Ltch)XIC(Cav2.LCWR_Temp[10].Ltch)XIC(Cav2.LCWR_Temp[11].Ltch)XIC(Cav2.LCWR_Temp[12].Ltch)XIC(Cav2.LCWR_Temp[13].Ltch)XIC(Cav2.LCWR_Temp[14].Ltch)OTE(Cav2.LCWR_Temp_OK);
+
+XIC(Cav2.LCWR_Flow[0].Ltch)XIC(Cav2.LCWR_Flow[1].Ltch)XIC(Cav2.LCWR_Flow[2].Ltch)XIC(Cav2.LCWR_Flow[3].Ltch)XIC(Cav2.LCWR_Flow[4].Ltch)XIC(Cav2.LCWR_Flow[5].Ltch)XIC(Cav2.LCWR_Flow[6].Ltch)XIC(Cav2.LCWR_Flow[7].Ltch)XIC(Cav2.LCWR_Flow[8].Ltch)XIC(Cav2.LCWR_Flow[9].Ltch)XIC(Cav2.LCWR_Flow[10].Ltch)XIC(Cav2.LCWR_Flow[11].Ltch)XIC(Cav2.LCWR_Flow[12].Ltch)XIC(Cav2.LCWR_Flow[13].Ltch)XIC(Cav2.LCWR_Flow[14].Ltch)OTE(Cav2.LCWR_Flow_OK);
+
+XIC(Cav2.Surf_Temp[0].Ltch)XIC(Cav2.Surf_Temp[1].Ltch)XIC(Cav2.Surf_Temp[2].Ltch)XIC(Cav2.Surf_Temp[3].Ltch)XIC(Cav2.Surf_Temp[4].Ltch)XIC(Cav2.Surf_Temp[5].Ltch)XIC(Cav2.Surf_Temp[6].Ltch)XIC(Cav2.Surf_Temp[7].Ltch)XIC(Cav2.Surf_Temp[8].Ltch)XIC(Cav2.CouplerTemp.Ltch)OTE(Cav2.Surf_Temp_OK);
+
+XIC(Tuner2.PS.Ltch)XIC(Tuner2.ConnectionFaulted.Ltch)XIC(Tuner2.Error.Ltch)[XIC(Tuner2.Position_Invalid.Ltch) XIC(Tuner2.InRange.Ltch) ,XIO(Tuner2.CtrlModeResonance) ]OTE(Tuner2.OK);
+
+XIC(Cav2.LCWR_Temp_OK)XIC(Cav2.LCWR_Flow_OK)XIC(Cav2.Surf_Temp_OK)XIC(Cav2.CouplerBlower.Flow_Sw.Ltch)XIC(Tuner2.OK)OTE(Cav2.OK);
+
+// Auxilliary interlocks - Power and Communication
+NOP();
+
+XIC(System.PLC_SA_DC_24V.Ltch)XIC(System.PLC_LA_DC_24V.Ltch)XIC(System.Ext_Intlks_DC_24V.Ltch)XIC(System.CAE_Sensors_DC_24V.Ltch)XIC(System.MainSensors_DC_24V.Ltch)XIC(TunerPot_PS.Ltch)[XIC(System.ARRF1_Sensors_DC_24V.Ltch) XIC(HP_Cx_Sw1.AC_120V.Ltch) XIC(DrvCtrl1.DC_24V.Ltch) XIC(Tuner1.PS.Ltch) ,XIC(System.ARRF2_Sensors_DC_24V.Ltch) XIC(HP_Cx_Sw2.AC_120V.Ltch) XIC(DrvCtrl2.DC_24V.Ltch) XIC(Tuner2.PS.Ltch) ]OTE(System.Power_OK);
+
+XIC(Modules.R01.CommunicationOK.Ltch)XIC(Modules.R03.CommunicationOK.Ltch)XIC(Modules.Cav1_Tuner.CommunicationOK.Ltch)XIC(Modules.Cav2_Tuner.CommunicationOK.Ltch)XIC(Modules.LLRF1_DIG.CommunicationOK.Ltch)XIC(Modules.LLRF2_DIG.CommunicationOK.Ltch)OTE(System.Comm_OK);
+
+XIC(System.Power_OK)XIC(System.Comm_OK)OTE(System.Aux_Intlks_OK);

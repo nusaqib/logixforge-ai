@@ -1,0 +1,29 @@
+{
+  "name": "AMCI_SD4840E2_Enable_Driver",
+  "revision": "1.0",
+  "description": "",
+  "vendor": "AMCI",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "AMCI_SD4840E2_output_data",
+      "data_type": "_000A:SD4840E2_4342D302:O:0",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    }
+  ],
+  "local_tags": [
+    {
+      "name": "command_data_block",
+      "data_type": "INT",
+      "dimensions": "10"
+    }
+  ]
+}

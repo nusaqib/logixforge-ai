@@ -1,0 +1,43 @@
+{
+  "name": "Module_Status_AOI",
+  "revision": "1.0",
+  "description": "",
+  "vendor": "",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "ModuleTag",
+      "data_type": "MODULE",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    },
+    {
+      "name": "FaultCode",
+      "data_type": "INT",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    },
+    {
+      "name": "CommunicationOK",
+      "data_type": "UDT_bi",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    }
+  ],
+  "local_tags": []
+}

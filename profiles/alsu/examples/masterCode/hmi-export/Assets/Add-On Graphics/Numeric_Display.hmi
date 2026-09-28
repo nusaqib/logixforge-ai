@@ -1,0 +1,60 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic Numeric_Display {
+	Description := "";
+	Vendor := "";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 49;
+	Height := 22;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		^Tag {
+			DataType := "REAL";
+			Description := "";
+			Category := "General";
+		}
+	}
+	NumericDisplay NumericDisplay_001 {
+		DigitsBeforeDecimal := 3;
+		DigitsAfterDecimal := 2;
+		LeadingZero := true;
+		TrailingZeros := true;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "Tag";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#e7e8e9";
+		X := 0;
+		Y := 0;
+		Width := 49;
+		Height := 22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

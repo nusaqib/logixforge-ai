@@ -1,0 +1,37 @@
+{
+  "name": "UDT_Local_Remote",
+  "description": "Local/Remote",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Rst_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "RESET Command"
+    },
+    {
+      "name": "ARRF1_TransmitOn_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "ARRF1 TRANSMIT ON Command"
+    },
+    {
+      "name": "ARRF1_TransmitOff_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "ARRF1 TRANSMIT OFF Command"
+    },
+    {
+      "name": "ARRF2_TransmitOn_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "ARRF2 TRANSMIT ON Command"
+    },
+    {
+      "name": "ARRF2_TransmitOff_Cmd",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "ARRF2 TRANSMIT OFF Command"
+    }
+  ]
+}

@@ -90,9 +90,11 @@ def test_hmi_build(tmp_path):
     assert aog.startswith("namespace ViewDesigner::AOG;") and "AddOnGraphic AOG_UDT_Motor {" in aog and _balanced(aog)
     assert '"TagInstance.Sts_Run"' in aog and 'DataType := "::LGX.UDT_Motor";' in aog
     assert "ForceAnimations" not in aog and "ForceAnimations" not in ov
-    assert "StateTable StateTable {" not in ov and "StateTable StateTable_" in ov
+    assert "ColorStateTable ColorTable_" in ov and 'fillcolor := "#2ecc71"' in ov     # colour animation
+    assert "StateTable StateTable_" in ov and 'Text := "OK"' in ov                      # text animation, proper case
     assert "TagName" not in ov and '^Tag := "::LGX.Sys_AlarmAck";' in ov
-    assert "MinValue" not in (base / "User-Defined Screens" / "Settings.hmi").read_text(encoding="utf-8")
+    st = (base / "User-Defined Screens" / "Settings.hmi").read_text(encoding="utf-8")
+    assert "\tMinValue :=" not in st and "KeypadMinValue := 0;" in st and "KeypadMaxValue := 60000;" in st
     sc = (base / "Navigation Menu" / "Overview.hmi").read_text(encoding="utf-8")
     assert 'TargetScreenName := "User-Defined Screens\\Overview";' in sc
 
@@ -121,3 +123,33 @@ def test_hmi_docs(tmp_path):
     md = files[0].read_text(encoding="utf-8")
     assert "## HMI_Conveyor01 : UDT_Motor" in md and "HMI writes" in md and "ESTOP_Active" in md
     assert files[1].name == "ALARMS.csv" and "Conveyor01_Fault" in files[1].read_text(encoding="utf-8")
+
+
+def test_hmi_style_folders_devices(tmp_path):
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    hj = tmp_path / "p" / "hmi" / "hmi.json"
+    d = json.loads(hj.read_text(encoding="utf-8"))
+    d["controller"] = {"cip_path": "Cubicle\\192.168.1.10", "acd_path": "C:\\proj\\ConveyorDemo.ACD"}
+    d["banner"] = False
+    d["style"] = {"lamp_shape": "ellipse", "font_size": 14, "colors": {"on": "#51e79a"}}
+    d["folder_security"] = {"Config": {"Operator": "ReadOnly", "Engineer": "FullAccess"}}
+    d["screens"][1]["folder"] = "Config"
+    d["screens"][1]["security"] = {"Operator": "ReadOnly"}
+    d["screens"][1]["widgets"].append({"type": "button", "text": "Jog", "tag": "Sys_AlarmAck", "action": "momentary"})
+    hj.write_text(json.dumps(d), encoding="utf-8")
+    proj = load_project(tmp_path / "p")
+    assert not has_errors(validate(proj))
+    spec = load_hmi_spec(proj)
+    written = build_viewdesigner(proj, spec, tmp_path / "hmi")
+    base = tmp_path / "hmi" / "ConveyorDemo_HMI"
+    dev = (base / "Devices" / "LGX.hmi").read_text(encoding="utf-8")
+    assert "Controller LGX {" in dev and 'ProjectFilePath := "C:\\proj\\ConveyorDemo.ACD";' in dev
+    st = (base / "User-Defined Screens" / "Config" / "Settings.hmi").read_text(encoding="utf-8")
+    assert "ShowDefaultBanner := false;" in st and "Operator := RoleAccess.ReadOnly;" in st
+    assert "BehaviorSetTagTo1OnPress0OnRelease" in st and "minimumHoldTime := 0;" in st
+    fp = (base / "User-Defined Screens" / "Config" / "__folder_properties.hmi").read_text(encoding="utf-8")
+    assert "ViewFolder Config {" in fp and "Engineer := RoleAccess.FullAccess;" in fp
+    ov = (base / "User-Defined Screens" / "Overview.hmi").read_text(encoding="utf-8")
+    assert "Ellipse W01_I_ESTOP_OK_Lamp {" in ov and 'screenName := "User-Defined Screens\\Config\\Settings";' in ov

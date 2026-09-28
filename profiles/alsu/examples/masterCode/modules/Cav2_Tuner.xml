@@ -1,0 +1,148 @@
+<Module Name="Cav2_Tuner" CatalogNumber="SD4840E2" Vendor="10" ProductType="12" ProductCode="40" Major="1" Minor="30" ParentModule="Local" ParentModPortId="4" Inhibited="false" MajorFault="false" SafetyEnabled="false">
+<EKey State="CompatibleModule" />
+<Ports>
+<Port Id="2" Address="192.168.1.23" Type="Ethernet" Upstream="true" />
+</Ports>
+<Communications>
+<ConfigTag ConfigSize="20" ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="L5K">
+[24,4,17,772,50,200,0,1024,20,30,5]
+</Data>
+<Data Format="Decorated">
+<Structure DataType="_000A:SD4840E2_9DCEC94B:C:0">
+<DataValueMember Name="CONFIGURATION_WORD_0" DataType="INT" Radix="Binary" Value="2#0000_0000_0001_0001" />
+<DataValueMember Name="IN1_Function_Bit_0" DataType="BOOL" Value="1" />
+<DataValueMember Name="IN1_Function_Bit_1" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN1_Function_Bit_2" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN2_Function_Bit_0" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN2_Function_Bit_1" DataType="BOOL" Value="1" />
+<DataValueMember Name="IN2_Function_Bit_2" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN3_Function_Bit_0" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN3_Function_Bit_1" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN3_Function_Bit_2" DataType="BOOL" Value="0" />
+<DataValueMember Name="HOME_to_Z_pulse" DataType="BOOL" Value="0" />
+<DataValueMember Name="Use_Encoder" DataType="BOOL" Value="0" />
+<DataValueMember Name="Use_Backplane_Proximity" DataType="BOOL" Value="0" />
+<DataValueMember Name="Enable_Stall_Detection" DataType="BOOL" Value="0" />
+<DataValueMember Name="Disable_Antiresonance" DataType="BOOL" Value="0" />
+<DataValueMember Name="CONFIGURATION_WORD_1" DataType="INT" Radix="Binary" Value="2#0000_0011_0000_0100" />
+<DataValueMember Name="IN1_Active_Level" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN2_Active_Level" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN3_Active_Level" DataType="BOOL" Value="1" />
+<DataValueMember Name="Binary_Output_Format" DataType="BOOL" Value="1" />
+<DataValueMember Name="Binary_Input_Format" DataType="BOOL" Value="1" />
+<DataValueMember Name="OUT1_State_At_Conn_Lost" DataType="BOOL" Value="0" />
+<DataValueMember Name="OUT1_Act_On_Conn_Lost" DataType="BOOL" Value="0" />
+<DataValueMember Name="OUT1_Function" DataType="BOOL" Value="0" />
+<DataValueMember Name="STARTING_SPEED_st_s" DataType="DINT" Radix="Decimal" Value="50" />
+<DataValueMember Name="MOTOR_RESOLUTION_st_rev" DataType="INT" Radix="Decimal" Value="200" />
+<DataValueMember Name="HYBRID_CONTROL_GAIN" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ENCODER_RESOLUTION_p_rev" DataType="INT" Radix="Decimal" Value="1024" />
+<DataValueMember Name="IDLE_CURRENT_REDUCTION" DataType="INT" Radix="Decimal" Value="20" />
+<DataValueMember Name="MOTOR_CURRENT_10x_Amps" DataType="INT" Radix="Decimal" Value="30" />
+<DataValueMember Name="CURRENT_LOOP_GAIN" DataType="INT" Radix="Decimal" Value="5" />
+</Structure>
+</Data>
+</ConfigTag>
+<Connections>
+<Connection Name="_2004246E2C962C64" RPI="8000" Type="StandardDataDriven" OutputSize="20" InputSize="24" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Unicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 6e 2c 96 2c 64" InputTagSuffix="I" OutputTagSuffix="O">
+<InputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="Decorated">
+<Structure DataType="_000A:SD4840E2_1128989C:I:0">
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0" />
+<DataValueMember Name="STATUS_WORD_0" DataType="INT" Radix="Binary" Value="2#0100_0000_0000_1000" />
+<DataValueMember Name="Moving_CW" DataType="BOOL" Value="0" />
+<DataValueMember Name="Moving_CCW" DataType="BOOL" Value="0" />
+<DataValueMember Name="In_Hold_State" DataType="BOOL" Value="0" />
+<DataValueMember Name="Stopped" DataType="BOOL" Value="1" />
+<DataValueMember Name="At_Home" DataType="BOOL" Value="0" />
+<DataValueMember Name="Accelerating" DataType="BOOL" Value="0" />
+<DataValueMember Name="Decelerating" DataType="BOOL" Value="0" />
+<DataValueMember Name="Move_Complete" DataType="BOOL" Value="0" />
+<DataValueMember Name="In_Assembled_Mode" DataType="BOOL" Value="0" />
+<DataValueMember Name="Waiting_For_Assembled_Segment" DataType="BOOL" Value="0" />
+<DataValueMember Name="Position_Invalid" DataType="BOOL" Value="0" />
+<DataValueMember Name="Input_Error" DataType="BOOL" Value="0" />
+<DataValueMember Name="Command_Error" DataType="BOOL" Value="0" />
+<DataValueMember Name="Configuration_Error" DataType="BOOL" Value="0" />
+<DataValueMember Name="Module_OK" DataType="BOOL" Value="1" />
+<DataValueMember Name="Mode_Flag" DataType="BOOL" Value="0" />
+<DataValueMember Name="STATUS_WORD_1" DataType="INT" Radix="Binary" Value="2#1010_0000_0000_0000" />
+<DataValueMember Name="IN1_Active" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN2_Active" DataType="BOOL" Value="0" />
+<DataValueMember Name="IN3_Active" DataType="BOOL" Value="0" />
+<DataValueMember Name="Temperature_Above_90C" DataType="BOOL" Value="0" />
+<DataValueMember Name="PLC_in_PROG_Mode" DataType="BOOL" Value="0" />
+<DataValueMember Name="Connection_Was_Lost" DataType="BOOL" Value="0" />
+<DataValueMember Name="Driver_Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Motion_Lag" DataType="BOOL" Value="0" />
+<DataValueMember Name="Invalid_Jog_Change" DataType="BOOL" Value="0" />
+<DataValueMember Name="Limit_Condition" DataType="BOOL" Value="0" />
+<DataValueMember Name="Heartbeat_Bit" DataType="BOOL" Value="0" />
+<DataValueMember Name="OUT1_State" DataType="BOOL" Value="1" />
+<DataValueMember Name="Stall_Detected" DataType="BOOL" Value="0" />
+<DataValueMember Name="Drive_Is_Enabled" DataType="BOOL" Value="1" />
+<DataValueMember Name="MOTOR_POSITION" DataType="DINT" Radix="Decimal" Value="79111" />
+<DataValueMember Name="ENCODER_POSITION" DataType="DINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="TRAPPED_ENCODER_POSITION" DataType="DINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="PROGRAMMED_MOTOR_CURRENT" DataType="INT" Radix="Decimal" Value="30" />
+<DataValueMember Name="JERK_STATUS" DataType="INT" Radix="Decimal" Value="0" />
+</Structure>
+</Data>
+</InputTag>
+<OutputTag ExternalAccess="Read/Write" OpcUaAccess="None">
+<Data Format="L5K">
+[1024,-32768,0,0,0,0,0,0]
+</Data>
+<Data Format="Decorated">
+<Structure DataType="_000A:SD4840E2_4342D302:O:0">
+<DataValueMember Name="COMMAND_WORD_0" DataType="INT" Radix="Binary" Value="2#0000_0100_0000_0000" />
+<DataValueMember Name="Absolute_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Relative_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Hold_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Resume_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Immediate_Stop" DataType="BOOL" Value="0" />
+<DataValueMember Name="Find_Home_CW" DataType="BOOL" Value="0" />
+<DataValueMember Name="Find_Home_CCW" DataType="BOOL" Value="0" />
+<DataValueMember Name="Jog_CW" DataType="BOOL" Value="0" />
+<DataValueMember Name="Jog_CCW" DataType="BOOL" Value="0" />
+<DataValueMember Name="Preset_Position" DataType="BOOL" Value="0" />
+<DataValueMember Name="Reset_Errors" DataType="BOOL" Value="1" />
+<DataValueMember Name="Program_Assembled" DataType="BOOL" Value="0" />
+<DataValueMember Name="Read_Assembled_Data" DataType="BOOL" Value="0" />
+<DataValueMember Name="Run_Assembled_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Preset_Encoder" DataType="BOOL" Value="0" />
+<DataValueMember Name="Mode_Select_Bit" DataType="BOOL" Value="0" />
+<DataValueMember Name="COMMAND_WORD_1" DataType="INT" Radix="Binary" Value="2#1000_0000_0000_0000" />
+<DataValueMember Name="Motor_Current_Key0" DataType="BOOL" Value="0" />
+<DataValueMember Name="Motor_Current_Key1" DataType="BOOL" Value="0" />
+<DataValueMember Name="Encoder_Registration_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Hybrid_Control" DataType="BOOL" Value="0" />
+<DataValueMember Name="Reverse_Blend_Direction" DataType="BOOL" Value="0" />
+<DataValueMember Name="Save_Assembled_to_Flash" DataType="BOOL" Value="0" />
+<DataValueMember Name="Enable_Electronic_Gearing" DataType="BOOL" Value="0" />
+<DataValueMember Name="Registration_Move" DataType="BOOL" Value="0" />
+<DataValueMember Name="Indexed_Command" DataType="BOOL" Value="0" />
+<DataValueMember Name="Assembled_Move_Type" DataType="BOOL" Value="0" />
+<DataValueMember Name="Clear_Driver_Fault" DataType="BOOL" Value="0" />
+<DataValueMember Name="Backplane_Proximity_Bit" DataType="BOOL" Value="0" />
+<DataValueMember Name="Virtual_Position_Follower" DataType="BOOL" Value="0" />
+<DataValueMember Name="OUT1_Set_State" DataType="BOOL" Value="0" />
+<DataValueMember Name="Virtual_Encoder_Follower" DataType="BOOL" Value="0" />
+<DataValueMember Name="Enable_Driver" DataType="BOOL" Value="1" />
+<DataValueMember Name="POSITION_or_DISTANCE" DataType="DINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="PROGRAMMED_SPEED_st_s" DataType="DINT" Radix="Decimal" Value="0" />
+<DataValueMember Name="ACCELERATION_st_s_ms" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="DECELERATION_st_s_ms" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="SET_CURRENT_or_LSW_Min_Reg" DataType="INT" Radix="Decimal" Value="0" />
+<DataValueMember Name="JERK_or_MSW_Min_Reg" DataType="INT" Radix="Decimal" Value="0" />
+</Structure>
+</Data>
+</OutputTag>
+</Connection>
+</Connections>
+</Communications>
+<ExtendedProperties>
+<public><PL>02<Version Name="1.6" /></PL><CatNum>SD4840E2</CatNum></public>
+</ExtendedProperties>
+</Module>

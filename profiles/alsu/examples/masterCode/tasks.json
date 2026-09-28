@@ -1,0 +1,14 @@
+[
+  {
+    "name": "MainTask",
+    "kind": "CONTINUOUS",
+    "rate_ms": null,
+    "priority": 10,
+    "watchdog_ms": 500,
+    "programs": [
+      "P000_Master_Interlock",
+      "P010_Device_Control"
+    ],
+    "description": ""
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "name": "UDT_LLRF_DIG",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Uptime",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Temp",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "VCCINT",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "VCCAUX",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "VCCBRAM",
+      "data_type": "REAL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "RF_Power_Sum",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Arc_Sum",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Rst_Power",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Rst_Arc",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

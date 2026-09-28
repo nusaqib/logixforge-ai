@@ -76,13 +76,15 @@ def read_l5x(path: str | Path) -> Project:
         raise ValueError("no <Controller> element")
     c = Controller(name=ctl.get("Name", root.get("TargetName", "")), processor_type=ctl.get("ProcessorType", ""),
                    major_rev=int(ctl.get("MajorRev", 0) or 0), minor_rev=int(ctl.get("MinorRev", 0) or 0),
-                   description=_text(ctl, "Description"), software_revision=root.get("SoftwareRevision", ""))
+                   description=_text(ctl, "Description"), software_revision=root.get("SoftwareRevision", ""),
+                   power_loss_program=ctl.get("PowerLossProgram", ""), major_fault_program=ctl.get("MajorFaultProgram", ""))
     proj = Project(controller=c, source_dir=str(path))
 
     for d in ctl.findall("DataTypes/DataType"):
         proj.data_types.append(DataType(
             name=d.get("Name", ""), description=_text(d, "Description"), family=d.get("Family", "NoFamily"),
-            members=[Member(name=m.get("Name", ""), data_type=m.get("DataType", ""), dimension=int(m.get("Dimension", 0)),
+            members=[Member(name=m.get("Name", ""), data_type=("BOOL" if m.get("DataType") == "BIT" else m.get("DataType", "")),
+                            dimension=int(m.get("Dimension", 0)),
                             description=_text(m, "Description"), radix=m.get("Radix"),
                             external_access=m.get("ExternalAccess", "Read/Write"))
                      for m in d.findall("Members/Member") if m.get("Hidden", "false") != "true"],
@@ -155,7 +157,9 @@ def export_project_dir(proj: Project, out_dir: str | Path) -> Path:
     c = proj.controller
     (out / "controller.json").write_text(json.dumps({
         "name": c.name, "processor_type": c.processor_type, "major_rev": c.major_rev, "minor_rev": c.minor_rev,
-        "description": c.description, "software_revision": c.software_revision}, indent=2), encoding="utf-8")
+        "description": c.description, "software_revision": c.software_revision,
+        **({"power_loss_program": c.power_loss_program} if c.power_loss_program else {}),
+        **({"major_fault_program": c.major_fault_program} if c.major_fault_program else {})}, indent=2), encoding="utf-8")
     (out / "datatypes").mkdir(exist_ok=True)
     for d in proj.data_types:
         (out / "datatypes" / f"{d.name}.json").write_text(json.dumps({

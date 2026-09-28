@@ -1,0 +1,20 @@
+{
+  "name": "PermLatch_AOI",
+  "revision": "1.0",
+  "vendor": "LogixForge (ALS-U profile)",
+  "revision_note": "Implements AL-1605-0840 S09-07-095000..095080 for one permissive. Placeholder until the official ALS-U Git AOI (e.g. biLatch_AOI) is loaded into templates/.",
+  "description": "One permissive of an interlock group: latch on trip, first-fault arbitration via UDT_PermGroup, bypass, operator reset",
+  "parameters": [
+    { "name": "Sts", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Raw permissive status, 1 = normal, 0 = trip" },
+    { "name": "Byp", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Bypass, 1 = active (signal ignored, latch stays permit after reset)" },
+    { "name": "Rst", "data_type": "BOOL", "usage": "Input", "required": true, "description": "Operator reset request, 1 = reset latched and first-fault bits" },
+    { "name": "Grp", "data_type": "UDT_PermGroup", "usage": "InOut", "description": "Interlock group this permissive belongs to (Trip_Sts and FF_Sts maintained here)" },
+    { "name": "Ltch", "data_type": "BOOL", "usage": "Output", "required": true, "description": "Latched trip, 1 = tripped (held until reset with Sts normal or Byp)" },
+    { "name": "FF", "data_type": "BOOL", "usage": "Output", "required": true, "description": "First fault, 1 = this permissive triggered the current trip event" },
+    { "name": "Permit", "data_type": "BOOL", "usage": "Output", "required": true, "description": "1 = permissive satisfied (normal or bypassed) and not latched" }
+  ],
+  "local_tags": [
+    { "name": "Trip_OSS", "data_type": "BOOL", "description": "One-shot storage for a new trip event" },
+    { "name": "NewTrip_Sts", "data_type": "BOOL", "description": "1 = new trip event this scan" }
+  ]
+}

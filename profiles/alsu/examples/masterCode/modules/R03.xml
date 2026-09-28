@@ -1,0 +1,12 @@
+<Module Name="R03" CatalogNumber="5069-AENTR" Vendor="1" ProductType="12" ProductCode="317" Major="4" Minor="1" ParentModule="Local" ParentModPortId="4" Inhibited="false" MajorFault="false" SafetyEnabled="false">
+<EKey State="CompatibleModule" />
+<Ports>
+<Port Id="1" Address="0" Type="5069" Upstream="false">
+<Bus Size="32" />
+</Port>
+<Port Id="2" Address="192.168.1.21" Type="Ethernet" Upstream="true" />
+</Ports>
+<ExtendedProperties>
+<public><Vendor>Rockwell Automation/Allen-Bradley</Vendor><CatNum>5069-AENTR</CatNum><TimeSyncEnabled /><ConfigID>4325481</ConfigID></public>
+</ExtendedProperties>
+</Module>

@@ -1,0 +1,9 @@
+{
+  "name": "R00",
+  "processor_type": "5069-L320ER",
+  "major_rev": 36,
+  "minor_rev": 11,
+  "description": "AR RF Master Interlock PLC code",
+  "software_revision": "36.00",
+  "power_loss_program": "PowerUpProgram"
+}

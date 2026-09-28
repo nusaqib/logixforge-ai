@@ -1,0 +1,14 @@
+[
+  {
+    "name": "major_fault_record",
+    "data_type": "FaultRecord"
+  },
+  {
+    "name": "Step_000",
+    "data_type": "SFC_STEP"
+  },
+  {
+    "name": "Tran_000",
+    "data_type": "BOOL"
+  }
+]

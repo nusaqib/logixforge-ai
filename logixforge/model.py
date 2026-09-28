@@ -21,8 +21,16 @@ PREDEFINED_TYPES = ATOMIC_TYPES | {
     "MOVING_AVERAGE", "MOVING_STD_DEV", "RAMP_SOAK", "RATE_LIMITER", "SELECT", "SELECTED_SUMMER",
     "UP_DOWN_ACCUM", "HL_LIMIT", "IMC", "CC", "MMC", "DATALOG_INSTRUCTION", "S_CURVE", "FLIP_FLOP_D",
     "FLIP_FLOP_JK", "DOMINANT_RESET", "DOMINANT_SET", "SELECTABLE_NEGATE", "SPLIT_RANGE", "PROP_INT",
-    "LOGIX_TIME", "HMIBC", "ANALOG_ALARM",
+    "LOGIX_TIME", "HMIBC", "ANALOG_ALARM", "MODULE", "SFC_STEP", "SFC_ACTION", "SFC_STOP", "CAM", "CAM_PROFILE",
+    "OUTPUT_CAM", "OUTPUT_COMPENSATION", "COORDINATE_SYSTEM", "MOTION_GROUP", "EXT_ROUTINE_CONTROL",
+    "EXT_ROUTINE_PARAMETERS", "SERIAL_PORT_CONTROL", "AXIS_CONSUMED", "AXIS_GENERIC", "AXIS_GENERIC_DRIVE",
+    "AXIS_SERVO", "AXIS_SERVO_DRIVE", "DATALOG_INSTRUCTION", "REDUNDANCY_INFO",
 }
+
+
+def is_known_type(name: str, known: set) -> bool:
+    """Module-defined types look like 'AB:5069_IB16:I:0' or '_000A:SD4840E2_...:O:0'."""
+    return name in known or ":" in name
 
 
 @dataclass
@@ -195,6 +203,8 @@ class Controller:
     safety: bool = False
     chassis_size: int = 10
     slot: int = 0
+    power_loss_program: str = ""     # PowerLossProgram (power-up handler)
+    major_fault_program: str = ""    # MajorFaultProgram (controller fault handler)
 
 
 @dataclass

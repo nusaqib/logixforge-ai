@@ -1,0 +1,25 @@
+{
+  "name": "UDT_Module_Connection",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Module\nConnection\nOK"
+    },
+    {
+      "name": "Status",
+      "data_type": "DINT",
+      "dimension": 0,
+      "description": "Module\nCommunicaton\nStatus"
+    },
+    {
+      "name": "Timer",
+      "data_type": "TIMER",
+      "dimension": 0,
+      "description": "Module\nCommunicaton\nTimeout\nTimer"
+    }
+  ]
+}

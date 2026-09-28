@@ -1,0 +1,64 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic LED_Fault_Square {
+	Description := "";
+	Vendor := "";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 15;
+	Height := 15;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		^Tag {
+			DataType := "";
+			Description := "";
+			Category := "General";
+		}
+	}
+	Rectangle Rectangle_024 {
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#ff0000";
+		ColorStateTable ColorTable_001 {
+			Expression := "" -> "Tag";
+			State State0 (
+				fillcolor := "#ff0000")
+			{
+				value := "0";
+			}
+			State State1 (
+				fillcolor := "#51e79a")
+			{
+				value := "1";
+			}
+			State DefaultState (
+				fillcolor := "#ff0000")
+			{
+			}
+		}
+		X := 0;
+		Y := 0;
+		Width := 15;
+		Height := 15;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

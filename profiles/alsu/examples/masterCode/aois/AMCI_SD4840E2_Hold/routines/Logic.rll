@@ -1,0 +1,2 @@
+// The following rung moves a decimal value of "4" (bit 2 set) to the MSW command word.  This commands the SD4840E2 to perform a Hold operation.
+MOVE(4,AMCI_SD4840E2_output_data.COMMAND_WORD_0);

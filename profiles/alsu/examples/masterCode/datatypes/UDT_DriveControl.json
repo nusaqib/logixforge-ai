@@ -1,0 +1,73 @@
+{
+  "name": "UDT_DriveControl",
+  "description": "RF Drive Control",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "DC_24V",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "LLRF_FastPermit_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Fast Permit from LLRF"
+    },
+    {
+      "name": "MPS_PermitA_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "MPS Permit A"
+    },
+    {
+      "name": "MPS_PermitB_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "MPS Permit B"
+    },
+    {
+      "name": "PPS_TestModeActive_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "RF Test Mode Active Status"
+    },
+    {
+      "name": "PPS_TestModeActive_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CoaxSwNO_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Coaxial Switch NO contact"
+    },
+    {
+      "name": "CoaxSwNC_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Coaxial Switch NC contact"
+    },
+    {
+      "name": "Permit",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Transmit_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Permit_Sum",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Drive Control Permit Command"
+    }
+  ]
+}

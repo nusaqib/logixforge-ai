@@ -1,0 +1,55 @@
+{
+  "name": "UDT_TCU",
+  "description": "TCU",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Booting",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Booting"
+    },
+    {
+      "name": "OperationOK",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "Operation OK"
+    },
+    {
+      "name": "CoilCurr_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Coil Current"
+    },
+    {
+      "name": "TempInLo_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Inlet Temperature Low"
+    },
+    {
+      "name": "TempInHi_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Inlet Temperature High"
+    },
+    {
+      "name": "DeltaTHi_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Inlet Delta T High"
+    },
+    {
+      "name": "TempAmbientLo_Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Ambient Temperature Low"
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Summary Signal"
+    }
+  ]
+}

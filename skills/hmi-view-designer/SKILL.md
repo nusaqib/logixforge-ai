@@ -59,20 +59,26 @@ right terminal.
   severity and class come from `alarms.json`.
 - Keep screen names <= 40 chars, identifiers only; titles are free text.
 
-## What has been verified vs. inferred
-Element and property names come from Rockwell's 9324-RM001 examples, corrected by real import logs:
-- Confirmed by import: Screen, Button, TextDisplay, NumericDisplay, NumericInput, Rectangle, StateTable
-  (must have a unique name, never the keyword `StateTable` itself), BehaviorNavigateToScreen,
-  BehaviorSetTagTo1OnRelease/…, AddOnGraphic + UserProperties, Shortcut, ViewProject.
-- Rejected by import (never emit): `ForceAnimations` on elements or screens; `TagName` on button
-  behaviors; `MinValue`/`MaxValue` on NumericInput (clamp setpoints in the PLC instead).
-- Confirmed in later rounds: `^Tag` as the behavior's tag property, StateTable state properties
-  `fillcolor`/`text`, UDT-typed AOG user property `::REF.UDT_x`, and `using ViewDesigner::AOG;` on
-  screens (required to resolve user AOGs). An empty `HomeScreen := "";` is rejected; omit the line.
+## What has been verified
+Element and property names come from Rockwell's 9324-RM001 examples, corrected by import logs and by
+a real View Designer v9 export (`profiles/alsu/examples/masterCode/hmi-export`):
+- Colour animation is a `ColorStateTable` (state property `fillcolor`); `StateTable` animates other
+  properties with proper-case names (`Text`, `FillColor`, `ShowMark`). State tables need unique names.
+- Button behaviours use `^Tag`; `momentary` = `BehaviorSetTagTo1OnPress0OnRelease` with `minimumHoldTime`.
+- `NumericInput` limits are `KeypadMinValue`/`KeypadMaxValue`; `BarGraph`; `Ellipse`; `CheckBox`/`RadioButton` exist.
+- `ForceAnimations` is rejected; an empty `HomeScreen := "";` is rejected (omit the line).
+- Controller reference file `Devices/<ref>.hmi`: `Controller <ref> { CipPathFromHmiDevice; CipPathFromEmulator; ProjectFilePath }`
+  (generated when `hmi.json` has `controller.cip_path` and `controller.acd_path`).
+- AOG instance syntax `<AOG> <name> ( <UserProp> := "::REF.Tag" ) { X..Access }`; one-pass import works.
 Reading an import log: "no viable alternative at input 'X'" is a syntax error at X; "Couldn't resolve
 reference to Member 'X'" means X is not a property of that element; "Couldn't resolve reference to
-HMIDefinition 'X'" means the element type X is unknown (or its Add-On Graphic file failed to parse).
-Fix the constant or emitter, `lf hmi build`, re-import, and tell the user what changed.
+HMIDefinition 'X'" means the element type X is unknown. Any error discards the whole import.
+
+## Extra spec keys
+`controller: {cip_path, acd_path}` (Devices file), `banner: false` (no system banner, full-height screens),
+`style: {lamp_shape: ellipse|rectangle, font_size, colors: {on, off, fault, accent, button, panel, bg, ...}}`,
+per-screen `folder` and `security: {Role: FullAccess|ReadOnly|NoAccess}`, `folder_security: {Folder: {...}}`,
+button `action: set1|set0|toggle|momentary`.
 
 ## FactoryTalk View / Optix
 Not generated yet; see `hmi-factorytalk` for the roadmap. The `hmi docs` output (tag interface and

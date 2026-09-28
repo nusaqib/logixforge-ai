@@ -1,0 +1,720 @@
+namespace ViewDesigner::AOG;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+AddOnGraphic PDF_Viewer_Portrait {
+	Description := "Displays, zooms and navigates a PDF document";
+	Vendor := "Rockwell Automation";
+	Major := 1;
+	Minor := 0;
+	Extended := "";
+	Note := "";
+	Width := 300;
+	Height := 415;
+	TerminalWidth := 1024;
+	TerminalHeight := 768;
+	UserProperties {
+		CurrentPage -> Viewer.PageNumber {
+			Description := "Specify the page to display";
+			Category := "General";
+		}
+		DocumentName -> Viewer.DocumentName {
+			Description := "Select the PDF document to display";
+			Category := "General";
+		}
+		Zoom -> Viewer.Zoom {
+			Description := "Specify the zoom value";
+			Category := "General";
+		}
+	}
+	TextDisplay HiddenZoomFactor {
+		Text := "Text Display";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := true;
+		Underline := false;
+		FontColor := "#000000";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 164.3;
+		Y := 140;
+		Width := 91;
+		Height := 22;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle CommandBar {
+		CornerRadius := 0;
+		Border {
+			Color := "#112739";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0;
+		}
+		FillColor := "#112739";
+		X := 0;
+		Y := 381;
+		Width := 300;
+		Height := 34;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button BookmarkButton {
+		FillColor := "#263a4e";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#ffffff";
+		Bold := true;
+		Text := "";
+		UsePredefinedDisabled := true;
+		OnTouchRelease TouchRelease_001 {
+			ReleaseOnOpenClose := true;
+			ToggleCommand ToggleCommand_001 {
+				target := "BookmarkGroup.Visible";
+			}
+			SetCommand SetCommand_001 {
+				target := "Viewer.X";
+				value := "" -> "BookmarkGroup.Visible ? BookmarkGroup.Width+2 : 2";
+			}
+			SetCommand SetCommand_003 {
+				target := "BookmarkGroup.Opacity";
+				value := "" -> "100";
+			}
+			SetCommand SetCommand_002 {
+				target := "Viewer.Width";
+				value := "" -> "BookmarkGroup.Visible ? BlackBackground.Width-BookmarkGroup.Width-4 : BlackBackground.Width-4";
+			}
+			SetCommand SetCommand_005 {
+				target := "HiddenZoomFactor.Text";
+				value := "" -> "BookmarkGroup.Visible ? Viewer.Zoom : HiddenZoomFactor.Text";
+			}
+			SetCommand SetCommand_004 {
+				target := "Viewer.Zoom";
+				value := "" -> "BookmarkGroup.Visible ? 45 : HiddenZoomFactor.Text";
+			}
+			ToggleCommand ToggleCommand_002 {
+				target := "ZoomButtons.Enabled";
+			}
+			SetCommand SetCommand_006 {
+				target := "ZoomIcons.Opacity";
+				value := "" -> "ZoomButtons.Enabled ? 90 : 40 ";
+			}
+		}
+		X := 3.6;
+		Y := 385.6;
+		Width := 25.2;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Bookmark BookmarkIcon {
+		FillColor := "#ffffff";
+		X := 12.05;
+		Y := 389.35;
+		Width := 9;
+		Height := 16.75;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 90;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button PreviousButton {
+		FillColor := "#263a4e";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#ffffff";
+		Bold := true;
+		Text := "";
+		UsePredefinedDisabled := true;
+		OnTouchRelease TouchRelease_001 {
+			ReleaseOnOpenClose := false;
+			PDFPreviousPageCommand PDFPreviousPageCommand_001 {
+				PDF := "Viewer";
+			}
+		}
+		X := 32.4;
+		Y := 385.6;
+		Width := 25.2;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true -> "Viewer.PageNumber>1";
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PrevPage PreviousIcon {
+		FillColor := "#ffffff";
+		X := 36.62;
+		Y := 389.2;
+		Width := 16.75;
+		Height := 16.75;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 90 -> "PreviousButton.Enabled ? 90 : 40";
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Button NextButton {
+		FillColor := "#263a4e";
+		Border {
+			Color := "#262324";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 2;
+		}
+		CornerRadius := 3;
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		FontName := "Arial Unicode MS";
+		FontSize := 12;
+		FontColor := "#ffffff";
+		Bold := true;
+		Text := "";
+		UsePredefinedDisabled := true;
+		OnTouchRelease TouchRelease_001 {
+			ReleaseOnOpenClose := false;
+			PDFNextPageCommand PDFNextPageCommand_001 {
+				PDF := "Viewer";
+			}
+		}
+		X := 61.2;
+		Y := 385.6;
+		Width := 25.2;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true -> "Viewer.PageNumber<Viewer.PageCount";
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NextPage NextIcon {
+		FillColor := "#ffffff";
+		X := 66.2;
+		Y := 389.2;
+		Width := 16.75;
+		Height := 16.75;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 90 -> "NextButton.Enabled ? 90 : 40";
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	TextDisplay Divider {
+		Text := "/";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		Underline := false;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HLEFT_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 139.2;
+		Y := 384.6;
+		Width := 7;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericDisplay TotalPageDisplay {
+		DigitsBeforeDecimal := 4;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		Value := 0 -> "Viewer.PageCount";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HCENTER_VCENTER;
+		Padding := 0;
+		CornerRadius := 0;
+		Border {
+			Color := "#ffffff";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 146.3;
+		Y := 384.6;
+		Width := 36;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle CurrentPageMargin {
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 90;
+		Y := 385.88;
+		Width := 42;
+		Height := 23.4;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	NumericInput CurrentPageDisplay {
+		DigitsBeforeDecimal := 4;
+		DigitsAfterDecimal := 0;
+		LeadingZero := false;
+		TrailingZeros := false;
+		Rounding := EnumNumericRounding.Nearest;
+		LeadingZerosFill := false;
+		UsePredefinedDisabled := true;
+		MaskedValue := false;
+		KeypadMinValue := 1;
+		KeypadMaxValue := 1000 -> "Viewer.PageCount";
+		KeypadPosition := KeypadPositionEnum.MiddleCenter;
+		Value := 1 -> "Viewer.PageNumber";
+		FontName := "Arial Unicode MS";
+		FontSize := 15;
+		Bold := false;
+		FontColor := "#ffffff";
+		TextAlignment := EnumAlignment.HRIGHT_VCENTER;
+		Padding := 0;
+		CornerRadius := 3;
+		Border {
+			Color := "#738596";
+			BorderStyle {
+				Line := PenStyle.NoPen;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 1;
+		}
+		FillColor := "#00000000";
+		X := 92;
+		Y := 385.6;
+		Width := 36;
+		Height := 22.7;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	Rectangle BlackBackground {
+		CornerRadius := 0;
+		Border {
+			Color := "#000000";
+			BorderStyle {
+				Line := PenStyle.SolidLine;
+				Cap := CapStyle.SquareCap;
+				Join := JoinStyle.MiterJoin;
+			}
+			Width := 0;
+		}
+		FillColor := "#000000";
+		X := 0;
+		Y := 0;
+		Width := 300;
+		Height := 382;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PDF Viewer {
+		PageNumber := 1;
+		PageCount := 0;
+		Zoom := pdfZoomModeEnum.Fit_width;
+		DocumentName := "";
+		BookmarkIndex := 0;
+		Bookmarks := "";
+		BackgroundColor := "#333333";
+		X := 2;
+		Y := 2;
+		Width := 296;
+		Height := 380;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup BookmarkGroup {
+		Rectangle BookmarkBackground {
+			CornerRadius := 0;
+			Border {
+				Color := "#273a4e";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 0;
+			}
+			FillColor := "#112739";
+			X := 0;
+			Y := 0;
+			Width := 200;
+			Height := 383;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		ListBoxSelector BookmarkSelector {
+			FillColor := "#112739";
+			ScrollBarFillColor := "#445263";
+			FontColor := "#ffffff";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := true;
+			CaretColor := "#67cdf5";
+			SelectionColor := "#808080";
+			ItemPadding := 7;
+			Items := "Item1,Item2,Item3" -> "Viewer.Bookmarks";
+			Value := "" -> "Viewer.BookmarkIndex";
+			DisplaySpecialCharacters := false;
+			UsePredefinedDisabled := true;
+			X := 5.76;
+			Y := 31.59;
+			Width := 188.48;
+			Height := 348;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 90;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		TextDisplay DocumentNameDisplay {
+			Text := "Text Display" -> "Viewer.DocumentName+$".pdf$"";
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			Bold := false;
+			Underline := false;
+			FontColor := "#ffffff";
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			Padding := 0;
+			CornerRadius := 0;
+			Border {
+				Color := "#000000";
+				BorderStyle {
+					Line := PenStyle.NoPen;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 1;
+			}
+			FillColor := "#00000000";
+			X := 5.76;
+			Y := 4;
+			Width := 188.48;
+			Height := 23.78;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 0;
+		Y := 0;
+		Width := 200;
+		Height := 383;
+		Angle := 0;
+		Enabled := true;
+		^Visible := false;
+		Opacity := 0;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup ZoomButtons {
+		Button FitWidthButton {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 2;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease TouchRelease_001 {
+				ReleaseOnOpenClose := false;
+				PDFZoomCommand PDFZoomCommand_001 {
+					Zoom := pdfZoomModeEnum.Fit_width;
+					PDF := "Viewer";
+				}
+			}
+			X := 0;
+			Y := 0;
+			Width := 25.2;
+			Height := 25.2;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		Button FitWindowButton {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 2;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease TouchRelease_001 {
+				ReleaseOnOpenClose := false;
+				PDFZoomCommand PDFZoomCommand_001 {
+					Zoom := pdfZoomModeEnum.Fit_page;
+					PDF := "Viewer";
+				}
+			}
+			X := 28.8;
+			Y := 0;
+			Width := 25.2;
+			Height := 25.2;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		Button ZoomInButton {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 2;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease TouchRelease_001 {
+				ReleaseOnOpenClose := false;
+				PDFZoomInCommand PDFZoomInCommand_001 {
+					ByPercent := 25;
+					PDF := "Viewer";
+				}
+			}
+			X := 57.6;
+			Y := 0;
+			Width := 25.2;
+			Height := 25.2;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		Button ZoomOutButton {
+			FillColor := "#263a4e";
+			Border {
+				Color := "#262324";
+				BorderStyle {
+					Line := PenStyle.SolidLine;
+					Cap := CapStyle.SquareCap;
+					Join := JoinStyle.MiterJoin;
+				}
+				Width := 2;
+			}
+			CornerRadius := 3;
+			TextAlignment := EnumAlignment.HCENTER_VCENTER;
+			FontName := "Arial Unicode MS";
+			FontSize := 12;
+			FontColor := "#ffffff";
+			Bold := true;
+			Text := "";
+			UsePredefinedDisabled := true;
+			OnTouchRelease TouchRelease_001 {
+				ReleaseOnOpenClose := false;
+				PDFZoomOutCommand PDFZoomOutCommand_001 {
+					ByPercent := 25;
+					PDF := "Viewer";
+				}
+			}
+			X := 86.4;
+			Y := 0;
+			Width := 25.2;
+			Height := 25.2;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 100;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 185.3;
+		Y := 385.97;
+		Width := 111.6;
+		Height := 25.2;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+	PanelDeviceGroup ZoomIcons {
+		FitWidth FitWidthIcon {
+			FillColor := "#ffffff";
+			X := 0;
+			Y := 0;
+			Width := 16.75;
+			Height := 16.75;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 90;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		FitWindow FitWindowIcon {
+			FillColor := "#ffffff";
+			X := 28.51;
+			Y := 0;
+			Width := 16.75;
+			Height := 16.75;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 90;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		ZoomIn ZoomInIcon {
+			FillColor := "#ffffff";
+			X := 57.6;
+			Y := 0;
+			Width := 16.75;
+			Height := 16.75;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 90;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		ZoomOut ZoomOutIcon {
+			FillColor := "#ffffff";
+			X := 86.4;
+			Y := 0;
+			Width := 16.75;
+			Height := 16.75;
+			Angle := 0;
+			Enabled := true;
+			^Visible := true;
+			Opacity := 90;
+			Access := EnumElementAccessFamily.Inherit;
+		}
+		X := 189.53;
+		Y := 389.57;
+		Width := 103.15;
+		Height := 16.75;
+		Angle := 0;
+		Enabled := true;
+		^Visible := true;
+		Opacity := 100;
+		Access := EnumElementAccessFamily.Inherit;
+	}
+}

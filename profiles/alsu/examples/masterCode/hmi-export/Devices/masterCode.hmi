@@ -1,0 +1,11 @@
+namespace ViewDesigner;
+
+using HMICatalog;
+
+/* HMI Device Type: 15" PanelView 5510 2715P-T15CD */
+
+Controller masterCode {
+	CipPathFromHmiDevice := "Cubicle\192.168.19.40";
+	CipPathFromEmulator := "Cubicle\192.168.19.40";
+	ProjectFilePath := "E:\Studio5000\AR RF\master-interlock-plc\masterCode.ACD";
+}

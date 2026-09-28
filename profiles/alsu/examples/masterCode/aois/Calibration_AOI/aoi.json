@@ -1,0 +1,23 @@
+{
+  "name": "Calibration_AOI",
+  "revision": "1.0",
+  "description": "",
+  "vendor": "",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "Temp",
+      "data_type": "UDT_ai",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    }
+  ],
+  "local_tags": []
+}

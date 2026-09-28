@@ -1,0 +1,43 @@
+{
+  "name": "UDT_MPS",
+  "description": "Fast MPS",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "PermitA",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "Permit A"
+    },
+    {
+      "name": "PermitB",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": "Permit B"
+    },
+    {
+      "name": "HeartBeat",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Heart Beat"
+    },
+    {
+      "name": "BeamStsA_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Beam Status A"
+    },
+    {
+      "name": "BeamStsB_Out",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Beam Status B"
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": "Summray signal"
+    }
+  ]
+}

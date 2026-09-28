@@ -1,0 +1,89 @@
+{
+  "name": "AMCI_SD4840E2_Run_Dwell_Move",
+  "revision": "5.0",
+  "description": "",
+  "vendor": "AMCI",
+  "revision_note": "Version 5.0 added the (hidden) ability to program the motor current and unlatched the error bit if the rung goes false.",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": true,
+  "parameters": [
+    {
+      "name": "Axis_Status_Bits",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Type_0_for_standard_1_for_indexed",
+      "data_type": "BOOL",
+      "usage": "Input",
+      "required": false,
+      "visible": false,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "motor_current",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": false,
+      "visible": false,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Assembled_Move_Dwell_Time",
+      "data_type": "INT",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "AMCI_SD4840E2_output_data",
+      "data_type": "_000A:SD4840E2_4342D302:O:0",
+      "usage": "InOut",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": null,
+      "dimension": 0
+    },
+    {
+      "name": "EN",
+      "data_type": "BOOL",
+      "usage": "Output",
+      "required": false,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "ER",
+      "data_type": "BOOL",
+      "usage": "Output",
+      "required": false,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    }
+  ],
+  "local_tags": [
+    {
+      "name": "command_data_block",
+      "data_type": "INT",
+      "dimensions": "10"
+    }
+  ]
+}

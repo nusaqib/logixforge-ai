@@ -1,0 +1,34 @@
+//! Latch Summary Status for  interlocks and permits
+// External interlocks
+NOP();
+
+XIC(PPS.OK)[XIC(MPS.OK) ,XIO(PPS.Op_Mode.Sts) ]OTE(System.Ext_Intlks_OK);
+
+// Internal interlocks
+NOP();
+
+[XIC(Vacuum.Sys1_OK) ,XIC(PPS.RF_TestLd_Mode.Sts) ]XIC(Feeder1.OK)XIC(Cav1.OK)EQ(LLRF1.DIG.RF_Power_Sum,1)EQ(LLRF1.DIG.Arc_Sum,1)XIC(HPA1.Fault.Ltch)XIC(LLRF1.FastPermit.Ltch)XIC(LLRF1.LO_Fault.Ltch)XIC(HPA1.State.Ltch)XIC(Local_RF_OFF.Ltch)OTE(System.ARRF1_Intlks_OK);
+
+[XIC(Vacuum.Sys2_OK) ,XIC(PPS.RF_TestLd_Mode.Sts) ]XIC(Feeder2.OK)XIC(Cav2.OK)EQ(LLRF2.DIG.RF_Power_Sum,1)EQ(LLRF2.DIG.Arc_Sum,1)XIC(HPA2.Fault.Ltch)XIC(LLRF2.FastPermit.Ltch)XIC(LLRF2.LO_Fault.Ltch)XIC(HPA2.State.Ltch)XIC(Local_RF_OFF.Ltch)OTE(System.ARRF2_Intlks_OK);
+
+XIC(System.Ext_Intlks_OK)XIC(System.ARRF1_Intlks_OK)[OTE(LLRF1.Permit) ,OTE(HPA1.Permit) ];
+
+XIC(HPA1.Permit)[XIC(System.ARRF1_TransmitOn_Cmd) ,XIC(DrvCtrl1.CoaxSwNO_Sts) ][XIO(System.ARRF2_Enable) ,XIC(System.DriveCtrlPermitDecouple) ]XIO(System.ARRF1_TransmitOff_Cmd)OTE(DrvCtrl1.Permit);
+
+XIC(System.Ext_Intlks_OK)XIC(System.ARRF2_Intlks_OK)[OTE(LLRF2.Permit) ,OTE(HPA2.Permit) ];
+
+XIC(HPA2.Permit)[XIC(System.ARRF2_TransmitOn_Cmd) ,XIC(DrvCtrl2.CoaxSwNO_Sts) ][XIO(System.ARRF1_Enable) ,XIC(System.DriveCtrlPermitDecouple) ]XIO(System.ARRF2_TransmitOff_Cmd)OTE(DrvCtrl2.Permit);
+
+NOP();
+
+XIC(System.ARRF1_Enable)XIC(LLRF1.Permit)OTE(LLRF1.Permit_Out);
+
+XIC(System.ARRF1_Enable)XIC(HPA1.Permit)OTE(HPA1.Permit_Out);
+
+XIC(System.ARRF1_Enable)XIC(DrvCtrl1.Permit)OTE(DrvCtrl1.Transmit_Out);
+
+XIC(System.ARRF2_Enable)XIC(LLRF2.Permit)OTE(LLRF2.Permit_Out);
+
+XIC(System.ARRF2_Enable)XIC(HPA2.Permit)OTE(HPA2.Permit_Out);
+
+XIC(System.ARRF2_Enable)XIC(DrvCtrl2.Permit)OTE(DrvCtrl2.Transmit_Out);

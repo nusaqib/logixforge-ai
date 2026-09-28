@@ -1,0 +1,8 @@
+{
+  "name": "P000_Master_Interlock",
+  "main_routine": "MainRoutine",
+  "fault_routine": "",
+  "description": "",
+  "disabled": false,
+  "kind": "Normal"
+}

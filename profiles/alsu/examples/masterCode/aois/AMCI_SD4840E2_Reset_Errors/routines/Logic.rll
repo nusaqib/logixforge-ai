@@ -1,0 +1,11 @@
+// The following rung moves a decimal value of "1024" (bit 10 set) to the MSW command word.  This commands resets command and input errors.
+MOVE(1024,command_data_block[0]);
+
+// The following rung moves a decimal value of -32768 (16#8000) to Least Significant word of Command Bits.  This enables the driver causing it to send power to the motor.
+MOVE(-32768,command_data_block[1]);
+
+// The Reset Errors command does not use the data in registers two through nine and the following rung resets these registers to zero.
+FLL(0,command_data_block[2],8);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

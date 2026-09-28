@@ -1,0 +1,29 @@
+// The following rung moves a decimal value of "128" (bit 7 set) to the MSW command word.  When combined with bits 7 and 6 in the Least Significant Command Word, command_data_block[1], this commands the SD4840E2 to perform a registration move in the CW direction.
+MOVE(128,command_data_block[0]);
+
+// The following rung moves a decimal value of -32640 (16#8080) to Least Significant word of Command Bits.  This enables the driver,causing it to send power to the motor, sets bit 7 and resets bit 8 indicating that the SD4840E2 should perform a registration move.
+XIO(Type_0_for_standard_1_for_indexed)MOVE(-32640,command_data_block[1]);
+
+// The following rung moves a decimal value of -32640 (16#8180) to Least Significant word of Command Bits.  This enables the driver causing it to send power to the motor, defines the move as a registration move, and sets the move type as an indexed move that only begins when an input is activated.
+XIC(Type_0_for_standard_1_for_indexed)MOVE(-32384,command_data_block[1]);
+
+CPS(Stopping_Distance,command_data_block[2],2);
+
+CPS(Programmed_Speed,command_data_block[4],2);
+
+// Move the acceleration value from outside the AOI instruction to word six of the ten word command block.
+MOVE(Acceleration,command_data_block[6]);
+
+// Move the deceleration value from outside the AOI instruction to word seven of the ten word command block.
+MOVE(Deceleration,command_data_block[7]);
+
+CPS(Minimum_Registration_Move_Distance,command_data_block[8],2);
+
+[XIC(Axis_Status_Bits.11) ,XIC(Axis_Status_Bits.12) ,XIC(Axis_Status_Bits.13) ]OTE(ER)MOVE(0,command_data_block[0]);
+
+OTL(EN);
+
+XIO(ER)OTL(Registration_Move_CW_Occurring);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

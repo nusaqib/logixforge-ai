@@ -66,6 +66,33 @@ def test_round_trip(tmp_path):
     assert {t.name for t in again.tags} == {t.name for t in proj.tags}
 
 
+def test_st_comments_module_types_handlers(tmp_path):
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    (tmp_path / "p" / "programs" / "P_Conveyor" / "routines" / "R_Cmt.st").write_text(
+        "/* for the record: if this was counted, FOR/IF would mismatch */\n(* while *) // repeat\n"
+        "IF Sim_Mode THEN Alarm_Any := 1; ELSIF ESTOP_OK THEN Alarm_Any := 0; ELSE Alarm_Any := 0; END_IF;\n"
+        "FOR i := 0 TO 3 DO Alarm_Any := 0; END_FOR;\n", encoding="utf-8")
+    (tmp_path / "p" / "tags" / "mod.json").write_text(json.dumps([
+        {"name": "Drive1_Out", "data_type": "_000A:SD4840E2_4342D302:O:0", "description": "module-defined type"},
+        {"name": "i", "data_type": "DINT", "description": "loop index"}]), encoding="utf-8")
+    pu = tmp_path / "p" / "programs" / "P_PowerUp"
+    (pu / "routines").mkdir(parents=True)
+    (pu / "program.json").write_text(json.dumps({"name": "P_PowerUp", "main_routine": "MainRoutine"}), encoding="utf-8")
+    (pu / "routines" / "MainRoutine.rll").write_text("//! power-up handler\nNOP();\n", encoding="utf-8")
+    cj = tmp_path / "p" / "controller.json"
+    d = json.loads(cj.read_text(encoding="utf-8"))
+    d["power_loss_program"] = "P_PowerUp"
+    cj.write_text(json.dumps(d), encoding="utf-8")
+    proj = load_project(tmp_path / "p")
+    codes = {f.code for f in validate(proj)}
+    assert "ST_BLOCK" not in codes and "UNKNOWN_TYPE" not in codes and "UNSCHEDULED" not in codes
+    text = Path(write_l5x(proj, str(tmp_path / "x.L5X"))).read_text(encoding="utf-8")
+    assert 'PowerLossProgram="P_PowerUp"' in text
+    assert read_l5x(tmp_path / "x.L5X").controller.power_loss_program == "P_PowerUp"
+
+
 def test_validator_catches_errors(tmp_path):
     import json
     import shutil

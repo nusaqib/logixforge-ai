@@ -8,10 +8,10 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-from .model import ALARM_CONDITIONS, ATOMIC_TYPES, PREDEFINED_TYPES, Project, Tag
+from .model import ALARM_CONDITIONS, ATOMIC_TYPES, PREDEFINED_TYPES, Project, Tag, is_known_type
 from .rll import INSTRUCTIONS, NAME_RE, RESERVED_WORDS, RungSyntaxError, base_tag, operand_tags, parse_rung
 
-IO_TAG_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*:(\d+|[A-Za-z0-9_]+):[ICOS](\.|$)")
+IO_TAG_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(:(\d+|[A-Za-z0-9_]+))?:[ICOS]\d?(\.|$)")   # Local:2:I, Rack1:3:O, Drive1:O
 
 
 @dataclass
@@ -53,8 +53,24 @@ class Validator:
         if name.upper() in RESERVED_WORDS:
             self.err("NAME_RESERVED", where, f"{kind} name {name!r} is a reserved instruction/keyword")
         pat = self.naming.get(kind)
-        if pat and not re.match(pat, name):
+        if pat and not re.match(pat, name) and not any(re.match(x, name) for x in self.naming.get("name_exempt", [])):
             self.warn("NAME_STYLE", where, f"{kind} name {name!r} does not match house pattern {pat}")
+
+    def check_suffix(self, name: str, data_type: str, dimensions: str, where: str):
+        """Site suffix rules (naming.json 'suffixes': {BOOL:[..], REAL:[..], TIMER:[..], array:[..]}, 'exempt': [regex])."""
+        rules = self.naming.get("suffixes")
+        if not rules or not data_type:
+            return
+        if any(re.match(x, name) for x in self.naming.get("exempt", [])):
+            return
+        key = "array" if dimensions else data_type
+        allowed = rules.get(key)
+        if dimensions:
+            allowed = (allowed or []) + rules.get(data_type, [])
+        if not allowed:
+            return
+        if not any(name.endswith(s) or name == s.lstrip("_") for s in allowed):
+            self.warn("NAME_SUFFIX", where, f"{key} name {name!r} should end with one of {' '.join(allowed)}")
 
     # ------------------------------------------------------------ rules
     def run(self) -> list[Finding]:
@@ -102,16 +118,17 @@ class Validator:
                 if m.name.lower() in mseen:
                     self.err("DUP_MEMBER", mw, "duplicate member name")
                 mseen.add(m.name.lower())
-                if m.data_type not in known:
+                if not is_known_type(m.data_type, known):
                     self.err("UNKNOWN_TYPE", mw, f"unknown data type {m.data_type!r}")
                 if m.data_type == d.name:
                     self.err("UDT_RECURSIVE", mw, "data type cannot contain itself")
-                if m.data_type == "BOOL" and m.dimension:
+                if m.data_type == "BOOL" and m.dimension and m.dimension % 32:
                     self.err("BOOL_ARRAY_UDT", mw, "BOOL arrays in UDTs must be dimensioned in multiples of 32 (prefer DINT bit fields)")
                 if m.data_type == "BOOL":
                     bools += 1
                 if not m.description:
                     self.warn("NO_DESC", mw, "member has no description")
+                self.check_suffix(m.name, m.data_type, str(m.dimension or ""), mw)
             if bools > 8 and len(d.members) < 2 * bools:
                 self.info("UDT_LAYOUT", w, "many BOOL members: consider grouping BOOLs together to reduce padding")
 
@@ -131,7 +148,7 @@ class Validator:
                 names.add(prm.name.lower())
                 if prm.usage not in {"Input", "Output", "InOut"}:
                     self.err("AOI_USAGE", pw, f"usage must be Input/Output/InOut, got {prm.usage!r}")
-                if prm.data_type not in self.p.data_type_names():
+                if not is_known_type(prm.data_type, self.p.data_type_names()):
                     self.err("UNKNOWN_TYPE", pw, f"unknown data type {prm.data_type!r}")
                 if prm.usage in {"Input", "Output"} and prm.data_type not in ATOMIC_TYPES:
                     self.err("AOI_PARAM_TYPE", pw, "Input/Output parameters must be atomic; use InOut for structures/arrays")
@@ -161,13 +178,16 @@ class Validator:
             else:
                 if not t.data_type:
                     self.err("TAG_NO_TYPE", w, "tag has no data_type")
-                elif t.data_type not in known:
+                elif not is_known_type(t.data_type, known):
                     self.err("UNKNOWN_TYPE", w, f"unknown data type {t.data_type!r}")
                 if t.data_type == "BOOL" and t.dimensions and int(t.dimensions.split(",")[0]) % 32:
                     self.err("BOOL_ARRAY", w, "BOOL array dimension must be a multiple of 32")
             if not t.description:
                 self.warn("NO_DESC", w, "tag has no description")
             self.check_desc(t.description, w)
+            if not t.alias_for and t.data_type not in {d.name for d in self.p.data_types} \
+                    and t.data_type not in {a.name for a in self.p.aois}:
+                self.check_suffix(t.name, t.data_type, t.dimensions, w)
             if scope == "controller" and t.data_type in ATOMIC_TYPES and not t.alias_for and not t.constant:
                 pass  # allowed; house rule may prefer program scope (see standards)
 
@@ -182,6 +202,7 @@ class Validator:
     def check_programs(self):
         seen = set()
         scheduled = {n.lower() for t in self.p.tasks for n in t.programs}
+        scheduled |= {x.lower() for x in (self.p.controller.power_loss_program, self.p.controller.major_fault_program) if x}
         for p in self.p.programs:
             w = f"program {p.name}"
             self.check_name(p.name, w, "program")
@@ -272,12 +293,14 @@ class Validator:
 
     def check_st(self, text: str, where: str):
         code = re.sub(r"\(\*.*?\*\)", "", text, flags=re.S)
+        code = re.sub(r"/\*.*?\*/", "", code, flags=re.S)          # Logix ST also accepts C-style block comments
         code = re.sub(r"//.*", "", code)
+        code = re.sub(r"'[^'\n]*'", "''", code)                    # string literals
         pairs = [("IF", "END_IF"), ("CASE", "END_CASE"), ("FOR", "END_FOR"), ("WHILE", "END_WHILE"), ("REPEAT", "END_REPEAT")]
         up = code.upper()
         for a, b in pairs:
-            na = len(re.findall(rf"(?<![A-Z_]){a}(?![A-Z_])", up)) - (len(re.findall(r"(?<![A-Z_])ELSIF(?![A-Z_])", up)) if a == "IF" else 0)
-            nb = len(re.findall(rf"(?<![A-Z_]){b}(?![A-Z_])", up))
+            na = len(re.findall(rf"(?<![A-Z_0-9]){a}(?![A-Z_0-9])", up))   # ELSIF/END_IF never match: preceded by S / _
+            nb = len(re.findall(rf"(?<![A-Z_0-9]){b}(?![A-Z_0-9])", up))
             if na != nb:
                 self.err("ST_BLOCK", where, f"{a}/{b} mismatch ({na} vs {nb})")
         stmts = [s.strip() for s in re.split(r";", code) if s.strip()]

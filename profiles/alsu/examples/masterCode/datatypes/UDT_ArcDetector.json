@@ -1,0 +1,49 @@
+{
+  "name": "UDT_ArcDetector",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Test",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Rst",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Sts",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Ltch",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Byp_Modes",
+      "data_type": "BOOL",
+      "dimension": 32,
+      "description": ""
+    },
+    {
+      "name": "Byp_Cmd_HMI",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "Byp",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

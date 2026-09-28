@@ -1,0 +1,14 @@
+// The following rung moves a decimal value of "512" (bit 10 set) to the MSW command word.  This commands the SD4840E2 to Preset the current position to the Target Position value.
+MOVE(0,command_data_block[0]);
+
+// The following rung moves a decimal value of -32766 (16#8002) to Least Significant word of Command Bits.  This enables the driver and sets the program motor current bit.
+MOVE(-32766,command_data_block[1]);
+
+// Words 2 through 7 and 9 of the 10 word command block are not used by the program motor command.  This rung resets these words to zero.
+FLL(0,command_data_block[2],6)MOVE(0,command_data_block[9]);
+
+// The following rung moves the motor current value from outside the AOI to output word 8.
+MOVE(Motor_Current,command_data_block[8]);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

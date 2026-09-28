@@ -87,6 +87,12 @@ INSTRUCTIONS: dict[str, tuple[int, int, str]] = {
     "SDI": (1, -1, "safety"), "SBC": (1, -1, "safety"), "SOR": (1, -1, "safety"), "SFI": (1, -1, "safety"),
     "SFT": (1, -1, "safety"), "STO": (1, -1, "safety"),
 }
+# Logix v36+ renamed mnemonics in rung text (imports still accept the old ones and convert them)
+INSTRUCTIONS.update({
+    "MOVE": (2, 2, "move"), "EQ": (2, 2, "compare"), "NE": (2, 2, "compare"), "GT": (2, 2, "compare"),
+    "GE": (2, 2, "compare"), "LT": (2, 2, "compare"), "LE": (2, 2, "compare"), "LIMIT": (3, 3, "compare"),
+})
+V36_ALIASES = {"MOV": "MOVE", "EQU": "EQ", "NEQ": "NE", "GRT": "GT", "GEQ": "GE", "LES": "LT", "LEQ": "LE", "LIM": "LIMIT"}
 INSTRUCTIONS = {k.upper(): v for k, v in INSTRUCTIONS.items() if not k.endswith("_")}
 
 # Instruction names and ST keywords cannot be used as tag names

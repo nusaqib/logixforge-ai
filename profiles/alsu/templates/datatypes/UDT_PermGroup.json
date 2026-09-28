@@ -1,0 +1,31 @@
+{
+  "name": "UDT_PermGroup",
+  "description": "Interlock group for PermLatch_AOI: group trip state, first-fault arbitration, operator reset (AL-1605-0840 sec. 7)",
+  "members": [
+    {
+      "name": "Trip_Sts",
+      "data_type": "BOOL",
+      "description": "1 = any permissive in the group is latched (group tripped), 0 = all clear"
+    },
+    {
+      "name": "FF_Sts",
+      "data_type": "BOOL",
+      "description": "1 = a first fault has been assigned for the current trip event, 0 = none"
+    },
+    {
+      "name": "Rst_Cmd",
+      "data_type": "BOOL",
+      "description": "1 = operator reset requested (EPICS/HMI sets, PLC clears), 0 = idle"
+    },
+    {
+      "name": "Permit_Out",
+      "data_type": "BOOL",
+      "description": "1 = mitigation output permitted, 0 = inhibit"
+    },
+    {
+      "name": "Spare",
+      "data_type": "DINT",
+      "description": "Spare for future group bits"
+    }
+  ]
+}

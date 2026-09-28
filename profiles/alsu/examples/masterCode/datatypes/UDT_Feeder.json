@@ -1,0 +1,43 @@
+{
+  "name": "UDT_Feeder",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "Circ_LCWR_Flow",
+      "data_type": "UDT_ai",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CircLoad_LCWR_Flow",
+      "data_type": "UDT_ai",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "DummyLoad_LCWR_Flow",
+      "data_type": "UDT_ai",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "TxLineSw",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "TCU",
+      "data_type": "UDT_TCU",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "OK",
+      "data_type": "BOOL",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

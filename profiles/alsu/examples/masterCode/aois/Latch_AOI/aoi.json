@@ -1,0 +1,53 @@
+{
+  "name": "Latch_AOI",
+  "revision": "1.0",
+  "description": "Add-On-Instruction for latching of trip fault signals",
+  "vendor": "",
+  "revision_note": "",
+  "execute_prescan": false,
+  "execute_postscan": false,
+  "execute_enable_in_false": false,
+  "parameters": [
+    {
+      "name": "Sts",
+      "data_type": "BOOL",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Bypass",
+      "data_type": "BOOL",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Reset",
+      "data_type": "BOOL",
+      "usage": "Input",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    },
+    {
+      "name": "Lch",
+      "data_type": "BOOL",
+      "usage": "Output",
+      "required": true,
+      "visible": true,
+      "description": "",
+      "default": "0",
+      "dimension": 0
+    }
+  ],
+  "local_tags": []
+}

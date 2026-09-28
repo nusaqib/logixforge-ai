@@ -1,0 +1,19 @@
+{
+  "name": "UDT_Module_Status",
+  "description": "",
+  "family": "NoFamily",
+  "members": [
+    {
+      "name": "FaultCode",
+      "data_type": "INT",
+      "dimension": 0,
+      "description": ""
+    },
+    {
+      "name": "CommunicationOK",
+      "data_type": "UDT_bi",
+      "dimension": 0,
+      "description": ""
+    }
+  ]
+}

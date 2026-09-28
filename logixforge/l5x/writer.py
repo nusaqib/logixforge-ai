@@ -429,6 +429,10 @@ def _controller_el(root: ET.Element, proj: Project, use: str) -> ET.Element:
                      TimeSlice=str(c.time_slice))
         if _legacy_controller(c.processor_type):
             attrs["ShareUnusedTimeSlice"] = "1"
+        if c.power_loss_program:
+            attrs["PowerLossProgram"] = c.power_loss_program
+        if c.major_fault_program:
+            attrs["MajorFaultProgram"] = c.major_fault_program
         attrs.update(ProjectCreationDate=_now(), LastModifiedDate=_now(), SFCExecutionControl="CurrentActive",
                      SFCRestartPosition="MostRecent", SFCLastScan="DontScan", ProjectSN="16#0000_0000",
                      MatchProjectToController="false", CanUseRPIFromProducer="false",

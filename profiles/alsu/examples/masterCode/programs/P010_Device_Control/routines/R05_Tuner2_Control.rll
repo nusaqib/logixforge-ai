@@ -1,0 +1,71 @@
+// Tuner Commands via imported SD4840E2 AOIs
+NOP();
+
+XIC(Tuner2.Hold_Cmd)[XIC(Tuner2.Moving_CW) ,XIC(Tuner2.Moving_CCW) ]AMCI_SD4840E2_Hold(Tuner2_AOI_Hold_Position,Cav2_Tuner:O);
+
+[XIC(Tuner2.Stop_Cmd) ,XIO(Tuner2.InRange.Sts) ]TON(Tuner2.Timer_Stop,?,?);
+
+XIC(Tuner2.Timer_Stop.TT)AMCI_SD4840E2_Immediate_Stop(Tuner2_AOI_Immediate_stop,Cav2_Tuner:O);
+
+XIC(Tuner2.Resume_Cmd)AMCI_SD4840E2_Resume(Tuner2_AOI_resume,Cav2_Tuner:O);
+
+XIC(Tuner2.PresetPosition_Cmd)AMCI_SD4840E2_Preset_Motor_Position(Tuner2_AOI_Preset_Position,Tuner2.Position_Preset_SP,Cav2_Tuner:O);
+
+// Reset errors if error occurs or move is complete
+// The reson to reset on move complete is the observation of next move delay if not reset
+NOP();
+
+XIC(Tuner2.Input_Error)XIC(Tuner2.Configuration_Error)XIC(Tuner2.Command_Error)OTE(Tuner2.Error.Sts);
+
+[XIC(Tuner2.ResetErrors_Cmd) ,XIC(Tuner2.Move_Complete) ]AMCI_SD4840E2_Reset_Errors(Tuner2_AOI_Reset_Errors,Cav2_Tuner:O);
+
+// Home to position '0' if the CCW microswitch activates
+NOP();
+
+XIC(Tuner2.LimitSw_CCW)OSR(Tuner2_Preset_CCW_SB,Tuner2_Preset_CCW_OB);
+
+XIC(Tuner2_Preset_CCW_OB)AMCI_SD4840E2_Preset_Motor_Position(Tuner2_AOI_Preset_Position_CCW,Tuner2.Preset_SP_CCW,Cav2_Tuner:O);
+
+// Parked status representing non-resonance region
+NOP();
+
+LIMIT(Tuner2.ParkLimit_Lo_SP,Tuner2.Position,Tuner2.ParkLimit_Hi_SP)OTE(Tuner2.Parked);
+
+// Soft range status
+NOP();
+
+GE(Tuner2.Position,Tuner2.SoftLimit_Lo_SP)OTE(Tuner2.SoftLimit_Lo);
+
+LE(Tuner2.Position,Tuner2.SoftLimit_Hi_SP)OTE(Tuner2.SoftLimit_Hi);
+
+XIC(Tuner2.SoftLimit_Lo)XIC(Tuner2.SoftLimit_Hi)OTE(Tuner2.InRange.Sts);
+
+// Position Control
+NOP();
+
+XIO(Tuner2.CtrlModeResonance)XIC(Tuner2.OK)XIC(Tuner2.AbsoluteMove_Cmd)AMCI_SD4840E2_Absolute_Move(Tuner2_AOI_absolute_move,Tuner2.dataBuffer[0],Tuner2.AbsolutePosition_SP,Tuner2.ProgSpeed_SP,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+XIO(Tuner2.CtrlModeResonance)XIC(Tuner2.OK)XIC(Tuner2.RelativeMove_Cmd)AMCI_SD4840E2_Relative_Move(Tuner2_AOI_relative_move,Tuner2.dataBuffer[0],Tuner2.RelativePosition_SP,Tuner2.ProgSpeed_SP,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+XIO(Tuner2.CtrlModeResonance)XIC(Tuner2.OK)XIC(Tuner2.JogCW_Cmd)AMCI_SD4840E2_Jog_CW(Tuner2_AOI_CW_Jog_Move,Tuner2.dataBuffer[0],Tuner2.ProgSpeed_SP,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+XIO(Tuner2.CtrlModeResonance)XIC(Tuner2.OK)XIC(Tuner2.JogCCW_Cmd)AMCI_SD4840E2_Jog_CCW(Tuner2_AOI_CCW_Jog_Move,Tuner2.dataBuffer[0],Tuner2.ProgSpeed_SP,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+// Resonance control
+NOP();
+
+XIC(Tuner2.CtrlModeResonance)PID(Tuner2_PID,Tuner2_PID_PV_ABS,Tuner2_PID_TB,Tuner2_PID_CV,0,0,0);
+
+XIC(Tuner2.CtrlModeResonance)LT(Tuner2_PID_PV_ABS,10)[TON(Tuner2.Timer_Hold_Res,?,?) ,OTE(Tuner2.At_Resonance) ];
+
+XIC(Tuner2.Timer_Hold_Res.TT)[XIC(Tuner2.Moving_CW) ,XIC(Tuner2.Moving_CCW) ]AMCI_SD4840E2_Hold(Tuner2_AOI_Hold_Resonance,Cav2_Tuner:O);
+
+XIC(Tuner2.CtrlModeResonance)XIC(Tuner2.OK)LT(Tuner2_PID_PV,-10)TON(Tuner2.Timer_JogCW_Res,?,?);
+
+XIC(Tuner2.Timer_JogCW_Res.TT)AMCI_SD4840E2_Jog_CW(Tuner2_AOI_CW_Jog_Move_Res,Tuner2.dataBuffer[0],Tuner2_PID_CV_ABS,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+XIC(Tuner2.OK)XIC(Tuner2.CtrlModeResonance)GT(Tuner2_PID_PV,10)TON(Tuner2.Timer_JogCCW_Res,?,?);
+
+XIC(Tuner2.Timer_JogCCW_Res.TT)AMCI_SD4840E2_Jog_CCW(Tuner2_AOI_CCW_Jog_Move_Res,Tuner2.dataBuffer[0],Tuner2_PID_CV_ABS,Tuner2.Accel,Tuner2.Decel,Cav2_Tuner:O);
+
+XIC(Tuner2.CtrlModeResonance)CPT(Tuner2_PID_PV_ABS,ABS(Tuner2_PID_PV))CPT(Tuner2_PID_CV_ABS,ABS(Tuner2_PID_CV));

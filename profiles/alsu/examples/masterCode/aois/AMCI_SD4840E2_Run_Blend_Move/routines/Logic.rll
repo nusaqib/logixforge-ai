@@ -1,0 +1,33 @@
+// The following rung moves a decimal value of "8192" (bit 13 set) to the MSW command word.  This commands the SD4840E2 to run a previously programmed Assembled Move.
+XIO(Axis_Status_Bits.0)XIO(Axis_Status_Bits.1)XIO(EN)MOVE(8192,command_data_block[0]);
+
+// The following rung moves a value of 0 to output word 0 while motion is occurring.  This will allow the SD4840E2 to see the next 0 to 1 transition of the command bit.
+[XIC(Axis_Status_Bits.0) ,XIC(Axis_Status_Bits.1) ]MOVE(0,command_data_block[0]);
+
+// The following rung moves a decimal value of -32768 (16#8000) to Least Significant word of Command Bits.  This enables the driver and commands a blend move in the CW direction.
+XIO(Direction_0_for_CW_1_for_CCW)XIO(Type_0_for_standard_1_for_indexed)MOVE(-32768,command_data_block[1]);
+
+// The following rung moves a decimal value of -32752 (16#8010) to Least Significant word of Command Bits.  This enables the driver and commands a blend move in the CCW direction
+XIC(Direction_0_for_CW_1_for_CCW)XIO(Type_0_for_standard_1_for_indexed)MOVE(-32752,command_data_block[1]);
+
+// The following rung moves a decimal value of -32512 (16#8100) to Least Significant word of Command Bits.  This enables the driver and commands an indexed blend move in the CW direction.
+XIO(Direction_0_for_CW_1_for_CCW)XIC(Type_0_for_standard_1_for_indexed)MOVE(-32512,command_data_block[1]);
+
+// The following rung moves a decimal value of -32496 (16#8110) to Least Significant word of Command Bits.  This enables the driver and commands an indexed blend move in the CCW direction
+XIC(Direction_0_for_CW_1_for_CCW)XIC(Type_0_for_standard_1_for_indexed)MOVE(-32496,command_data_block[1]);
+
+// The Run Assembled Move command does not use the data in registers two through nine and the following rung resets these registers to zero.
+FLL(0,command_data_block[2],6)MOVE(0,command_data_block[9]);
+
+// If the motor current field is zero or greater than 40, move zero into word 8, the motor current value, of the command data block.
+[EQ(motor_current,0) ,GT(motor_current,40) ]MOVE(0,command_data_block[8]);
+
+// If the motor current field is between 1 and 40, set the bit that enables the changing of the motor current to the new value and  move the motor current value into word 8 of the command data block.
+LIMIT(1,motor_current,40)OTL(command_data_block[1].1)MOVE(motor_current,command_data_block[8]);
+
+[XIC(Axis_Status_Bits.11) ,XIC(Axis_Status_Bits.12) ,XIC(Axis_Status_Bits.13) ]OTE(ER)MOVE(0,command_data_block[0]);
+
+OTL(EN);
+
+// Move the command block data internal to the Add on Instruction to the output registers assigned to the SD4840E2.
+CPS(command_data_block[0],AMCI_SD4840E2_output_data,10);

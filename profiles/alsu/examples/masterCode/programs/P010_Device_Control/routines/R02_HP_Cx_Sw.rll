@@ -1,0 +1,43 @@
+// Position status of high power RF Coaxial Switches
+NOP();
+
+XIC(HP_Cx_Sw1.S6_Sts)XIO(HP_Cx_Sw1.S10_Sts)OTE(HP_Cx_Sw1.Pos_DumLoad);
+
+XIO(HP_Cx_Sw1.S6_Sts)XIC(HP_Cx_Sw1.S10_Sts)OTE(HP_Cx_Sw1.Pos_Cav);
+
+XIC(HP_Cx_Sw2.S6_Sts)XIO(HP_Cx_Sw2.S10_Sts)OTE(HP_Cx_Sw2.Pos_DumLoad);
+
+XIO(HP_Cx_Sw2.S6_Sts)XIC(HP_Cx_Sw2.S10_Sts)OTE(HP_Cx_Sw2.Pos_Cav);
+
+// Match compatibility between HP Coax position & PPS mode
+NOP();
+
+[[XIC(PPS.Op_Mode.Sts) ,XIC(PPS.RF_Test_Mode.Sts) ,XIC(PPS.RF_TestwAc_Mode.Sts) ] XIC(HP_Cx_Sw1.Pos_Cav) ,XIC(PPS.RF_TestLd_Mode.Sts) XIC(HP_Cx_Sw1.Pos_DumLoad) ]OTE(HP_Cx_Sw1.PPS_Match.Sts);
+
+[[XIC(PPS.Op_Mode.Sts) ,XIC(PPS.RF_Test_Mode.Sts) ,XIC(PPS.RF_TestwAc_Mode.Sts) ] XIC(HP_Cx_Sw2.Pos_Cav) ,XIC(PPS.RF_TestLd_Mode.Sts) XIC(HP_Cx_Sw2.Pos_DumLoad) ]OTE(HP_Cx_Sw2.PPS_Match.Sts);
+
+NOP();
+
+// Disable switch movement if in Transmit mode
+XIO(DrvCtrl1.CoaxSwNO_Sts)XIC(HP_Cx_Sw1.Enable)OTE(HP_Cx_Sw1.OK_to_move);
+
+XIC(HP_Cx_Sw1.OK_to_move)[XIC(HP_Cx_Sw1.Ctrl_Mode_Auto) [XIC(PPS.Op_Mode.Sts) ,XIC(PPS.RF_Test_Mode.Sts) ,XIC(PPS.RF_TestwAc_Mode.Sts) ] ,XIO(HP_Cx_Sw1.Ctrl_Mode_Auto) XIC(HP_Cx_Sw1.Pos_Cav_Cmd_HMI) ]OTE(HP_Cx_Sw1.Pos_Cav_Cmd);
+
+XIC(HP_Cx_Sw1.Pos_Cav_Cmd)OTL(HP_Cx_Sw1.Pos_Cav_Out);
+
+XIC(HP_Cx_Sw1.OK_to_move)[XIC(HP_Cx_Sw1.Ctrl_Mode_Auto) XIC(PPS.RF_TestLd_Mode.Sts) ,XIO(HP_Cx_Sw1.Ctrl_Mode_Auto) XIC(HP_Cx_Sw1.Pos_DumLoad_Cmd_HMI) ]OTE(HP_Cx_Sw1.Pos_DumLoad_Cmd);
+
+XIC(HP_Cx_Sw1.Pos_DumLoad_Cmd)OTU(HP_Cx_Sw1.Pos_Cav_Out);
+
+NOP();
+
+// Disable switch movement if in Transmit mode
+XIO(DrvCtrl2.CoaxSwNO_Sts)XIC(HP_Cx_Sw2.Enable)OTE(HP_Cx_Sw2.OK_to_move);
+
+XIC(HP_Cx_Sw2.OK_to_move)[XIC(HP_Cx_Sw2.Ctrl_Mode_Auto) [XIC(PPS.Op_Mode.Sts) ,XIC(PPS.RF_Test_Mode.Sts) ,XIC(PPS.RF_TestwAc_Mode.Sts) ] ,XIO(HP_Cx_Sw2.Ctrl_Mode_Auto) XIC(HP_Cx_Sw2.Pos_Cav_Cmd_HMI) ]OTE(HP_Cx_Sw2.Pos_Cav_Cmd);
+
+XIC(HP_Cx_Sw2.Pos_Cav_Cmd)OTL(HP_Cx_Sw2.Pos_Cav_Out);
+
+XIC(HP_Cx_Sw2.OK_to_move)[XIC(HP_Cx_Sw2.Ctrl_Mode_Auto) XIC(PPS.RF_TestLd_Mode.Sts) ,XIO(HP_Cx_Sw2.Ctrl_Mode_Auto) XIC(HP_Cx_Sw2.Pos_DumLoad_Cmd_HMI) ]OTE(HP_Cx_Sw2.Pos_DumLoad_Cmd);
+
+XIC(HP_Cx_Sw2.Pos_DumLoad_Cmd)OTU(HP_Cx_Sw2.Pos_Cav_Out);

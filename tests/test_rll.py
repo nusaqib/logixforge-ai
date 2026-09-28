@@ -33,6 +33,10 @@ def test_aoi_call():
     assert ins.is_aoi and ins.name == "AOI_Motor" and len(ins.operands) == 7
 
 
+def test_v36_mnemonics():
+    assert instruction_names("MOVE(1,A)EQ(A,B)LIMIT(0,A,9)GT(A,B)OTE(C);") == ["MOVE", "EQ", "LIMIT", "GT", "OTE"]
+
+
 def test_literals_dropped():
     assert operand_tags("EQU(Mode,2)MOV(16#FF,Mask)OTE(Out);") == ["Mode", "Mask", "Out"]
 

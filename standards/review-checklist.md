@@ -6,6 +6,7 @@
 | NAME_CHARS / NAME_LEN / NAME_DBL_US / NAME_TRAIL_US | error | Logix name rules |
 | NAME_RESERVED | error | Name is an instruction mnemonic or ST keyword |
 | NAME_STYLE | warning | Does not match `naming.json` pattern |
+| NAME_SUFFIX | warning | Atomic tag/member/array lacks a site suffix from `naming.json` `suffixes` (e.g. ALS-U `_Sts _Cmd _Val _SP`) |
 | DUP_UDT / DUP_MEMBER / DUP_TAG / DUP_PROGRAM / DUP_PARAM | error | Duplicate in scope |
 | UNKNOWN_TYPE | error | Data type not atomic/predefined/UDT/AOI |
 | UDT_EMPTY / UDT_RECURSIVE / BOOL_ARRAY_UDT / BOOL_ARRAY | error | UDT/array layout rules |
@@ -22,6 +23,7 @@
 | TAGALARM_UNSUPPORTED / DUP_ALARM / ALARM_TAG / ALARM_MEMBER / ALARM_COND / ALARM_SEV | error | Tag-based alarm rules (`plc-alarms`) |
 | ALARM_MSG / ALARM_DELAY | warning | Alarm message missing / delay not a multiple of 500 ms |
 | HMI_NO_SCREENS / HMI_HOME / HMI_CTRLREF / HMI_NAME / HMI_DUP / HMI_WIDGET / HMI_NAV / HMI_TAG / HMI_MEMBER / HMI_TYPE / HMI_CONST / HMI_ACCESS / HMI_FACEPLATE | error | `hmi/hmi.json` rules (`hmi-view-designer`) |
+| HMI_ACTION / HMI_SECURITY | error | button action not set1/set0/toggle/momentary; security role access not FullAccess/ReadOnly/NoAccess/Inherit |
 | HMI_SCOPE | warning | HMI bound to a program-scope tag |
 | TASK_WD / UNSCHEDULED / ROUTINE_UNCALLED / EMPTY_ROUTINE / EMPTY_RUNG / FLOW_CTRL | warning | Structure quality |
 | LATCH / NO_RUNG_COMMENT / NO_DESC / UDT_LAYOUT | info | Documentation/quality |

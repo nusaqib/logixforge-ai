@@ -1,0 +1,22 @@
+//! PermLatch_AOI: AL-1605-0840 section 7 permissive/latch/first-fault behaviour for one signal
+// New trip event: signal not normal, not bypassed, not already latched (S09-07-095030)
+XIO(Sts)XIO(Byp)XIO(Ltch)ONS(Trip_OSS)OTE(NewTrip_Sts);
+
+// Latch on trip; held until reset (S09-07-095030, S09-07-095040)
+XIC(NewTrip_Sts)OTL(Ltch);
+
+// First fault: first tripped permissive of a trip event (S09-07-095050, S09-07-095060); later trips get none
+XIC(NewTrip_Sts)XIO(Grp.Trip_Sts)XIO(Grp.FF_Sts)OTL(FF);
+
+XIC(NewTrip_Sts)XIO(Grp.Trip_Sts)XIO(Grp.FF_Sts)OTL(Grp.FF_Sts);
+
+// Reset: latch clears only when the signal is back to normal or bypassed (S09-07-095020, S09-07-095040)
+XIC(Rst)[XIC(Sts),XIC(Byp)]OTU(Ltch);
+
+// Reset clears the first-fault indication (S09-07-095070)
+XIC(Rst)OTU(FF);
+
+XIC(Rst)OTU(Grp.FF_Sts);
+
+// Permissive satisfied when normal or bypassed and not latched (S09-07-095000)
+[XIC(Sts),XIC(Byp)]XIO(Ltch)OTE(Permit);

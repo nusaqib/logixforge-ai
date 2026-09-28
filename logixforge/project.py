@@ -129,6 +129,8 @@ def load_project(root: "str | os.PathLike") -> Project:
         safety=bool(c.get("safety", False)),
         chassis_size=int(c.get("chassis_size", 10)),
         slot=int(c.get("slot", 0)),
+        power_loss_program=c.get("power_loss_program", ""),
+        major_fault_program=c.get("major_fault_program", ""),
     )
     proj = Project(controller=controller, source_dir=str(root))
 
