@@ -13,6 +13,13 @@
 - Every array element and every Boolean bit used in logic has a description; Boolean descriptions
   define both states, e.g. `0 = Ok, 1 = Fault` or `1 = Normal, 0 = Trip`.
 
+LogixForge pipeline for ALS-U documents: ingest every governing document with
+`lf docs ingest <project> <file> --doc-no AL-xxxx-xxxx --rev X` so `docs/INDEX.md` is the document list
+the reviewer checks against; cite the same numbers in rung comments. Deliverables come from
+`lf docs build` (Markdown; `lf docs export --to docx` with `docs/pandoc.yaml` for a controlled copy),
+never from hand-maintained Word files. `docs/generated/INTERLOCKS.md` is the as-built cause-and-effect
+to compare with the interlock tables in SPEC.md section 4.
+
 LogixForge: the `//!` routine header names the governing document(s); rung comments cite spec IDs or
 document numbers (`per AL-xxxx-xxxx 4.2`); the validator's NO_DESC checks cover tags and members,
 and the ALS-U reviewer additionally checks that BOOL descriptions contain both state definitions.

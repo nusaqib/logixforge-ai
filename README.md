@@ -14,9 +14,9 @@ spec (JSON + .rll/.st)  --lf build-->  L5X  --import-->  Studio 5000  --download
 ## What is here
 | Path | Purpose |
 |---|---|
-| `skills/` | One skill per milestone: project setup, UDTs, AOIs, tags, I/O modules, programs/tasks, ladder, structured text, alarms, safety, review, export/import, testing, live SDK, HMI for Studio 5000 View Designer (FactoryTalk/Optix on the roadmap) |
+| `skills/` | One skill per milestone: project setup, UDTs, AOIs, tags, I/O modules, programs/tasks, ladder, structured text, alarms, safety, review, export/import, testing, live SDK, documentation (in and out, including as-built docs for existing ACD/L5X projects), HMI for Studio 5000 View Designer (FactoryTalk/Optix on the roadmap) |
 | `agents/` | `plc-architect` (plan), `plc-builder` (implement), `plc-reviewer` (audit, read-only) |
-| `commands/` | `/lf-new`, `/lf-build`, `/lf-validate`, `/lf-review`, `/lf-import`, `/lf-online` |
+| `commands/` | `/lf-new`, `/lf-build`, `/lf-validate`, `/lf-review`, `/lf-import`, `/lf-online`, `/lf-docs`, `/lf-document-existing` |
 | `hooks/` | Blocks writes to live controllers without operator opt-in; auto-validates spec edits |
 | `logixforge/` | Python toolkit: spec loader, rung parser, validator, L5X writer/reader, View Designer HMI generator, CLI, MCP server, online adapters |
 | `standards/` | Naming, coding standard, review checklist, L5X and instruction references |
@@ -48,6 +48,13 @@ lf build projects\LineA --partials
 ```
 Try the demo: `lf build examples\conveyor-demo --partials` then open `examples\conveyor-demo\build\ConveyorDemo.L5X`.
 
+## Projects and documentation
+One git repository per PLC project (`lf init <dir> --name X --git`); this repository holds the plugin,
+`examples/` and `profiles/` only. Documents you receive go in with `lf docs ingest` (kept verbatim in
+`docs/input/`, read by the agent from `docs/extracted/`), their content is moved into the spec, and the
+deliverable document set is generated from the spec with `lf docs build` (Markdown, Mermaid diagrams;
+`lf docs export` makes PDF/DOCX through pandoc). See the `plc-documentation` skill.
+
 ## Project spec layout
 ```
 controller.json          processor, firmware, description
@@ -61,7 +68,9 @@ alarms.json              tag-based alarm conditions (messages, severity, class) 
 hmi/hmi.json             HMI screens/widgets; faceplates derive from UDTs (lf hmi build -> View Designer import folder)
 naming.json              regex per kind, enforced by the validator
 docs/SPEC.md             functional specification (the agent keeps it in sync)
-build/                   generated L5X (git-ignored)
+docs/INDEX.md, input/, extracted/   given documents (PDF/DOCX/XLSX/drawings) as received + their Markdown text (lf docs ingest)
+docs/generated/          I/O list, tags, routine map, cause-and-effect, alarms, HMI tags, test plan (lf docs build; committed)
+build/                   generated L5X, HMI package, exported PDF/DOCX (git-ignored)
 ```
 Ladder is written as Studio 5000 neutral rung text, one rung per block, `//` comments above:
 ```
@@ -70,12 +79,12 @@ Ladder is written as Studio 5000 neutral rung text, one rung per block, `//` com
 ```
 
 ## CLI
-`lf init | validate | build | partial | inspect | decompile | diff | rung check | hmi build | hmi docs | online | sdk`
+`lf init [--git] | validate | build | partial | inspect | decompile | diff | rung check | hmi build | docs build|ingest|export | online | sdk`
 (`python -m logixforge.cli ...` works without installing). `lf --help` for options.
 
 ## MCP server
 `python -m logixforge.mcp_server` exposes `lf_validate`, `lf_build`, `lf_partial`, `lf_inspect`,
-`lf_decompile`, `lf_check_rung`, `lf_hmi_build`, `lf_online_read`, `lf_online_tags`, `lf_online_write` to any MCP
+`lf_decompile`, `lf_check_rung`, `lf_hmi_build`, `lf_docs_build`, `lf_docs_ingest`, `lf_online_read`, `lf_online_tags`, `lf_online_write` to any MCP
 client. The plugin registers it automatically via `.mcp.json`.
 
 ## HMI (Studio 5000 View Designer / PanelView 5000)

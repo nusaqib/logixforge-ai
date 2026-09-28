@@ -120,6 +120,24 @@ def lf_hmi_build(project_dir: str, output: str = "") -> str:
 
 
 @_tool
+def lf_docs_build(path: str, output: str = "") -> str:
+    """Generate the document set (I/O list, tags, routines, cause-and-effect, alarms, HMI tags, test plan)
+    from a spec directory (-> docs/generated/) or from an .L5X export of an existing project (-> <stem>_docs/ or output)."""
+    from .docs.generate import generate_docs
+    p = Path(path)
+    proj = load_project(p) if p.is_dir() else read_l5x(p)
+    return json.dumps({"written": [str(x) for x in generate_docs(proj, output or None)]})
+
+
+@_tool
+def lf_docs_ingest(project_dir: str, file: str, title: str = "", doc_no: str = "", rev: str = "", used_for: str = "") -> str:
+    """Add a given document (PDF/DOCX/XLSX/CSV/MD/image) to docs/input/, extract its text to docs/extracted/, index it."""
+    from .docs.extract import ingest
+    r = ingest(project_dir, file, title=title, doc_no=doc_no, rev=rev, used_for=used_for)
+    return json.dumps({k: str(v) for k, v in r.items()})
+
+
+@_tool
 def lf_online_read(cip_path: str, tags: list[str]) -> str:
     """Read live tag values over EtherNet/IP via pycomm3 (read-only, safe)."""
     from .online import pycomm3_client as oc

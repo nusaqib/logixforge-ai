@@ -8,6 +8,10 @@
   lf decompile <file.L5X> -o <project_dir>      # L5X -> editable spec (round-trip / review of uploads)
   lf diff <a.L5X|dir> <b.L5X|dir>
   lf rung check "<rung text>"
+  lf docs build <project_dir | file.L5X> # spec -> docs/generated/ (I/O list, tags, routines, interlocks, alarms, HMI, test plan);
+                                         # an .L5X export of an existing project -> <stem>_docs/ (or -o)
+  lf docs ingest <project_dir> <file>... # given documents -> docs/input/ + docs/extracted/*.md + docs/INDEX.md
+  lf docs export <project_dir> --to pdf|docx|html   (pandoc)
   lf online ...  (pycomm3)         lf sdk ...  (Logix Designer SDK)
 
 All subcommands exit non-zero on error so hooks/agents can rely on them.
@@ -97,7 +101,7 @@ def cmd_init(a):
         if skf.exists():
             sk.update(json.loads(skf.read_text(encoding="utf-8")))
     prog, main = sk["program"], sk["main_routine"]
-    for d in ["datatypes", "tags", f"programs/{prog}/routines", "aois", "modules", "docs", "tests"]:
+    for d in ["datatypes", "tags", f"programs/{prog}/routines", "aois", "modules", "docs/input", "docs/extracted", "tests"]:
         (root / d).mkdir(parents=True, exist_ok=True)
     (root / "controller.json").write_text(json.dumps({
         "name": a.name, "processor_type": a.processor, "major_rev": a.rev, "minor_rev": 11,
@@ -120,10 +124,53 @@ def cmd_init(a):
         "_comment": "Optional regex per kind: tag, udt, aoi, program, routine, task, member, parameter, local",
         "udt": "^UDT_[A-Za-z0-9_]+$", "aoi": "^AOI_[A-Za-z0-9_]+$"}, indent=2), encoding="utf-8")
     (root / "docs/SPEC.md").write_text(f"# {a.name} - Functional Specification\n\n(Describe the machine/process, I/O, modes, sequences, interlocks, alarms.)\n", encoding="utf-8")
+    from .docs.extract import write_index
+    write_index(root, [], name=a.name)
+    _write_repo_files(root)
     if a.profile:
         copied = _apply_profile(root, a.profile)
         print(f"applied profile {a.profile}: {', '.join(copied) or 'no files'}")
+    if a.git:
+        import subprocess
+        if (root / ".git").exists():
+            print("git repository already present")
+        else:
+            r = subprocess.run(["git", "init", "-q", str(root)], capture_output=True, text=True)
+            print("initialised git repository" if r.returncode == 0 else f"git init failed: {r.stderr.strip()}")
     print(f"initialised LogixForge project in {root}")
+
+
+PROJECT_GITIGNORE = """# LogixForge project - the spec is the source of truth; build output is generated
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Studio 5000 working files (keep the .ACD in Rockwell's document system or Git LFS, not here, unless required)
+*.ACD
+*.Sem
+*.Wrk
+*.bak
+*.mer
+"""
+PROJECT_GITATTRIBUTES = """* text=auto eol=lf
+*.L5X text eol=crlf
+*.hmi text eol=crlf
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.png binary
+*.jpg binary
+*.dwg binary
+*.ACD binary
+"""
+
+
+def _write_repo_files(root: Path) -> None:
+    """Per-project .gitignore / .gitattributes (one repository per PLC project; see plc-documentation skill)."""
+    for name, body in ((".gitignore", PROJECT_GITIGNORE), (".gitattributes", PROJECT_GITATTRIBUTES)):
+        p = root / name
+        if not p.exists():
+            p.write_text(body, encoding="utf-8")
 
 
 def cmd_validate(a):
@@ -268,13 +315,43 @@ def cmd_rung(a):
     print("ok")
 
 
+def cmd_docs(a):
+    from .docs.extract import ingest
+    from .docs.export import project_export
+    from .docs.generate import generate_docs
+    if a.op == "build":
+        proj = _load_any(a.project)          # spec directory, or an .L5X export of an existing project
+        for p in generate_docs(proj, a.output):
+            print(f"wrote {p}")
+        return
+    if a.op == "ingest":
+        if not a.files:
+            sys.exit("lf docs ingest <project> <file>... [--title T --doc-no N --rev R --date D --used-for X]")
+        for f in a.files:
+            r = ingest(a.project, f, title=a.title or "", doc_no=a.doc_no or "", rev=a.rev or "", doc_date=a.date or "",
+                       used_for=a.used_for or "", copy=not a.no_copy)
+            if r["error"]:
+                print(f"indexed {r['input']} but NOT extracted: {r['error']}")
+            else:
+                print(f"ingested {r['input']} -> {r['extracted']}")
+        print(f"index: {Path(a.project) / 'docs' / 'INDEX.md'}")
+        return
+    if a.op == "export":
+        try:
+            out = project_export(a.project, a.to, a.output, a.files or None, pdf_engine=a.pdf_engine or "")
+        except RuntimeError as e:
+            sys.exit(str(e))
+        print(f"wrote {out}")
+
+
 def cmd_hmi(a):
     from .hmi.spec import load_hmi_spec
     from .hmi.viewdesigner import build_viewdesigner
-    from .hmi.docs import write_hmi_docs
     proj = load_project(a.project)
     if a.op == "docs":
-        for p in write_hmi_docs(proj, Path(a.project) / "docs"):
+        from .docs.generate import generate_docs
+        print("note: `lf hmi docs` now runs `lf docs build` (HMI_TAGS.md and ALARMS.csv live in docs/generated/)")
+        for p in generate_docs(proj):
             print(f"wrote {p}")
         return
     spec = load_hmi_spec(proj)
@@ -321,7 +398,9 @@ def main(argv=None):
     s = sub.add_parser("init", help="create a new project directory")
     s.add_argument("dir"); s.add_argument("--name", required=True); s.add_argument("--processor", default="1756-L83E")
     s.add_argument("--rev", type=int, default=33); s.add_argument("--force", action="store_true")
-    s.add_argument("--profile", help="site profile to apply (profiles/<name>: naming.json + templates)"); s.set_defaults(fn=cmd_init)
+    s.add_argument("--profile", help="site profile to apply (profiles/<name>: naming.json + templates)")
+    s.add_argument("--git", action="store_true", help="also `git init` the project (one repository per PLC project)")
+    s.set_defaults(fn=cmd_init)
 
     s = sub.add_parser("validate", help="validate a project dir or L5X")
     s.add_argument("path"); s.add_argument("--json", action="store_true"); s.add_argument("--strict", action="store_true")
@@ -352,6 +431,15 @@ def main(argv=None):
     s = sub.add_parser("hmi", help="HMI generation (Studio 5000 View Designer import folder, HMI docs)")
     s.add_argument("op", choices=["build", "docs"]); s.add_argument("project"); s.add_argument("-o", "--output")
     s.add_argument("--force", action="store_true"); s.set_defaults(fn=cmd_hmi)
+
+    s = sub.add_parser("docs", help="project documentation: ingest given documents, generate docs from the spec, export via pandoc")
+    s.add_argument("op", choices=["build", "ingest", "export"]); s.add_argument("project")
+    s.add_argument("files", nargs="*", help="ingest: documents to add; export: docs/-relative Markdown files to include")
+    s.add_argument("-o", "--output"); s.add_argument("--title"); s.add_argument("--doc-no", dest="doc_no"); s.add_argument("--rev")
+    s.add_argument("--date"); s.add_argument("--used-for", dest="used_for", help="what the document feeds (naming, interlocks, I/O list ...)")
+    s.add_argument("--no-copy", action="store_true", help="ingest: index the file where it is instead of copying to docs/input/")
+    s.add_argument("--to", default="docx", choices=["pdf", "docx", "html"]); s.add_argument("--pdf-engine", dest="pdf_engine")
+    s.set_defaults(fn=cmd_docs)
 
     s = sub.add_parser("online", help="live controller access via pycomm3 (EtherNet/IP)")
     s.add_argument("op", choices=["info", "tags", "read", "write"])

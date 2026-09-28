@@ -16,6 +16,8 @@ This repo is both a Claude Code **plugin** (skills/agents/commands/hooks) and a 
 - Skills are short and imperative; long references live in `standards/`.
 - Anything that writes to a live controller goes through `require_write_permission()` and is
   matched by `hooks/guard_online.py`.
-- `build/` output is generated and git-ignored; the spec is the source of truth.
+- `build/` output is generated and git-ignored; the spec is the source of truth. `docs/generated/` is also generated
+  (`lf docs build`) but committed; never hand-edit it. Given documents go through `lf docs ingest`.
+- Real PLC projects live in their own repositories (`lf init --git`); this repo keeps only `examples/` and `profiles/`.
 - Site-specific rules live in `profiles/<name>/` plus thin `skills/<name>-plc` / `<name>-hmi` skills that
   load the generic skill first. Never bake site rules into the generic skills or the validator defaults.

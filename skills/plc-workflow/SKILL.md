@@ -14,7 +14,7 @@ project as a text spec that `lf build` turns into L5X. Never hand-write L5X XML;
 - Project spec layout (see `plc-project-setup`):
   `controller.json`, `datatypes/*.json`, `aois/<AOI>/aoi.json + routines/Logic.rll`, `tags/*.json`,
   `modules/*.xml`, `programs/<P>/{program.json,tags.json,routines/*.rll|*.st}`, `tasks.json`, `alarms.json`,
-  `hmi/hmi.json`, `naming.json`.
+  `hmi/hmi.json`, `naming.json`, `docs/{INDEX.md,SPEC.md,input/,extracted/,generated/}`.
 - Standards: `${CLAUDE_PLUGIN_ROOT}/standards/` (naming, coding, review checklist, L5X and instruction references).
 - Worked example: `${CLAUDE_PLUGIN_ROOT}/examples/conveyor-demo`.
 
@@ -37,6 +37,8 @@ project as a text spec that `lf build` turns into L5X. Never hand-write L5X XML;
 | 13 | Alarms | `plc-alarms` | `alarms.json` (tag-based alarm conditions) |
 | 14 | HMI | `hmi-view-designer` | `hmi/hmi.json` -> View Designer import folder (`lf hmi build`), HMI docs |
 | 15 | HMI (FactoryTalk/Optix, roadmap) | `hmi-factorytalk` | tag interface + alarm CSV hand-off |
+| 16 | Documentation (in and out) | `plc-documentation` | `docs/INDEX.md` + `docs/extracted/` from given documents; `docs/generated/` from the spec (`lf docs build`) |
+| 17 | Document an existing project (ACD/L5X + HMI export) | `plc-document-existing` | `<name>_docs/` or a full spec repo with as-built SPEC.md |
 
 Site profiles: if the project has `profile.json` or the user names a site (e.g. ALS-U), also load
 `skills/<profile>-plc` / `<profile>-hmi`; their rules override the generic ones.
@@ -49,6 +51,7 @@ always run the loop below.
 python -m logixforge.cli validate <project_dir>      # must be 0 errors; fix warnings or justify them
 python -m logixforge.cli build <project_dir> --partials
 python -m logixforge.cli inspect <project_dir>/build/<Name>.L5X
+python -m logixforge.cli docs build <project_dir>    # keep docs/generated in step with the spec (DOC_STALE otherwise)
 ```
 The PostToolUse hook runs `validate` automatically after you write spec files; read its output.
 

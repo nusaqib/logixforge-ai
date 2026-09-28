@@ -26,6 +26,8 @@
 | HMI_ACTION / HMI_SECURITY | error | button action not set1/set0/toggle/momentary; security role access not FullAccess/ReadOnly/NoAccess/Inherit |
 | HMI_SCOPE | warning | HMI bound to a program-scope tag |
 | TASK_WD / UNSCHEDULED / ROUTINE_UNCALLED / EMPTY_ROUTINE / EMPTY_RUNG / FLOW_CTRL | warning | Structure quality |
+| DOC_SPEC / DOC_INPUT_UNINDEXED / DOC_STALE | warning | docs/SPEC.md missing or placeholder; file in docs/input not in INDEX.md; docs/generated older than the spec (`lf docs build`) |
+| DOC_NOT_EXTRACTED / DOC_NONE | info | given document has no docs/extracted text; documents never generated |
 | LATCH / NO_RUNG_COMMENT / NO_DESC / UDT_LAYOUT | info | Documentation/quality |
 
 ## Manual review checklist
@@ -44,7 +46,7 @@
 ### Structure and standards
 - [ ] MainRoutine only JSRs; routines called; scan order inputs -> logic -> alarms -> outputs
 - [ ] Program scope by default; controller scope justified; names per `naming.json`
-- [ ] Descriptions and rung comments present; SPEC.md matches behaviour
+- [ ] Descriptions and rung comments present; SPEC.md matches behaviour; `docs/generated/INTERLOCKS.md` (what the code does) agrees with the SPEC interlock tables (what it must do)
 - [ ] Task periods/priorities/watchdogs sensible; periodic load < 50 %
 ### Delivery
-- [ ] `lf validate` clean; L5X built; Studio 5000 verify pending/done; Emulate test evidence
+- [ ] `lf validate` clean; L5X built; `lf docs build` current; Studio 5000 verify pending/done; Emulate test evidence in TEST_PLAN

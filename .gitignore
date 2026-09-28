@@ -11,3 +11,5 @@ dist/
 *.Wrk
 *.bak
 .claude/settings.local.json
+# local scratch projects; real projects get their own repository (lf init --git)
+projects/

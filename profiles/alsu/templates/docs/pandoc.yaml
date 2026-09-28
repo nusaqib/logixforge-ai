@@ -1,0 +1,14 @@
+# pandoc metadata for `lf docs export` (copied to <project>/docs/pandoc.yaml by `lf init --profile alsu`).
+# Fill the document-control fields before exporting a controlled copy; ALS-U document numbers are AL-xxxx-xxxx.
+title: "<CPU name> PLC Documentation"
+subtitle: "ALS-U Controls - <subsystem>"
+author:
+  - "<author>, LBNL ALS-U Controls"
+date: "<YYYY-MM-DD>"
+# Document control block (rendered on the title page by pandoc templates that support `abstract`)
+abstract: |
+  Document number: AL-____-____   Revision: __   Status: Draft
+  Governing standard: ALS-U PLC Standardization Plan AL-1605-0840
+  Generated from the LogixForge project spec; the Git tag of the spec is the configuration baseline.
+toc-title: "Contents"
+lang: en-US

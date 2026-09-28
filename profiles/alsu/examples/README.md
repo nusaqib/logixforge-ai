@@ -21,3 +21,4 @@ detectors, HP coax switches, PPS/MPS interfaces, EPICS interface UDTs. Programs 
 Contains lab IP addresses in `modules/*.xml` and `hmi-export/Devices/masterCode.hmi`; keep the repository
 internal or scrub them before publishing. `lf validate profiles/alsu/examples/masterCode` = 0 errors;
 warnings show where the real code departs from AL-1605-0840 (descriptions, naming suffixes).
+`docs/generated/` is the as-built document set from `lf docs build` (the `plc-document-existing` output for a real project).

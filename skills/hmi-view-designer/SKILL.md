@@ -40,7 +40,7 @@ the **controller's own alarms**. So the HMI milestone has two halves:
 ```
 python -m logixforge.cli validate <project>          # HMI_* findings: unknown tags, wrong types, constant tags, bad access
 python -m logixforge.cli hmi build <project>         # -> <project>/build/hmi/<project_name>/...
-python -m logixforge.cli hmi docs <project>          # -> docs/HMI_TAGS.md, docs/ALARMS.csv
+python -m logixforge.cli docs build <project>        # -> docs/generated/HMI_TAGS.md, ALARMS.csv (with the rest of the doc set)
 ```
 `lf hmi build` writes one package `build/hmi/<name>/`. In View Designer: create the project for the
 same terminal, add a **controller reference named as `controller_ref`** pointing at the .ACD built
@@ -81,5 +81,5 @@ per-screen `folder` and `security: {Role: FullAccess|ReadOnly|NoAccess}`, `folde
 button `action: set1|set0|toggle|momentary`.
 
 ## FactoryTalk View / Optix
-Not generated yet; see `hmi-factorytalk` for the roadmap. The `hmi docs` output (tag interface and
+Not generated yet; see `hmi-factorytalk` for the roadmap. The `docs build` output (tag interface and
 alarm CSV) is the hand-off for those platforms in the meantime.

@@ -6,7 +6,10 @@ description: Milestone 0 for a Studio 5000 project - capture requirements into d
 # Project setup
 
 ## 1. Requirements capture -> `docs/SPEC.md`
-Interview the user (or read their docs) and write a functional specification with these sections.
+If the user hands over documents (specifications, I/O lists, drawings, standards), ingest them first:
+`python -m logixforge.cli docs ingest <dir> <file> --doc-no .. --rev ..` and read `docs/extracted/*.md`
+(`plc-documentation` skill). Then interview the user for what the documents do not say and write a
+functional specification with these sections, citing the source document for each requirement.
 Do not write logic before the spec exists; ask focused questions for anything missing.
 
 1. **Equipment and process**: machines, motors, valves, sensors, drives, sequences.
@@ -46,11 +49,13 @@ Do not write logic before the spec exists; ask focused questions for anything mi
 
 ## 4. Skeleton
 ```
-python -m logixforge.cli init <dir> --name <Controller> --processor 1756-L83E --rev 33
+python -m logixforge.cli init <dir> --name <Controller> --processor 1756-L83E --rev 33 [--profile <site>] [--git]
 ```
+`--git` makes the project its own repository (one repo per PLC project); `.gitignore`/`.gitattributes` are always written.
 Then edit `naming.json` to the customer's convention (regex per kind) so the validator enforces it.
 
 ## 5. Definition of done for milestone 0
 - SPEC.md filled, open questions listed.
 - `controller.json`, `tasks.json`, `naming.json` exist; `lf validate` passes.
 - Program/task/routine plan and I/O list agreed with the user.
+- Every given document is in `docs/INDEX.md` with number and revision; nothing sits in `docs/input/` unindexed.

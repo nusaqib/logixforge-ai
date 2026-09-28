@@ -82,6 +82,7 @@ class Validator:
         self.check_tasks()
         self.check_alarms()
         self.check_hmi()
+        self.check_docs()
         return self.f
 
     MAX_DESC = 128
@@ -409,6 +410,39 @@ class Validator:
             return
         for level, code, where, msg in hmi_findings(self.p, spec):
             self.f.append(Finding(level, code, where, msg))
+
+
+    # ------------------------------------------------------------ docs
+    SPEC_PLACEHOLDER = "(Describe the machine/process"
+
+    def check_docs(self):
+        """Documentation hygiene for spec directories (skipped for bare L5X input)."""
+        from pathlib import Path
+        root = Path(self.p.source_dir) if self.p.source_dir else None
+        if not root or not root.is_dir() or not (root / "controller.json").exists():
+            return
+        docs = root / "docs"
+        spec = docs / "SPEC.md"
+        if not spec.exists():
+            self.warn("DOC_SPEC", "docs/SPEC.md", "no functional specification; run plc-project-setup milestone 0")
+        elif self.SPEC_PLACEHOLDER in spec.read_text(encoding="utf-8", errors="replace"):
+            self.warn("DOC_SPEC", "docs/SPEC.md", "specification still contains the init placeholder")
+        inputs = sorted(p for p in (docs / "input").glob("*") if p.is_file()) if (docs / "input").is_dir() else []
+        if inputs:
+            from .docs.extract import read_index
+            indexed = {r["File"] for r in read_index(root)}
+            for p in inputs:
+                rel = f"input/{p.name}"
+                if rel not in indexed:
+                    self.warn("DOC_INPUT_UNINDEXED", f"docs/{rel}", "given document not listed in docs/INDEX.md; run `lf docs ingest`")
+                elif not (docs / "extracted" / (p.stem + ".md")).exists():
+                    self.info("DOC_NOT_EXTRACTED", f"docs/{rel}", "no docs/extracted text for this document; agents cannot read it cheaply")
+        from .docs.generate import is_stale
+        stale = is_stale(root)
+        if stale:
+            self.warn("DOC_STALE", "docs/generated", "generated documents are older than the spec; run `lf docs build`")
+        elif stale is None:
+            self.info("DOC_NONE", "docs/generated", "no generated documents yet; run `lf docs build`")
 
 
 def validate(proj: Project, naming: dict | None = None) -> list[Finding]:

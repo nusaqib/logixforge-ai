@@ -11,7 +11,10 @@
 5. **Writer** (`l5x/writer.py`): model -> L5X, full controller or partial import documents.
 6. **Interfaces**: CLI (`cli.py`), MCP server (`mcp_server.py`), Claude Code plugin (skills, agents,
    commands, hooks).
-7. **Online**: `online/pycomm3_client.py` (CIP read/write) and `online/ld_sdk.py` (Logix Designer SDK
+7. **Documentation** (`docs/`): `extract.py` (given PDF/DOCX/XLSX/CSV/images -> `docs/extracted/*.md`, `docs/INDEX.md`, spec hash),
+   `generate.py` (model -> `docs/generated/` Markdown/CSV with Mermaid; cause-and-effect derived from the rung tree and ST
+   assignments), `export.py` (pandoc wrapper). Docs are one-directional: inputs feed the spec, outputs are derived from it.
+8. **Online**: `online/pycomm3_client.py` (CIP read/write) and `online/ld_sdk.py` (Logix Designer SDK
    adapter). Both gated by `require_write_permission()`.
 
 ## Why neutral rung text instead of XML per instruction

@@ -43,8 +43,9 @@ standards/          one file per topic, spec IDs (S09-07-0950xx / 0952xx-0954xx)
 naming.json         regex per kind + tag suffix table, enforced by `lf validate` (NAME_STYLE warnings)
 skeleton.json       names used by `lf init --profile alsu` (periodic task, P/R numbering)
 templates/          UDT_PermGroup + PermLatch_AOI (LogixForge implementation of S09-07-095000..080;
-                    replace with the official ALS-U Git AOIs when available)
-examples/           reference projects (none yet)
+                    replace with the official ALS-U Git AOIs when available); docs/SPEC.template.md and
+                    docs/pandoc.yaml (AL document-control block for `lf docs export`)
+examples/           reference projects (masterCode + hmi-export)
 ```
 
 ## Usage

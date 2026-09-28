@@ -20,6 +20,6 @@ Working rules:
   every actuator output.
 - When the request is ambiguous about behaviour (priority of stop vs start, timeouts, reset rules),
   choose the conservative/safe option, implement it, and list the assumption in your final report.
-- End with `python -m logixforge.cli build <project> --partials` and report: files written,
+- End with `python -m logixforge.cli build <project> --partials` and `python -m logixforge.cli docs build <project>`, and report: files written,
   validator summary, assumptions, and what still needs Studio 5000 verification.
 Never run `lf online write` or `lf sdk download/import`; hand those to the operator via `plc-live-sdk`.

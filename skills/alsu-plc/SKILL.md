@@ -16,7 +16,8 @@ v36, RF master interlock PLC) - match its style for anything the guideline leave
    `diagnostics.md`, `documentation.md`, `epics.md`, `revision-control.md`. `specifications.md` lists all IDs.
 2. New projects: `python -m logixforge.cli init <dir> --name <CPU> --processor 5069-L320ER --rev 36 --profile alsu`
    (periodic `T100_Main`, `P100_Main`, `R000_MainRoutine`, `R005_IO_Buffering`, `naming.json`, templates).
-   Existing projects: copy `profiles/alsu/naming.json` in. Start `docs/SPEC.md` from `templates/docs/SPEC.template.md`.
+   Existing projects: copy `profiles/alsu/naming.json` in. Start `docs/SPEC.md` from `templates/docs/SPEC.template.md`;
+   ingest AL-1605-0840 and the subsystem's ICDs with `lf docs ingest --doc-no ... --rev ...` (`plc-documentation`).
 3. Cite the spec ID for every profile-driven decision in comments and reports ("per S09-07-095290").
 4. Deviations are allowed (section 5) but must be recorded in `docs/SPEC.md` section 9 with justification.
 

@@ -1,0 +1,15 @@
+{
+  "spec_hash": "16b3f30f4ab13fee",
+  "generated": "2026-09-28",
+  "controller": "R00",
+  "files": [
+    "IO_LIST.md",
+    "IO_LIST.csv",
+    "TAGS.md",
+    "ROUTINES.md",
+    "INTERLOCKS.md",
+    "HMI_TAGS.md",
+    "TEST_PLAN.md",
+    "README.md"
+  ]
+}

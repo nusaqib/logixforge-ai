@@ -1,0 +1,16 @@
+{
+  "spec_hash": "5336a8a4c6d44005",
+  "generated": "2026-09-28",
+  "controller": "ConveyorDemo",
+  "files": [
+    "IO_LIST.md",
+    "IO_LIST.csv",
+    "TAGS.md",
+    "ROUTINES.md",
+    "INTERLOCKS.md",
+    "HMI_TAGS.md",
+    "ALARMS.csv",
+    "TEST_PLAN.md",
+    "README.md"
+  ]
+}
