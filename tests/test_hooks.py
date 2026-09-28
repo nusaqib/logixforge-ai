@@ -35,6 +35,15 @@ def test_guard_allows_reads_and_optin():
     assert r.returncode == 0
 
 
+def test_init_with_profile(tmp_path):
+    r = subprocess.run([sys.executable, "-m", "logixforge.cli", "init", str(tmp_path / "p"), "--name", "X_PLC", "--profile", "alsu"],
+                       capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode == 0, r.stderr
+    assert (tmp_path / "p" / "naming.json").exists() and (tmp_path / "p" / "profile.json").exists()
+    r = subprocess.run([sys.executable, "-m", "logixforge.cli", "validate", str(tmp_path / "p")], capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode == 0, r.stdout + r.stderr
+
+
 def test_validate_on_write_reports():
     rll = ROOT / "examples" / "conveyor-demo" / "programs" / "P_Conveyor" / "routines" / "R_Outputs.rll"
     r = run_hook(VALIDATE, {"tool_name": "Write", "tool_input": {"file_path": str(rll)}})

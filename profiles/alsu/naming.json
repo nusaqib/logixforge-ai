@@ -1,0 +1,7 @@
+{
+  "_comment": "ALS-U naming rules (regex per kind). Placeholder: copied from the generic house standard until the ALS-U guideline is loaded. Kinds: controller, task, program, routine, udt, aoi, tag, member, parameter, local, alarm",
+  "udt": "^UDT_[A-Za-z][A-Za-z0-9_]*$",
+  "aoi": "^AOI_[A-Za-z][A-Za-z0-9_]*$",
+  "program": "^P_[A-Za-z][A-Za-z0-9_]*$",
+  "routine": "^(MainRoutine|R_[A-Za-z][A-Za-z0-9_]*)$"
+}

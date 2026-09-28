@@ -38,6 +38,9 @@ project as a text spec that `lf build` turns into L5X. Never hand-write L5X XML;
 | 14 | HMI | `hmi-view-designer` | `hmi/hmi.json` -> View Designer import folder (`lf hmi build`), HMI docs |
 | 15 | HMI (FactoryTalk/Optix, roadmap) | `hmi-factorytalk` | tag interface + alarm CSV hand-off |
 
+Site profiles: if the project has `profile.json` or the user names a site (e.g. ALS-U), also load
+`skills/<profile>-plc` / `<profile>-hmi`; their rules override the generic ones.
+
 Small change requests do not need every milestone: identify which files change, edit them, then
 always run the loop below.
 

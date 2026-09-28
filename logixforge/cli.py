@@ -59,6 +59,32 @@ def _print_findings(findings: list[Finding], as_json: bool) -> None:
 
 # ---------------------------------------------------------------- commands
 
+PROFILES_DIR = Path(__file__).resolve().parents[1] / "profiles"
+
+
+def _apply_profile(root: Path, name: str) -> list[str]:
+    """Copy a site profile's naming.json and templates/ into a project. Returns copied paths."""
+    import shutil
+    pdir = PROFILES_DIR / name
+    if not pdir.is_dir():
+        sys.exit(f"profile {name!r} not found; available: {sorted(p.name for p in PROFILES_DIR.iterdir() if p.is_dir())}")
+    copied = []
+    nj = pdir / "naming.json"
+    if nj.exists():
+        shutil.copy(nj, root / "naming.json")
+        copied.append("naming.json")
+    tdir = pdir / "templates"
+    if tdir.is_dir():
+        for src in tdir.rglob("*"):
+            if src.is_file() and src.name != "README.md":
+                dst = root / src.relative_to(tdir)
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy(src, dst)
+                copied.append(str(src.relative_to(tdir)))
+    (root / "profile.json").write_text(json.dumps({"profile": name}, indent=2), encoding="utf-8")
+    return copied
+
+
 def cmd_init(a):
     root = Path(a.dir)
     if (root / "controller.json").exists() and not a.force:
@@ -82,6 +108,9 @@ def cmd_init(a):
         "_comment": "Optional regex per kind: tag, udt, aoi, program, routine, task, member, parameter, local",
         "udt": "^UDT_[A-Za-z0-9_]+$", "aoi": "^AOI_[A-Za-z0-9_]+$"}, indent=2), encoding="utf-8")
     (root / "docs/SPEC.md").write_text(f"# {a.name} - Functional Specification\n\n(Describe the machine/process, I/O, modes, sequences, interlocks, alarms.)\n", encoding="utf-8")
+    if a.profile:
+        copied = _apply_profile(root, a.profile)
+        print(f"applied profile {a.profile}: {', '.join(copied) or 'no files'}")
     print(f"initialised LogixForge project in {root}")
 
 
@@ -279,7 +308,8 @@ def main(argv=None):
 
     s = sub.add_parser("init", help="create a new project directory")
     s.add_argument("dir"); s.add_argument("--name", required=True); s.add_argument("--processor", default="1756-L83E")
-    s.add_argument("--rev", type=int, default=33); s.add_argument("--force", action="store_true"); s.set_defaults(fn=cmd_init)
+    s.add_argument("--rev", type=int, default=33); s.add_argument("--force", action="store_true")
+    s.add_argument("--profile", help="site profile to apply (profiles/<name>: naming.json + templates)"); s.set_defaults(fn=cmd_init)
 
     s = sub.add_parser("validate", help="validate a project dir or L5X")
     s.add_argument("path"); s.add_argument("--json", action="store_true"); s.add_argument("--strict", action="store_true")

@@ -20,7 +20,8 @@ spec (JSON + .rll/.st)  --lf build-->  L5X  --import-->  Studio 5000  --download
 | `hooks/` | Blocks writes to live controllers without operator opt-in; auto-validates spec edits |
 | `logixforge/` | Python toolkit: spec loader, rung parser, validator, L5X writer/reader, View Designer HMI generator, CLI, MCP server, online adapters |
 | `standards/` | Naming, coding standard, review checklist, L5X and instruction references |
-| `examples/conveyor-demo/` | Complete small project (UDT, AOI, ladder + ST, tasks) that builds clean |
+| `examples/conveyor-demo/` | Complete small project (UDT, AOI, ladder + ST, tasks, alarms, HMI) that builds and imports clean |
+| `profiles/` | Site profiles (standards, naming, templates, reference projects) layered on the generic skills; `profiles/alsu/` for ALS-U |
 | `tests/` | pytest suite for the toolkit |
 
 ## Install
@@ -39,7 +40,7 @@ Logix Designer SDK (for `lf sdk ...`): install the wheel shipped with Studio 500
 
 ## Quick start
 ```powershell
-lf init projects\LineA --name LineA_PLC --processor 1756-L83E --rev 33
+lf init projects\LineA --name LineA_PLC --processor 1756-L83E --rev 33 [--profile alsu]
 # ... let the agent fill datatypes/, aois/, tags/, programs/, tasks.json (skills guide it) ...
 lf validate projects\LineA
 lf build projects\LineA --partials

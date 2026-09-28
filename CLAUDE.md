@@ -17,3 +17,5 @@ This repo is both a Claude Code **plugin** (skills/agents/commands/hooks) and a 
 - Anything that writes to a live controller goes through `require_write_permission()` and is
   matched by `hooks/guard_online.py`.
 - `build/` output is generated and git-ignored; the spec is the source of truth.
+- Site-specific rules live in `profiles/<name>/` plus thin `skills/<name>-plc` / `<name>-hmi` skills that
+  load the generic skill first. Never bake site rules into the generic skills or the validator defaults.
