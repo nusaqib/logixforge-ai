@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "logixforge"
-version = "0.1.0"
+version = "0.1.1"
 description = "Agentic PLC programming toolkit for Rockwell Studio 5000 (L5X build/validate/inspect, online access, MCP server)."
 readme = "README.md"
 requires-python = ">=3.10"
