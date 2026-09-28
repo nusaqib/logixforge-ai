@@ -2,10 +2,26 @@
   "name": "logixforge",
   "version": "0.1.0",
   "description": "Agentic PLC programming for Rockwell Studio 5000: milestone skills (tags, UDTs, routines, AOIs, tasks, I/O, safety, review, documentation, View Designer HMI), L5X build/validate toolkit, live-controller access via pycomm3 and the Logix Designer SDK.",
-  "author": { "name": "LogixForge contributors" },
-  "keywords": ["plc", "rockwell", "studio-5000", "logix", "l5x", "ladder", "structured-text", "hmi", "industrial-automation"],
+  "author": {
+    "name": "LogixForge contributors"
+  },
+  "keywords": [
+    "plc",
+    "rockwell",
+    "studio-5000",
+    "logix",
+    "l5x",
+    "ladder",
+    "structured-text",
+    "hmi",
+    "industrial-automation"
+  ],
   "skills": "./skills",
-  "agents": "./agents",
+  "agents": [
+    "./agents/plc-architect.md",
+    "./agents/plc-builder.md",
+    "./agents/plc-reviewer.md"
+  ],
   "commands": "./commands",
   "hooks": "./hooks/hooks.json",
   "mcpServers": "./.mcp.json"
