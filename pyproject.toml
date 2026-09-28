@@ -12,7 +12,7 @@ license = { text = "MIT" }
 dependencies = []
 
 [project.optional-dependencies]
-mcp = ["mcp>=1.2"]
+mcp = ["mcp>=1.2"]  # 1.x (FastMCP) and 2.x (MCPServer) both work
 online = ["pycomm3>=1.2"]
 sdk = []  # Logix Designer SDK is installed from Rockwell's wheel, not PyPI
 dev = ["pytest>=8"]

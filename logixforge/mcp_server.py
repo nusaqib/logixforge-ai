@@ -12,10 +12,13 @@ import json
 import os
 from pathlib import Path
 
-try:
-    from mcp.server.fastmcp import FastMCP
+try:                                   # mcp 2.x renamed FastMCP -> MCPServer; the API we use is identical
+    from mcp.server.mcpserver import MCPServer as FastMCP
 except ImportError:  # pragma: no cover
-    FastMCP = None
+    try:
+        from mcp.server.fastmcp import FastMCP  # mcp 1.x
+    except ImportError:
+        FastMCP = None
 
 from .l5x.reader import export_project_dir, read_l5x
 from .l5x.writer import project_summary, write_l5x, write_partial
