@@ -226,3 +226,54 @@ def test_ingest_l5x_is_provenance_not_extraction(tmp_path):
     assert not (root / "docs" / "extracted" / "Line.md").exists()
     with pytest.raises(RuntimeError, match="provenance"):
         extract_text(exp)
+
+
+def test_io_list_mapped_points(tmp_path):
+    """Modules kept as verbatim XML get catalog/parent/slot; the I/O list derives points from ST and ladder mapping."""
+    from logixforge.docs.generate import mapped_io_rows, module_points
+    root = _copy_demo(tmp_path)
+    (root / "modules").mkdir(exist_ok=True)
+    (root / "modules" / "Local_S4.xml").write_text(
+        '<Module CatalogNumber="5069-IB16F/A" Vendor="1" ParentModule="Local" ParentModPortId="1" Major="2" Minor="1">'
+        '<Ports><Port Id="1" Address="4" Type="5069" Upstream="true" /></Ports></Module>', encoding="utf-8")
+    (root / "modules" / "Local_S5.xml").write_text(
+        '<Module CatalogNumber="5069-OB16/B" Vendor="1" ParentModule="Local" ParentModPortId="1" Major="2" Minor="1">'
+        '<Ports><Port Id="1" Address="5" Type="5069" Upstream="true" /></Ports></Module>', encoding="utf-8")
+    (root / "modules" / "R01.xml").write_text(
+        '<Module Name="R01" CatalogNumber="5069-AENTR" ParentModule="Local" ParentModPortId="4"><Ports>'
+        '<Port Id="1" Address="0" Type="5069" Upstream="false" /><Port Id="2" Address="192.168.1.51" Type="Ethernet" Upstream="true" />'
+        '</Ports></Module>', encoding="utf-8")
+    (root / "tags" / "map.json").write_text(json.dumps([
+        {"name": "Door_Sts", "data_type": "BOOL", "description": "1 = closed, 0 = open"},
+        {"name": "Door2_Sts", "data_type": "BOOL", "description": "1 = closed, 0 = open (rear)"},
+        {"name": "Fan_Out", "data_type": "BOOL", "description": "1 = run, 0 = stop"},
+        {"name": "Fan2_Out", "data_type": "BOOL", "description": "1 = run, 0 = stop (rear)"}]), encoding="utf-8")
+    rdir = root / "programs" / "P_Conveyor" / "routines"
+    (rdir / "R_Map.st").write_text("//! mapping\nDoor_Sts := Local:4:I.Pt03.Data;\n// Spare := Local:4:I.Pt04.Data;\nLocal:5:O.Pt00.Data := Fan_Out;\n", encoding="utf-8")
+    (rdir / "R_MapL.rll").write_text("XIC(Local:4:I.Pt05.Data)OTE(Door2_Sts);\nXIC(Fan2_Out)OTE(Local:5:O.Pt01.Data);\n", encoding="utf-8")
+    proj = load_project(root)
+    mods = {m.name: m for m in proj.modules}
+    assert mods["Local_S4"].catalog_number == "5069-IB16F/A" and mods["Local_S4"].address == "4" and mods["Local_S4"].parent == "Local"
+    assert mods["R01"].port_type == "Ethernet" and mods["R01"].address == "192.168.1.51"
+    assert module_points("5069-IB16F/A") == 16 and module_points("1756-IF8") == 8 and module_points("5069-AENTR") == 0
+    rows = mapped_io_rows(proj)
+    by = {(r["module"], r["point"]): r for r in rows}
+    r = by[("Local_S4", "Pt03.Data")]
+    assert r["dir"] == "in" and r["tag"] == "Door_Sts" and r["type"] == "BOOL" and r["description"] == "1 = closed, 0 = open"
+    assert r["catalog"] == "5069-IB16F/A" and r["slot"] == "4" and r["where"].startswith("P_Conveyor/R_Map:")
+    assert by[("Local_S4", "Pt05.Data")]["tag"] == "Door2_Sts"                      # ladder XIC
+    assert by[("Local_S5", "Pt00.Data")]["dir"] == "out" and by[("Local_S5", "Pt00.Data")]["tag"] == "Fan_Out"
+    assert by[("Local_S5", "Pt01.Data")]["tag"] == "Fan2_Out"                       # ladder OTE
+    assert ("Local_S4", "Pt04.Data") not in by                                      # commented line is not a mapping
+    spares = [x for x in rows if x["description"] == "spare"]
+    assert len([s for s in spares if s["module"] == "Local_S4"]) == 14 and len([s for s in spares if s["module"] == "Local_S5"]) == 14
+    generate_docs(proj)
+    md = (root / "docs" / "generated" / "IO_LIST.md").read_text(encoding="utf-8")
+    assert "### Local_S4 (5069-IB16F/A, Local slot 4)" in md
+    assert "| Pt03.Data | in | Door_Sts | BOOL | 1 = closed, 0 = open | P_Conveyor/R_Map:" in md
+    with open(root / "docs" / "generated" / "IO_LIST.csv", newline="", encoding="utf-8") as f:
+        recs = list(csv.DictReader(f))
+    assert recs[0].keys() >= {"Module", "Catalog", "Slot", "Point", "Dir", "Tag", "Type", "Description", "Where"}
+    assert any(x["Tag"] == "Door_Sts" and x["Catalog"] == "5069-IB16F/A" for x in recs)
+    sysmd = (root / "docs" / "generated" / "SYSTEM.md").read_text(encoding="utf-8")
+    assert "| Local_S4 | 5069-IB16F/A | Local | 4 |" in sysmd

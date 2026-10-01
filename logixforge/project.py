@@ -23,6 +23,7 @@ ST files (.st): verbatim Structured Text.
 from __future__ import annotations
 
 import json
+import re
 import os
 from pathlib import Path
 
@@ -113,6 +114,26 @@ def _tag_list(data) -> list:
     return data
 
 
+
+def _module_attrs(xml: str) -> dict:
+    """Identity of a verbatim <Module> element (catalog, parent, upstream port address) so documents and the
+    I/O list can describe modules kept as raw XML; the XML itself stays the source for the build."""
+    m = re.search(r"<Module\b([^>]*)>", xml)
+    if not m:
+        return {}
+    attrs = dict(re.findall(r'([A-Za-z]+)="([^"]*)"', m.group(1)))
+    out = {"catalog_number": attrs.get("CatalogNumber", ""), "parent": attrs.get("ParentModule", "Local"),
+           "parent_port_id": attrs.get("ParentModPortId", 1), "major": attrs.get("Major", 1), "minor": attrs.get("Minor", 1),
+           "inhibited": attrs.get("Inhibited", "false").lower() == "true",
+           "major_fault": attrs.get("MajorFault", "false").lower() == "true"}
+    for port in re.finditer(r"<Port\b([^>]*)>", xml):
+        pa = dict(re.findall(r'([A-Za-z]+)="([^"]*)"', port.group(1)))
+        if pa.get("Upstream", "").lower() == "true":
+            out["address"] = pa.get("Address", "")
+            out["port_type"] = "Ethernet" if pa.get("Type", "") == "Ethernet" else "ICP"
+            break
+    return out
+
 def load_project(root: "str | os.PathLike") -> Project:
     root = Path(root)
     cj = root / "controller.json"
@@ -153,7 +174,8 @@ def load_project(root: "str | os.PathLike") -> Project:
     for p in sorted((root / "modules").glob("*.json")):
         mods.append(_read_json(p))
     for p in sorted((root / "modules").glob("*.xml")):
-        mods.append({"name": p.stem, "catalog_number": "", "raw_xml": p.read_text(encoding="utf-8")})
+        xml = p.read_text(encoding="utf-8")
+        mods.append({"name": p.stem, "raw_xml": xml, **_module_attrs(xml)})
     for m in mods:
         proj.modules.append(Module(
             name=m["name"], catalog_number=m.get("catalog_number", ""), parent=m.get("parent", "Local"),

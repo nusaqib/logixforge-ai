@@ -56,6 +56,144 @@ def io_rows(proj: Project) -> list[list]:
     return rows
 
 
+
+# ---- I/O points mapped in logic (ST `Tag := Local:4:I.Pt03.Data;`, `Local:6:O.Pt00.Data := Tag;`, ladder XIC/XIO/OTE/MOV)
+
+IO_POINT_RE = re.compile(r"\b([A-Za-z_][A-Za-z0-9_]*(?::\d+)?:[IOC])\.([A-Za-z0-9_.\[\]]+)")
+_POINT_NUM = re.compile(r"^(Pt|Ch|I|O)?(\d+)")
+
+
+def module_points(catalog: str) -> int:
+    """Channel count read from the catalog number (5069-IB16F -> 16, 1756-IF8 -> 8, 5069-IY4 -> 4); 0 when unknown."""
+    m = re.search(r"-[IO][A-Z]*?(\d+)", (catalog or "").split("/")[0])
+    return int(m.group(1)) if m else 0
+
+
+def _module_index(proj: Project) -> dict:
+    """(parent, slot) -> Module for chassis modules, (name, "") -> Module for adapters/controllers."""
+    idx = {}
+    for m in proj.modules:
+        idx[(m.name, "")] = m
+        if m.port_type != "Ethernet" and m.address:
+            idx[(m.parent, str(m.address))] = m
+    return idx
+
+
+def resolve_path(proj: Project, path: str, scope: str = "") -> tuple[str, str]:
+    """(data type, description) of a tag or UDT member path (indexes ignored); ("", "") when unknown."""
+    parts = re.sub(r"\[[^\]]*\]", "", path).split(".")
+    tags = {t.name.lower(): t for t in proj.tags}
+    for prog in proj.programs:
+        if prog.name == scope:
+            tags.update({t.name.lower(): t for t in prog.tags})
+    t = tags.get(parts[0].lower())
+    if not t:
+        return "", ""
+    dt, desc = t.data_type, t.description
+    udts = {d.name.lower(): d for d in proj.data_types}
+    for part in parts[1:]:
+        d = udts.get((dt or "").lower())
+        mem = next((m for m in d.members if m.name.lower() == part.lower()), None) if d else None
+        if mem is None:
+            return "", desc
+        dt, desc = mem.data_type, mem.description or desc
+    return dt or "", desc
+
+
+def _split_ref(ref: str) -> tuple[str, str]:
+    """`Local:4:I` -> ("Local", "4"); `R01:I` -> ("R01", "")."""
+    parts = ref.split(":")
+    return (parts[0], parts[1]) if len(parts) == 3 else (parts[0], "")
+
+
+def mapped_io_rows(proj: Project) -> list[dict]:
+    """Every module point read or written by the logic: module, catalog, parent, slot, point, direction, tag, type,
+    description, where. Spare points of a module with a known channel count are listed with an empty tag."""
+    idx = _module_index(proj)
+    rows: list[dict] = []
+    seen: set = set()
+
+    def add(ref: str, point: str, direction: str, tag: str, where: str, scope: str):
+        parent, slot = _split_ref(ref)
+        m = idx.get((parent, slot)) if slot else idx.get((parent, ""))
+        dtype, desc = resolve_path(proj, tag, scope) if tag and not tag.startswith("(") else ("", "")
+        row = {"module": m.name if m else ref, "catalog": m.catalog_number if m else "",
+               "parent": (m.parent if m else parent) or "", "slot": (str(m.address) if m and slot else slot) or "",
+               "point": point, "dir": direction, "tag": tag, "type": dtype, "description": desc, "where": where}
+        if (ref, point) not in seen:
+            seen.add((ref, point)); rows.append(row)
+
+    for prog in proj.programs:
+        for r in prog.routines:
+            where = f"{prog.name}/{r.name}"
+            if r.kind == "ST":
+                for n, raw in enumerate(r.st_lines, 1):
+                    line = re.sub(r"//.*|\(\*.*?\*\)", "", raw).strip()
+                    m = re.match(r"^([A-Za-z_][A-Za-z0-9_.\[\]:]*)\s*:=\s*([^;]+);", line)
+                    if not m:
+                        continue
+                    lhs, rhs = m.group(1), m.group(2).strip()
+                    lio, rio = IO_POINT_RE.match(lhs), IO_POINT_RE.match(rhs)
+                    if lio and lio.end() == len(lhs) and not rio:
+                        add(lio.group(1), lio.group(2), "out", rhs if ST_ID.fullmatch(rhs) else f"({rhs})", f"{where}:{n}", prog.name)
+                    elif rio and rio.end() == len(rhs) and not lio:
+                        add(rio.group(1), rio.group(2), "in", lhs, f"{where}:{n}", prog.name)
+            elif r.kind == "RLL":
+                for rung in r.rungs:
+                    try:
+                        instrs = list(parse_rung(rung.text).walk())
+                    except RungSyntaxError:
+                        continue
+                    outs = [i.operands[0] for i in instrs if i.name in OUTPUT_INSTR and i.operands]
+                    conds = [j.operands[0] for j in instrs if j.name in {"XIC", "XIO"} and j.operands]
+                    for i in instrs:
+                        ops = [o for o in i.operands if o]
+                        if not ops:
+                            continue
+                        if i.name in {"XIC", "XIO"} and IO_POINT_RE.match(ops[0]):
+                            mm = IO_POINT_RE.match(ops[0])
+                            add(mm.group(1), mm.group(2), "in", outs[0] if len(outs) == 1 else "(logic)", f"{where}:{rung.number}", prog.name)
+                        elif i.name in OUTPUT_INSTR and IO_POINT_RE.match(ops[0]):
+                            mm = IO_POINT_RE.match(ops[0])
+                            add(mm.group(1), mm.group(2), "out", conds[0] if len(conds) == 1 else "(logic)", f"{where}:{rung.number}", prog.name)
+                        elif i.name in {"MOV", "MOVE", "COP", "CPS"} and len(ops) >= 2:
+                            a, b = IO_POINT_RE.match(ops[0]), IO_POINT_RE.match(ops[1])
+                            if a and not b:
+                                add(a.group(1), a.group(2), "in", ops[1], f"{where}:{rung.number}", prog.name)
+                            elif b and not a:
+                                add(b.group(1), b.group(2), "out", ops[0], f"{where}:{rung.number}", prog.name)
+    # spare points per module with a known channel count and at least one mapped point
+    by_mod: dict = defaultdict(list)
+    for row in rows:
+        by_mod[row["module"]].append(row)
+    for mod, rs in by_mod.items():
+        n = module_points(rs[0]["catalog"])
+        nums, widths = {}, []
+        for row in rs:
+            pm = _POINT_NUM.match(row["point"])
+            if pm:
+                nums[int(pm.group(2))] = pm.group(1) or ""
+                widths.append(len(pm.group(2)))
+        if not n or not nums:
+            continue
+        prefixes = list(nums.values())
+        prefix = max(set(prefixes), key=prefixes.count)
+        width = max(widths)
+        for k in range(n):
+            if k not in nums:
+                rows.append({**rs[0], "point": f"{prefix}{k:0{width}d}", "tag": "", "type": "", "description": "spare", "where": ""})
+    order = {"in": 0, "out": 1}
+
+    def key(row):
+        pm = _POINT_NUM.match(row["point"])
+        return (row["parent"], _slot_key(row["slot"]), row["module"], int(pm.group(2)) if pm else 999, order.get(row["dir"], 2))
+    return sorted(rows, key=key)
+
+
+def _slot_key(s: str):
+    return (0, int(s)) if s.isdigit() else (1, s)
+
+
 def io_list_markdown(proj: Project, h: str) -> str:
     L = [_hdr(h, proj.controller.name), f"# {proj.controller.name} - I/O list", ""]
     L += ["## Modules", ""]
@@ -67,6 +205,19 @@ def io_list_markdown(proj: Project, h: str) -> str:
     L += ["## I/O points (alias tags)", ""]
     rows = io_rows(proj)
     L += _table(["Tag", "Scope", "Module point", "Type", "Description"], rows) if rows else ["(no alias tags to module points)", ""]
+    L += ["## I/O points (mapped in logic)", "",
+          "Module points read or written by the mapping routines (structured text assignments, ladder contacts/coils/moves), "
+          "one table per module in rack and slot order; unused points of a module with a known channel count are listed as spare.", ""]
+    mapped = mapped_io_rows(proj)
+    if not mapped:
+        L += ["(no module points referenced by the logic)", ""]
+    for mod in dict.fromkeys(r["module"] for r in mapped):
+        rs = [r for r in mapped if r["module"] == mod]
+        head = rs[0]
+        loc = f"{head['parent']} slot {head['slot']}" if head["slot"] else head["parent"]
+        L += [f"### {mod} ({head['catalog'] or 'catalog unknown'}, {loc})", ""]
+        L += _table(["Point", "Dir", "Tag", "Type", "Description", "Mapped in"],
+                    [[r["point"], r["dir"], r["tag"], r["type"], r["description"], r["where"]] for r in rs])
     L += ["## Module tags referenced directly in logic", "",
           "Direct references bypass the input/output mapping routines; each one should be justified.", ""]
     direct = defaultdict(set)
@@ -88,8 +239,12 @@ def io_list_markdown(proj: Project, h: str) -> str:
 def write_io_csv(proj: Project, path: Path) -> None:
     with open(path, "w", newline="", encoding="utf-8") as f:
         wr = csv.writer(f)
-        wr.writerow(["Tag", "Scope", "ModulePoint", "Type", "Description"])
-        wr.writerows(io_rows(proj))
+        wr.writerow(["Module", "Catalog", "Parent", "Slot", "Point", "Dir", "Tag", "Type", "Description", "Where"])
+        for r in mapped_io_rows(proj):
+            wr.writerow([r["module"], r["catalog"], r["parent"], r["slot"], r["point"], r["dir"], r["tag"], r["type"], r["description"], r["where"]])
+        for tag, scope, point, dtype, desc in io_rows(proj):
+            mod, _, pt = point.rpartition(".")
+            wr.writerow([mod, "", "", "", pt, "out" if ":O" in point else "in", tag, dtype, desc, f"alias ({scope})"])
 
 
 # ------------------------------------------------------------------ tags
