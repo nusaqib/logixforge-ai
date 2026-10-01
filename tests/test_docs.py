@@ -212,3 +212,17 @@ def test_docs_build_l5x_with_hmi_export(tmp_path):
     r = subprocess.run([sys.executable, "-m", "logixforge.cli", "docs", "build", out, "-o", str(tmp_path / "e"), "--hmi", str(tmp_path)],
                        capture_output=True, text=True, cwd=ROOT)
     assert r.returncode != 0 and "ViewApplication.hmi missing" in (r.stdout + r.stderr)
+
+
+def test_ingest_l5x_is_provenance_not_extraction(tmp_path):
+    """BACKLOG 7: a Studio 5000 export indexed with --no-copy is a provenance row, not an 'unsupported format' error."""
+    root = _copy_demo(tmp_path)
+    exp = tmp_path / "Line.L5X"
+    exp.write_text("<RSLogix5000Content/>", encoding="utf-8")
+    r = ingest(root, exp, title="Studio 5000 export", copy=False)
+    assert r["error"] == "" and r["extracted"] is None
+    row = read_index(root)[-1]
+    assert row["Kind"] == "l5x" and row["Extracted"].startswith("provenance") and "NOT EXTRACTED" not in row["Extracted"]
+    assert not (root / "docs" / "extracted" / "Line.md").exists()
+    with pytest.raises(RuntimeError, match="provenance"):
+        extract_text(exp)

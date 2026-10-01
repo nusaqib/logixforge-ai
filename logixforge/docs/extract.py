@@ -19,6 +19,7 @@ from xml.etree import ElementTree as ET
 INDEX_COLUMNS = ["File", "Title", "Document no.", "Rev", "Date", "Kind", "Used for", "Extracted"]
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".tif", ".tiff"}
 TEXT_EXT = {".md", ".txt", ".csv", ".json", ".rll", ".st", ".l5k"}
+PROVENANCE_EXT = {".l5x", ".acd"}   # Studio 5000 project files: indexed, never extracted (BACKLOG 7)
 SPEC_SKIP_DIRS = {"docs", "build", "tests", ".git", "__pycache__", ".venv", "hmi-export"}
 
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
@@ -176,6 +177,8 @@ def extract_text(path: str | Path) -> str:
         return _image(p)
     if ext == ".doc":
         raise RuntimeError(f"{p.name}: legacy .doc is not supported; save it as .docx or .pdf first")
+    if ext in PROVENANCE_EXT:
+        raise RuntimeError(f"{p.name}: Studio 5000 project file; indexed for provenance, read it with lf inspect / lf decompile")
     raise RuntimeError(f"{p.name}: unsupported format {ext!r}")
 
 
@@ -245,21 +248,32 @@ def ingest(root: str | Path, source: str | Path, *, title: str = "", doc_no: str
     sha = hashlib.sha256(dst.read_bytes()).hexdigest()[:12]
     ex_path = ex_dir / (src.stem + ".md")
     error = ""
+    extracted_cell = None
     try:
-        body = extract_text(dst)
+        if dst.suffix.lower() in PROVENANCE_EXT:
+            # Studio 5000 project files are indexed as provenance (which export the spec came from, when), not
+            # extracted: the spec itself is their readable form (lf decompile / lf inspect). BACKLOG 7.
+            extracted_cell = f"provenance (sha256 {sha}); read with lf inspect / lf decompile"
+            ex_path = None
+            body = None
+        else:
+            body = extract_text(dst)
+    except RuntimeError as e:
+        error = str(e)
+        ex_path = None
+        body = None
+    if body is not None:
         head = (f"<!-- extracted by lf docs ingest from docs/input/{dst.name} (sha256 {sha}) on {date.today().isoformat()};"
                 " edit freely: this is the agent's working copy, the original is the reference -->\n")
         ex_path.write_text(head + f"# {title or src.stem}\n\n" + body.rstrip() + "\n", encoding="utf-8")
         if dst.suffix.lower() in IMAGE_EXT:
             shutil.copy2(dst, ex_dir / dst.name)     # so the image link in the .md resolves
-    except RuntimeError as e:
-        error = str(e)
-        ex_path = None
     rows = read_index(root)
     rel = f"input/{dst.name}" if dst.parent == in_dir else str(dst)
+    extracted = f"extracted/{ex_path.name}" if ex_path else (extracted_cell or f"NOT EXTRACTED: {error}")
     row = {"File": rel, "Title": title or src.stem, "Document no.": doc_no, "Rev": rev,
            "Date": doc_date or date.today().isoformat(), "Kind": dst.suffix.lower().lstrip("."),
-           "Used for": used_for, "Extracted": f"extracted/{ex_path.name}" if ex_path else f"NOT EXTRACTED: {error}"}
+           "Used for": used_for, "Extracted": extracted}
     for i, r in enumerate(rows):
         if r["File"] == rel:
             for k in ("Title", "Document no.", "Rev", "Date", "Used for"):

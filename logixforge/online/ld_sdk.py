@@ -65,10 +65,22 @@ def _pascal(snake: str) -> str:
     return "".join(p[:1].upper() + p[1:] for p in snake.split("_"))
 
 
-def net_names(snake: str) -> list[str]:
+def _variants(snake) -> list[str]:
+    """A method may be named differently across SDK releases (`build_project` in the guide, `build` in 2.0.2)."""
+    names = [snake] if isinstance(snake, str) else list(snake)
+    return names + [a for n in names for a in ALIASES.get(n, []) if a not in names]
+
+
+ALIASES = {"build_project": ["build"], "build": ["build_project"], "close": ["dispose"]}
+
+
+def net_names(snake) -> list[str]:
     """`save_as` -> ['SaveAsAsync', 'SaveAs']  (the .NET client suffixes awaitables with Async)."""
-    p = _pascal(snake)
-    return [p + "Async", p]
+    out = []
+    for n in _variants(snake):
+        p = _pascal(n)
+        out += [p + "Async", p]
+    return out
 
 
 def tag_path(name: str) -> str:
@@ -139,7 +151,13 @@ class PyBackend(Backend):
         except ImportError as e:
             raise ImportError("logix_designer_sdk not installed") from e
         self.sdk, self.LogixProject = logix_designer_sdk, LogixProject
-        self.version = getattr(logix_designer_sdk, "__version__", "?")
+        self.version = getattr(logix_designer_sdk, "__version__", None) or "?"
+        if self.version == "?":
+            try:
+                from importlib.metadata import version
+                self.version = version("logix_designer_sdk")
+            except Exception:
+                pass
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
 
@@ -147,7 +165,7 @@ class PyBackend(Backend):
         return self.loop.run_until_complete(r) if asyncio.iscoroutine(r) else r
 
     def _find(self, obj, snake):
-        return next((getattr(obj, n) for n in (snake, snake.lower()) if getattr(obj, n, None)), None)
+        return next((getattr(obj, n) for n in _variants(snake) if getattr(obj, n, None)), None)
 
     def supports(self, snake):
         return self._find(self.LogixProject, snake) is not None
@@ -173,7 +191,15 @@ class PyBackend(Backend):
             self._run(fn())
 
     def enum(self, enum_name, member):
-        return _enum(self.sdk, enum_name, member) or _enum(self.LogixProject, enum_name, member)
+        for holder in (self.sdk, getattr(self.sdk, "enums", None), self.LogixProject):
+            v = _enum(holder, enum_name, member) if holder is not None else None
+            if v is not None:
+                return v
+        try:
+            import importlib
+            return _enum(importlib.import_module("logix_designer_sdk.enums"), enum_name, member)
+        except Exception:
+            return None
 
 
 class NetBackend(Backend):
@@ -411,7 +437,8 @@ def cli(a):
             if not (a.l5x and a.target):
                 sys.exit("--l5x and --target required (e.g. --target Controller/Programs/MainProgram)")
             opt = be.enum("ImportCollisionOptions", a.collision) or a.collision
-            be.call(proj, "partial_import_from_xml_file", a.l5x, a.target, opt)
+            # SDK 2.0.2 signature: (x_path, xml_file_to_import, collision_option, continue_on_errors=False)
+            be.call(proj, "partial_import_from_xml_file", a.target, a.l5x, opt)
             be.call(proj, "save")
             print(f"imported {a.l5x} into {a.target} and saved")
         elif a.op == "import-rungs":
@@ -425,6 +452,11 @@ def cli(a):
             if not be.supports("build_project"):
                 sys.exit("build/verify is not available in this SDK (needs Logix Designer v37+ and SDK 2.01+); open the ACD in Studio 5000 and Verify")
             be.call(proj, "build_project")
+            if a.output:
+                _refuse_overwrite(a.output, a.overwrite)
+                be.call(proj, "save_as", a.output, bool(a.overwrite))
+            else:
+                be.call(proj, "save")
             print("build/verify complete")
         elif a.op == "download":
             if not a.path:
