@@ -216,3 +216,30 @@ def test_validator_value_range(tmp_path):
     codes = [(f.code, f.where) for f in validate(load_project(tmp_path / "p")) if f.code == "VALUE_RANGE"]
     assert ("VALUE_RANGE", "controller tag Sp") in codes and ("VALUE_RANGE", "controller tag Big") in codes
     assert not any(w == "controller tag Ok" for _, w in codes)
+
+
+def test_validator_member_paths_and_bool_compare(tmp_path):
+    """Studio verify errors the validator must catch first: 'Invalid member specifier' (member not in the UDT /
+    predefined structure) and 'BOOL tag not expected in expression' ('=' on a BOOL in ST)."""
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    rd = tmp_path / "p" / "programs" / "P_Conveyor" / "routines"
+    (rd / "R_Extra.rll").write_text("//! member checks\nXIC(HMI_Conveyor01.Cmd_Start)OTE(HMI_Conveyor01.NoSuch);\n"
+                                    "XIC(T_Delay.DN)XIO(T_Delay.Bogus)OTE(Run);\n", encoding="utf-8")
+    (rd / "R_ExtraST.st").write_text("//! st checks\nIF HMI_Conveyor01.Cmd_Start = 1 THEN\n  Run := 1;\nEND_IF;\n"
+                                     "IF HMI_Conveyor01.Cfg_FaultDelay_ms = 0 THEN\n  Run := 0;\nEND_IF;\n"
+                                     "Run := HMI_Conveyor01.Sts_Run XOR HMI_Conveyor01.Missing_Sts;\n", encoding="utf-8")
+    tags = json.loads((tmp_path / "p" / "programs" / "P_Conveyor" / "tags.json").read_text(encoding="utf-8"))
+    tags += [{"name": "T_Delay", "data_type": "TIMER", "description": "d"}, {"name": "Run", "data_type": "BOOL", "description": "d"}]
+    (tmp_path / "p" / "programs" / "P_Conveyor" / "tags.json").write_text(json.dumps(tags), encoding="utf-8")
+    main = rd / "MainRoutine.rll"
+    main.write_text(main.read_text(encoding="utf-8") + "\nJSR(R_Extra);\n\nJSR(R_ExtraST);\n", encoding="utf-8")
+    f = validate(load_project(tmp_path / "p"))
+    members = [x.where + " " + x.message for x in f if x.code == "UNDEF_MEMBER"]
+    assert any("NoSuch" in m and "rung" in m for m in members), members
+    assert any("Bogus" in m for m in members), members
+    assert any("Missing_Sts" in m and "line 7" in m for m in members), members
+    assert not any("Cfg_FaultDelay_ms" in m or "Cmd_Start" in m or "T_Delay.DN" in m for m in members), members
+    bools = [x.where + " " + x.message for x in f if x.code == "ST_BOOL_CMP"]
+    assert len(bools) == 1 and "Cmd_Start" in bools[0] and "line 1" in bools[0], bools

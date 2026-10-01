@@ -11,6 +11,20 @@ from dataclasses import dataclass
 from .model import ALARM_CONDITIONS, ATOMIC_TYPES, PREDEFINED_TYPES, Project, Tag, is_known_type
 from .rll import INSTRUCTIONS, NAME_RE, RESERVED_WORDS, RungSyntaxError, base_tag, operand_tags, parse_rung
 
+STRUCT_MEMBER_TYPES = {   # members of the predefined structures logic usually touches (lowercase -> type)
+    "TIMER": {"pre": "DINT", "acc": "DINT", "en": "BOOL", "tt": "BOOL", "dn": "BOOL"},
+    "COUNTER": {"pre": "DINT", "acc": "DINT", "cu": "BOOL", "cd": "BOOL", "dn": "BOOL", "ov": "BOOL", "un": "BOOL"},
+    "CONTROL": {"len": "DINT", "pos": "DINT", "en": "BOOL", "eu": "BOOL", "dn": "BOOL", "em": "BOOL", "er": "BOOL",
+                "ul": "BOOL", "in": "BOOL", "fd": "BOOL"},
+    "FBD_TIMER": {"enablein": "BOOL", "timerenable": "BOOL", "pre": "DINT", "reset": "BOOL", "enableout": "BOOL", "acc": "DINT",
+                  "en": "BOOL", "tt": "BOOL", "dn": "BOOL", "status": "DINT", "instructfault": "BOOL", "presetinv": "BOOL"},
+    "FBD_COUNTER": {"enablein": "BOOL", "cuenable": "BOOL", "cdenable": "BOOL", "pre": "DINT", "reset": "BOOL", "enableout": "BOOL",
+                    "acc": "DINT", "cu": "BOOL", "cd": "BOOL", "dn": "BOOL", "ov": "BOOL", "un": "BOOL", "status": "DINT",
+                    "instructfault": "BOOL", "presetinv": "BOOL"},
+    "FBD_ONESHOT": {"enablein": "BOOL", "inputbit": "BOOL", "enableout": "BOOL", "outputbit": "BOOL"},
+    "STRING": {"len": "DINT", "data": "SINT"},
+}
+
 IO_TAG_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(:(\d+|[A-Za-z0-9_]+))?:[ICOS]\d?(\.|$)")   # Local:2:I, Rack1:3:O, Drive1:O
 
 
@@ -162,7 +176,7 @@ class Validator:
                 self.check_name(lt.name, f"{w}.{lt.name}", "local")
             scope_tags = {n for n in names} | {"enablein", "enableout"}
             for r in a.routines:
-                self.check_routine(r, f"{w}/{r.name}", scope_tags, set(), aoi_scope=True)
+                self.check_routine(r, f"{w}/{r.name}", scope_tags, set(), aoi_scope=True, types=self.scope_types(aoi=a))
 
     def check_tags(self, tags: list[Tag], scope: str, aoi_names: set[str] | None = None):
         seen = set()
@@ -252,16 +266,18 @@ class Validator:
             if p.name.lower() not in scheduled and not p.disabled:
                 self.warn("UNSCHEDULED", w, "program is not scheduled in any task")
             scope = self.all_tag_names(f"program:{p.name}")
+            types = self.scope_types(p.name)
             called: set[str] = set()
             for r in p.routines:
                 self.check_name(r.name, f"{w}/{r.name}", "routine")
-                self.check_routine(r, f"{w}/{r.name}", scope, rnames, called=called)
+                self.check_routine(r, f"{w}/{r.name}", scope, rnames, called=called, types=types)
             for r in p.routines:
                 if r.name.lower() != p.main_routine.lower() and r.name.lower() != p.fault_routine.lower() \
                         and r.name.lower() not in called:
                     self.warn("ROUTINE_UNCALLED", f"{w}/{r.name}", "routine is never called with JSR from this program")
 
-    def check_routine(self, r, where: str, scope_tags: set[str], routine_names: set[str], aoi_scope=False, called=None):
+    def check_routine(self, r, where: str, scope_tags: set[str], routine_names: set[str], aoi_scope=False, called=None, types=None):
+        types = types or {}
         if r.kind == "RLL":
             if not r.rungs:
                 self.warn("EMPTY_ROUTINE", where, "routine has no rungs")
@@ -311,6 +327,8 @@ class Validator:
                         continue
                     b = base_tag(op)
                     if IO_TAG_RE.match(op) or b.lower() in scope_tags or b.lower() in {"s", "?"}:
+                        if b.lower() in scope_tags:
+                            self.check_member_path(op, types, rw)
                         continue
                     if aoi_scope:
                         self.err("UNDEF_TAG", rw, f"operand {op!r} is not a parameter or local tag of the AOI")
@@ -321,6 +339,8 @@ class Validator:
             if not text.strip():
                 self.warn("EMPTY_ROUTINE", where, "routine has no lines")
             self.check_st(text, where)
+            if types:
+                self.check_st_types(text, types, where)
             if called is not None:                     # JSR(Routine) / JSR(Routine, n, ...) calls made from ST
                 code = re.sub(r"\(\*.*?\*\)|/\*.*?\*/", "", text, flags=re.S)
                 code = re.sub(r"//[^\n]*", "", code)                  # line comments only to end of line
@@ -388,18 +408,84 @@ class Validator:
         return (t.data_type or "BOOL") if t else None
 
     def _member_type(self, data_type: str, member_path: str) -> str | None:
-        """Resolve '.A.B' through UDTs; returns the leaf type, None if a member does not exist, '' if unresolvable."""
+        """Resolve '.A.B' through UDTs, AOI instances and the common predefined structures.
+        Returns the leaf type, None if a member does not exist, '' if unresolvable (unknown structure)."""
         cur = data_type
+        member_path = re.sub(r"\[[^\]]*\]", "", member_path)      # indexes (incl. tag-indexed A[Seq.Step_Val]) do not change types
         for part in [m for m in member_path.split(".") if m]:
-            part = part.split("[")[0]
+            if not part:
+                continue
+            if part.isdigit():                                   # bit access Word.3
+                return "BOOL" if cur in ATOMIC_TYPES and cur != "REAL" else None
             udt = next((d for d in self.p.data_types if d.name == cur), None)
-            if udt is None:
-                return "" if cur not in ATOMIC_TYPES else None
-            m = next((x for x in udt.members if x.name.lower() == part.lower()), None)
-            if m is None:
-                return None
-            cur = m.data_type
+            if udt is not None:
+                m = next((x for x in udt.members if x.name.lower() == part.lower()), None)
+                if m is None:
+                    return None
+                cur = m.data_type
+                continue
+            aoi = next((a for a in self.p.aois if a.name == cur), None)
+            if aoi is not None:
+                m = next((x for x in list(aoi.parameters) + list(aoi.local_tags) if x.name.lower() == part.lower()), None)
+                if m is None:
+                    return None
+                cur = m.data_type
+                continue
+            if cur in STRUCT_MEMBER_TYPES:
+                t = STRUCT_MEMBER_TYPES[cur].get(part.lower())
+                if t is None:
+                    return None
+                cur = t
+                continue
+            return "" if cur not in ATOMIC_TYPES else None
         return cur
+
+    def check_member_path(self, op: str, types: dict, where: str) -> str | None:
+        """Studio 5000 verify: 'Invalid member specifier' for a member that is not in the tag's type.
+        Returns the leaf type when it could be resolved."""
+        if ":" in op or "." not in op:
+            return types.get(op.lower()) if ":" not in op else None
+        base = base_tag(op)
+        rest = op[len(base):]
+        rest = re.sub(r"^\[[^\]]*\]", "", rest)
+        dt = types.get(base.lower())
+        if not dt:
+            return None
+        leaf = self._member_type(dt, rest)
+        if leaf is None:
+            self.err("UNDEF_MEMBER", where, f"{op!r}: member path not found in {dt} (Studio: Invalid member specifier)")
+        return leaf or None
+
+    def scope_types(self, program: str | None = None, aoi=None) -> dict:
+        """lowercase tag/parameter name -> data type for the scope a routine runs in."""
+        if aoi is not None:
+            return {x.name.lower(): x.data_type for x in list(aoi.parameters) + list(aoi.local_tags)}
+        types = {t.name.lower(): (t.data_type or "") for t in self.p.tags if not t.alias_for}
+        if program:
+            pr = self.p.find_program(program)
+            if pr:
+                types.update({t.name.lower(): (t.data_type or "") for t in pr.tags if not t.alias_for})
+        return types
+
+    _ST_PATH_RE = re.compile(r"(?<![\w:])[A-Za-z_]\w*(?:\[[^\]]*\])?(?:\.(?:[A-Za-z_]\w*|\d+)(?:\[[^\]]*\])?)+")
+    _ST_CMP_L = re.compile(r"([A-Za-z_][\w\.\[\]]*)\s*(?<![:<>])(?:=(?!=)|<>)")
+    _ST_CMP_R = re.compile(r"(?<![:<>])(?:=(?!=)|<>)\s*([A-Za-z_][\w\.\[\]]*)")
+
+    def check_st_types(self, text: str, types: dict, where: str):
+        """Member paths exist, and no BOOL on either side of '=' / '<>' (Studio: BOOL tag not expected in expression)."""
+        code = re.sub(r"\(\*.*?\*\)|/\*.*?\*/", "", text, flags=re.S)
+        code = re.sub(r"//[^\n]*", "", code)
+        code = re.sub(r"'[^'\n]*'", "''", code)
+        for n, line in enumerate(code.split("\n"), 1):
+            lw = f"{where} line {n}"
+            for path in self._ST_PATH_RE.findall(line):
+                self.check_member_path(path, types, lw)
+            for rx in (self._ST_CMP_L, self._ST_CMP_R):
+                for ident in rx.findall(line):
+                    if ident.upper() in {"TRUE", "FALSE"}:
+                        continue
+                    if self.check_member_path(ident, types, lw) == "BOOL" or types.get(ident.lower()) == "BOOL":
+                        self.err("ST_BOOL_CMP", lw, f"{ident!r} is BOOL: Logix ST has no '=' / '<>' on BOOL (use AND/OR/NOT/XOR): {line.strip()[:80]!r}")
 
     def check_alarms(self):
         if not self.p.alarms:
