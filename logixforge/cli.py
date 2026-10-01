@@ -13,7 +13,7 @@
                                          # an .L5X export of an existing project -> <stem>_docs/ (or -o)
   lf docs ingest <project_dir> <file>... # given documents -> docs/input/ + docs/extracted/*.md + docs/INDEX.md
   lf docs export <project_dir> --to pdf|docx|html   (pandoc)
-  lf online ...  (pycomm3)         lf sdk ...  (Logix Designer SDK)
+  lf online ...  (pycomm3)         lf sdk ...  (Logix Designer SDK: info|setup|l5x-to-acd|export|import|download|...)
 
 All subcommands exit non-zero on error so hooks/agents can rely on them.
 """
@@ -453,14 +453,24 @@ def main(argv=None):
     s.add_argument("--program"); s.add_argument("tags", nargs="*", help="tag names, or Tag=Value for write")
     s.set_defaults(fn=cmd_online)
 
-    s = sub.add_parser("sdk", help="Logix Designer SDK operations (Windows + Studio 5000 v34+)")
-    s.add_argument("op", choices=["open", "import", "import-rungs", "build", "download", "upload-export", "online", "read", "write", "mode"])
-    s.add_argument("--acd", help=".ACD project path"); s.add_argument("--l5x"); s.add_argument("--path", help="comm path")
+    s = sub.add_parser("sdk", help="Logix Designer SDK operations (Windows, Studio 5000 + LdSdkService; python client SDK 2.02+ or .NET client via pythonnet)")
+    s.add_argument("op", choices=["info", "setup", "open", "l5x-to-acd", "export", "convert", "import", "import-rungs", "build", "download",
+                                  "upload-export", "online", "read", "write", "mode"])
+    s.add_argument("--acd", help=".ACD project path (open/export/convert/import/online ops)")
+    s.add_argument("--l5x", help="L5X file: whole controller for l5x-to-acd, partial import file for import/import-rungs")
+    s.add_argument("--path", help=r"comm path, e.g. AB_ETHIP-1\192.168.1.10\Backplane\0 or EmulateEthernet\127.0.0.1")
     s.add_argument("--target", help="import target for partial import e.g. Controller/Programs/MainProgram")
     s.add_argument("--collision", default="Overwrite", choices=["Overwrite", "Discard", "UseExisting"])
-    s.add_argument("--program"); s.add_argument("--routine"); s.add_argument("--tag"); s.add_argument("--value")
-    s.add_argument("--type", dest="dtype", default="DINT"); s.add_argument("--mode", choices=["Program", "Run", "Test"])
-    s.add_argument("-o", "--output"); s.set_defaults(fn=cmd_sdk)
+    s.add_argument("--program"); s.add_argument("--routine"); s.add_argument("--tag", help="tag name, Program:P.Tag, or SDK XPath")
+    s.add_argument("--value"); s.add_argument("--type", dest="dtype", default="DINT"); s.add_argument("--mode", choices=["Program", "Run", "Test"])
+    s.add_argument("-o", "--output", help="output file (.ACD for l5x-to-acd/convert/upload-export, .L5X/.L5K for export)")
+    s.add_argument("--overwrite", action="store_true", help="replace an existing output file (refused by default)")
+    s.add_argument("--build", action="store_true", help="l5x-to-acd: also build/verify before saving (Logix v37+, SDK 2.01+)")
+    s.add_argument("--detailed", action="store_true", help="export: detailed L5X (references, context, product-defined types, I/O tags)")
+    s.add_argument("--rev", type=int, help="l5x-to-acd/convert: convert to this major revision while opening")
+    s.add_argument("--backend", choices=["py", "net"], help="force the SDK client (default: python wheel if installed, else .NET via pythonnet)")
+    s.add_argument("--sdk-dir", dest="sdk_dir", help="setup: folder for the .NET client (default ~/.logixforge/ldsdk)")
+    s.set_defaults(fn=cmd_sdk)
 
     a = ap.parse_args(argv)
     try:

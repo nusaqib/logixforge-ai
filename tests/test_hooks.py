@@ -27,6 +27,15 @@ def test_guard_blocks_sdk_download():
     assert r.returncode == 2
 
 
+def test_guard_blocks_sdk_partial_import_but_not_file_ops():
+    r = run_hook(GUARD, {"tool_name": "Bash", "tool_input": {"command": "lf sdk " + "import --acd x.ACD --l5x r.L5X --target Controller/Programs/P"}})
+    assert r.returncode == 2
+    for cmd in ["lf sdk l5x-to-acd --l5x plc/build/HVPS.L5X -o programs/HVPS_build.ACD",
+                "python -m logixforge.cli sdk export --acd x.ACD -o x.L5X", "lf sdk info", "lf sdk setup", "lf sdk build --acd x.ACD"]:
+        r = run_hook(GUARD, {"tool_name": "Bash", "tool_input": {"command": cmd}})
+        assert r.returncode == 0, cmd   # file-to-file and read-only SDK operations never touch a controller
+
+
 def test_guard_allows_reads_and_optin():
     r = run_hook(GUARD, {"tool_name": "Bash", "tool_input": {"command": "lf online read --path 10.0.0.1/0 Tag"}})
     assert r.returncode == 0

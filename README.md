@@ -35,8 +35,9 @@ claude plugin marketplace add E:\gitsrc\logixforge-ai
 claude plugin install logixforge@logixforge-marketplace
 # or for development:  claude --plugin-dir E:\gitsrc\logixforge-ai
 ```
-Logix Designer SDK (for `lf sdk ...`): install the wheel shipped with Studio 5000 v34+
-(`C:\Users\Public\Documents\Studio 5000\Logix Designer SDK\python\dist\`). See `skills/plc-live-sdk`.
+Logix Designer SDK (for `lf sdk ...`, incl. `lf sdk l5x-to-acd`): either Rockwell's python wheel (SDK 2.02+,
+`...\Logix Designer SDK\python\...\*.whl`) or the .NET client Studio 5000 installs (`pip install pythonnet`, then
+`lf sdk setup`). `lf sdk info` shows what the machine has. See `skills/plc-live-sdk`.
 
 ## Quick start
 ```powershell
@@ -79,7 +80,7 @@ Ladder is written as Studio 5000 neutral rung text, one rung per block, `//` com
 ```
 
 ## CLI
-`lf init [--git] | validate | build | partial | inspect | decompile | diff | rung check | hmi build | docs build|ingest|export | online | sdk`
+`lf init [--git] | validate | build | partial | inspect | decompile | diff | rung check | hmi build | docs build|ingest|export | online | sdk info|setup|l5x-to-acd|export|...`
 (`python -m logixforge.cli ...` works without installing). `lf --help` for options.
 
 ## MCP server
