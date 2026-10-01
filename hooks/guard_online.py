@@ -16,7 +16,7 @@ BLOCK_PATTERNS = [
     r"\blf\s+sdk\s+(download|import|import-rungs|write|mode)\b",
     r"logixforge\.cli\s+online\s+write\b",
     r"logixforge\.cli\s+sdk\s+(download|import|import-rungs|write|mode)\b",
-    r"\.write\(\s*['\"(]",           # plc.write('Tag', v) inline python
+    r"\b(?:plc|driver|drv|comm|conn|cip|logix\w*)\s*\.write\(\s*['\"(]",   # plc.write('Tag', v) inline pycomm3; not file.write(
     r"change_controller_mode|\.download\(",
 ]
 

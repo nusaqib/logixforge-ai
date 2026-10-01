@@ -86,10 +86,12 @@ def parse_rll_text(text: str, source: str = "") -> list[Rung]:
 def load_routine(path: Path) -> Routine:
     ext = path.suffix.lower()
     text = path.read_text(encoding="utf-8")
-    desc = ""
-    if text.startswith("//!"):
-        first, _, rest = text.partition("\n")
-        desc, text = first[3:].strip(), rest
+    desc_lines = []
+    while text.startswith("//!"):                      # one or more '//!' header lines form the description
+        first, _, text = text.partition("\n")
+        line = first[3:]
+        desc_lines.append((line[1:] if line.startswith(" ") else line).rstrip())   # keep indentation after '//! '
+    desc = "\n".join(desc_lines)
     if ext == ".rll":
         return Routine(name=path.stem, kind="RLL", description=desc, rungs=parse_rll_text(text, str(path)))
     if ext == ".st":

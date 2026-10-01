@@ -289,6 +289,13 @@ class Validator:
             if not text.strip():
                 self.warn("EMPTY_ROUTINE", where, "routine has no lines")
             self.check_st(text, where)
+            if called is not None:                     # JSR(Routine) / JSR(Routine, n, ...) calls made from ST
+                code = re.sub(r"\(\*.*?\*\)|/\*.*?\*/", "", text, flags=re.S)
+                code = re.sub(r"//[^\n]*", "", code)                  # line comments only to end of line
+                for target in re.findall(r"(?<![A-Za-z0-9_])JSR\s*\(\s*([A-Za-z_][A-Za-z0-9_]*)", code, flags=re.I):
+                    called.add(target.lower())
+                    if routine_names and target.lower() not in routine_names:
+                        self.err("JSR_TARGET", where, f"JSR target routine {target!r} not found in program")
         if r.description == "" and r.kind in {"RLL", "ST"}:
             self.info("NO_DESC", where, "routine has no description ('//!' first line)")
 

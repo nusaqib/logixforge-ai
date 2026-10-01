@@ -3,6 +3,7 @@ from Studio 5000, including exports of live controllers (Upload -> Save As .L5X)
 """
 from __future__ import annotations
 
+import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -171,7 +172,7 @@ def export_project_dir(proj: Project, out_dir: str | Path) -> Path:
         for m in proj.modules:
             if m.name == "Local":
                 continue
-            (out / "modules" / f"{m.name}.xml").write_text(m.raw_xml, encoding="utf-8")
+            (out / "modules" / f"{module_file_stem(m)}.xml").write_text(m.raw_xml, encoding="utf-8")
     (out / "tags").mkdir(exist_ok=True)
     (out / "tags" / "controller.json").write_text(json.dumps([_tag_dict(t) for t in proj.tags], indent=2), encoding="utf-8")
     for a in proj.aois:
@@ -229,11 +230,26 @@ def _tag_dict(t: Tag) -> dict:
     return d
 
 
+def module_file_stem(m: Module) -> str:
+    """File stem for modules/<stem>.xml. Studio 5000 exports may carry I/O modules without a Name
+    (5069 local and remote chassis modules); those are keyed by parent, slot and catalog so that every
+    module gets its own file instead of all collapsing onto '.xml'."""
+    if m.name:
+        return m.name
+    cat = re.sub(r"[^A-Za-z0-9]+", "_", m.catalog_number.split("/")[0]).strip("_") or "module"
+    slot = re.sub(r"[^A-Za-z0-9]+", "_", str(m.address)) or "0"
+    return f"{m.parent or 'Local'}_S{slot}_{cat}"
+
+
+def _desc_header(description: str) -> list[str]:
+    """Routine description as '//!' header lines; multi-line descriptions get one '//!' per line so the
+    loader (project.load_routine) can recover them and no description line is ever parsed as rung text."""
+    return [f"//! {l}".rstrip() for l in description.splitlines()] if description else []
+
+
 def _write_routine(dir_: Path, r: Routine) -> None:
     if r.kind == "RLL":
-        parts = []
-        if r.description:
-            parts.append(f"//! {r.description}")
+        parts = _desc_header(r.description)
         for rung in r.rungs:
             if rung.comment:
                 parts.extend("// " + l for l in rung.comment.splitlines())
@@ -241,7 +257,7 @@ def _write_routine(dir_: Path, r: Routine) -> None:
             parts.append("")
         (dir_ / f"{r.name}.rll").write_text("\n".join(parts), encoding="utf-8")
     elif r.kind == "ST":
-        head = f"//! {r.description}\n" if r.description else ""
+        head = "".join(l + "\n" for l in _desc_header(r.description))
         (dir_ / f"{r.name}.st").write_text(head + "\n".join(r.st_lines), encoding="utf-8")
     elif r.kind == "FBD":
         (dir_ / f"{r.name}.fbd").write_text(r.fbd_sheets_xml, encoding="utf-8")

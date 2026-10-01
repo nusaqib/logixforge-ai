@@ -531,16 +531,15 @@ def build_partial_tree(proj: Project, kind: str, name: str, program: str = "") -
 def serialize(tree: ET.ElementTree) -> str:
     raw = ET.tostring(tree.getroot(), encoding="unicode")
     pretty = minidom.parseString(raw).toprettyxml(indent="", newl="\n", encoding=None)
-    # restore CDATA sections (minidom escaped our markers' contents)
+    # restore CDATA sections (minidom escaped our markers' contents). Done on the whole text, not per
+    # line: descriptions and comments may span lines, and a per-line pairing split such a section into
+    # two half-open CDATA markers and produced malformed XML.
     import html
-    out_lines = []
-    for line in pretty.splitlines():
-        if _CDATA_MARK in line:
-            head, _, rest = line.partition(_CDATA_MARK)
-            body, _, tail = rest.partition(_CDATA_MARK)
-            line = f"{head}<![CDATA[{html.unescape(body)}]]>{tail}"
-        out_lines.append(line)
-    text = "\n".join(out_lines) + "\n"
+    import re as _re
+    text = _re.sub(_re.escape(_CDATA_MARK) + r"(.*?)" + _re.escape(_CDATA_MARK),
+                   lambda m: "<![CDATA[" + html.unescape(m.group(1)) + "]]>", pretty, flags=_re.S)
+    if not text.endswith("\n"):
+        text += "\n"
     text = text.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>', 1)
     return text
 

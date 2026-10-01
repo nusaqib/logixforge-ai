@@ -26,6 +26,11 @@ def _id(s: str) -> str:
     return "m_" + re.sub(r"[^A-Za-z0-9_]", "_", s)
 
 
+def _mname(m: "Module") -> str:
+    """Display/id name of a module; unnamed chassis modules (allowed in Studio 5000 exports) are keyed by parent and slot."""
+    return m.name or f"{m.parent or 'Local'}_S{module_slot(m) or '?'}"
+
+
 def _q(label: str) -> str:
     """Mermaid label text inside double quotes."""
     return str(label).replace('"', "#quot;")
@@ -116,7 +121,7 @@ def system_markdown(proj: Project, header: str, nav: "NavModel | None" = None, f
     if local_children:
         L.append(f'  subgraph LOCAL["Local chassis ({len(local_children)} modules)"]')
         for m in local_children:
-            L.append(f'    {_id(m.name)}["{_q(m.name)}<br/>{_q(m.catalog_number)} slot {module_slot(m) or "?"}"]')
+            L.append(f'    {_id(_mname(m))}["{_q(_mname(m))}<br/>{_q(m.catalog_number)} slot {module_slot(m) or "?"}"]')
         L.append("  end")
         L.append("  CTRL --- LOCAL")
     for m in enet:
@@ -124,7 +129,7 @@ def system_markdown(proj: Project, header: str, nav: "NavModel | None" = None, f
         if kids:
             L.append(f'  subgraph {_id("rack_" + m.name)}["{_q(m.name)} - {_q(m.catalog_number)} @ {module_ip(m)} ({len(kids)} modules)"]')
             for k in kids:
-                L.append(f'    {_id(k.name)}["{_q(k.name)}<br/>{_q(k.catalog_number)} slot {module_slot(k) or "?"}"]')
+                L.append(f'    {_id(_mname(k))}["{_q(_mname(k))}<br/>{_q(k.catalog_number)} slot {module_slot(k) or "?"}"]')
             L.append("  end")
             L.append(f"  NET --- {_id('rack_' + m.name)}")
         else:
@@ -132,7 +137,7 @@ def system_markdown(proj: Project, header: str, nav: "NavModel | None" = None, f
             L.append(f"  NET --- {_id(m.name)}")
     for m in mods:
         if m.parent not in ("Local", "") and m.parent not in {e.name for e in enet} and not module_ip(m):
-            L.append(f'  {_id(m.parent)} --- {_id(m.name)}["{m.name}<br/>{m.catalog_number}"]')
+            L.append(f'  {_id(m.parent)} --- {_id(_mname(m))}["{_q(_mname(m))}<br/>{_q(m.catalog_number)}"]')
     ext = [t for t in proj.tags if t.produced or t.consumed]
     if ext:
         L.append('  PEER["Other controllers<br/>produced/consumed tags"]')
