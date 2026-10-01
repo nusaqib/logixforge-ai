@@ -170,14 +170,56 @@ class PyBackend(Backend):
     def supports(self, snake):
         return self._find(self.LogixProject, snake) is not None
 
+    def _collector(self):
+        """An OperationEvent that keeps Studio's messages (the ImportLog XML arrives line by line)."""
+        try:
+            from logix_designer_sdk.logging import OperationEvent  # type: ignore
+        except ImportError:
+            return None
+
+        class Collector(OperationEvent):
+            def __init__(self):
+                super().__init__()
+                self.lines = []
+
+            def log_status_message(self, *a):
+                self.lines.append(" ".join(str(x) for x in a))
+
+            def log_error_message(self, *a):
+                self.lines.append("ERROR " + " ".join(str(x) for x in a))
+
+            def set_progress(self, *a):
+                pass
+
+        self.events = Collector()
+        return self.events
+
     def open(self, path):
-        return self._run(self.LogixProject.open_logix_project(path))
+        col = self._collector()
+        return self._run(self.LogixProject.open_logix_project(path, col) if col else self.LogixProject.open_logix_project(path))
+
+    def import_log(self) -> dict | None:
+        """Studio's ImportLog of the last open/import: {'warnings', 'errors', 'items': [{severity, line, mnemonic, detail}]}."""
+        lines = [l.split("ImportLog", 1)[1].strip() for l in getattr(getattr(self, "events", None), "lines", []) if "ImportLog" in l]
+        if not lines:
+            return None
+        out = {"warnings": 0, "errors": 0, "items": []}
+        for l in lines:
+            m = re.search(r'<Summary Warnings="(\d+)" Errors="(\d+)"', l)
+            if m:
+                out["warnings"], out["errors"] = int(m.group(1)), int(m.group(2))
+            m = re.search(r"<Exception Severity='(\w+)' Line='(\d+)'.*? Mnemonic='(\w+)'", l)
+            if m:
+                sec = re.search(r"SecondaryMnemonic='(\w+)'", l)
+                out["items"].append({"severity": m.group(1), "line": int(m.group(2)), "mnemonic": m.group(3), "detail": sec.group(1) if sec else ""})
+        return out
 
     def static(self, snake, *args):
         fn = self._find(self.LogixProject, snake)
         if fn is None:
             raise AttributeError(f"python SDK has no LogixProject.{snake}")
-        return self._run(fn(*args))
+        col = self._collector()
+        return self._run(fn(*args, col) if col else fn(*args))
 
     def call(self, proj, snake, *args):
         fn = self._find(proj, snake)
@@ -367,6 +409,9 @@ def l5x_to_acd(be: Backend, l5x: str, out: str, overwrite=False, build=False, re
     if not os.path.exists(out) or os.path.getsize(out) == 0:
         raise SystemExit(f"save_as reported success but {out} is missing or empty")
     result["bytes"] = os.path.getsize(out)
+    log = be.import_log() if hasattr(be, "import_log") else None
+    if log:
+        result["import_log"] = log   # Studio's own verdict on the L5X: warnings and their mnemonics with L5X line numbers
     return result
 
 

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import json
+import re
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
@@ -21,10 +22,41 @@ from ..model import AOI, ATOMIC_TYPES, DataType, Module, Program, Project, Routi
 
 _CDATA_MARK = "__LF_CDATA__"
 
-STRUCT_MEMBERS = {  # predefined structures we can initialise in Decorated format
+STRUCT_MEMBERS = {  # predefined structures we can initialise in Decorated format; (name, type[, default])
     "TIMER": [("PRE", "DINT"), ("ACC", "DINT"), ("EN", "BOOL"), ("TT", "BOOL"), ("DN", "BOOL")],
     "COUNTER": [("PRE", "DINT"), ("ACC", "DINT"), ("CU", "BOOL"), ("CD", "BOOL"), ("DN", "BOOL"), ("OV", "BOOL"), ("UN", "BOOL")],
+    "CONTROL": [("LEN", "DINT"), ("POS", "DINT"), ("EN", "BOOL"), ("EU", "BOOL"), ("DN", "BOOL"), ("EM", "BOOL"), ("ER", "BOOL"),
+                ("UL", "BOOL"), ("IN", "BOOL"), ("FD", "BOOL")],
+    # member lists and defaults as Studio 5000 v36 exports them (HVPS build re-export, 2026-10-01); EnableIn defaults to 1
+    "FBD_TIMER": [("EnableIn", "BOOL", 1), ("TimerEnable", "BOOL"), ("PRE", "DINT"), ("Reset", "BOOL"), ("EnableOut", "BOOL"),
+                  ("ACC", "DINT"), ("EN", "BOOL"), ("TT", "BOOL"), ("DN", "BOOL"), ("Status", "DINT"), ("InstructFault", "BOOL"),
+                  ("PresetInv", "BOOL")],
+    "FBD_COUNTER": [("EnableIn", "BOOL", 1), ("CUEnable", "BOOL"), ("CDEnable", "BOOL"), ("PRE", "DINT"), ("Reset", "BOOL"),
+                    ("EnableOut", "BOOL"), ("ACC", "DINT"), ("CU", "BOOL"), ("CD", "BOOL"), ("DN", "BOOL"), ("OV", "BOOL"),
+                    ("UN", "BOOL"), ("Status", "DINT"), ("InstructFault", "BOOL"), ("PresetInv", "BOOL")],
+    "FBD_ONESHOT": [("EnableIn", "BOOL", 1), ("InputBit", "BOOL"), ("EnableOut", "BOOL"), ("OutputBit", "BOOL")],
 }
+
+
+def _struct_default(data_type: str, member: str):
+    for row in STRUCT_MEMBERS.get(data_type, []):
+        if row[0] == member and len(row) > 2:
+            return row[2]
+    return None
+
+
+def _complete(data_type: str, proj, seen=None) -> bool:
+    """True when every member type down the tree is known, so Decorated data can be emitted in full.
+    Studio rejects a Structure with members missing (XMLSrv_E_SYNTAX_ERROR_EXPECT_STRUCT_MEM) and drops the value."""
+    if data_type in ATOMIC_TYPES:
+        return True
+    seen = seen or set()
+    if data_type in seen:
+        return False
+    members = _members_of(data_type, proj)
+    if members is None:
+        return False
+    return all(_complete(t, proj, seen | {data_type}) for _, t, _ in members)
 
 
 def _radix(data_type: str):
@@ -53,8 +85,10 @@ def _now() -> str:
     return _dt.datetime.now().strftime("%a %b %d %H:%M:%S %Y")
 
 
-def _l5k_value(v) -> str:
-    """Render a python value as L5K data text: scalars, lists -> [..], dicts -> [..] in member order."""
+def _l5k_value(v, data_type: str = "") -> str:
+    """Render a python value as L5K data text: scalars, lists -> [..], dicts -> [..] in member order.
+    A string holding a number for a non-STRING type (decompiled AOI defaults are strings) is written bare:
+    `'0'` for a BOOL makes Studio warn RxE_IE_TAG_DT_MISMATCH and ignore the default."""
     if v is None:
         return "0"
     if isinstance(v, bool):
@@ -62,6 +96,8 @@ def _l5k_value(v) -> str:
     if isinstance(v, (int, float)):
         return repr(v) if isinstance(v, float) else str(v)
     if isinstance(v, str):
+        if data_type and data_type != "STRING" and re.fullmatch(r"\s*[-+]?(\d+(\.\d*)?([eE][-+]?\d+)?|\d*\.\d+|16#[0-9A-Fa-f_]+|2#[01_]+|8#[0-7_]+)\s*", v):
+            return v.strip()
         return "'" + v.replace("'", "$'") + "'"
     if isinstance(v, (list, tuple)):
         return "[" + ",".join(_l5k_value(x) for x in v) + "]"
@@ -199,7 +235,7 @@ def _members_of(data_type: str, proj):
         if udt:
             return [(m.name, m.data_type, m.dimension) for m in udt.members]
     if data_type in STRUCT_MEMBERS:
-        return [(n, t, 0) for n, t in STRUCT_MEMBERS[data_type]]
+        return [(row[0], row[1], 0) for row in STRUCT_MEMBERS[data_type]]
     return None
 
 
@@ -253,16 +289,22 @@ def _decorated_structure(parent, data_type: str, v, proj, tag="Structure", name=
     else:
         get = lambda i, n: None
     for i, (mname, mtype, mdim) in enumerate(members):
-        _decorated_member(st, mname, mtype, mdim, get(i, mname), proj)
+        v_i = get(i, mname)
+        if v_i is None:
+            v_i = _struct_default(data_type, mname)
+        _decorated_member(st, mname, mtype, mdim, v_i, proj)
     return st
 
 
 def _data_el(tag_el, data_type: str, dimensions: str, value, proj):
     """Initial value: L5K for scalars, Decorated (member-named) for structures and arrays so BOOL
-    packing and member order never matter."""
+    packing and member order never matter. Structures with a member type the writer cannot render in
+    full get no Data element at all (Logix zero-initialises) instead of an incomplete one."""
     if data_type in ATOMIC_TYPES and not dimensions:
         d = ET.SubElement(tag_el, "Data", Format="L5K")
-        d.text = f"{_CDATA_MARK}{_l5k_value(value)}{_CDATA_MARK}"
+        d.text = f"{_CDATA_MARK}{_l5k_value(value, data_type)}{_CDATA_MARK}"
+        return
+    if data_type not in ATOMIC_TYPES and not _complete(data_type, proj):
         return
     if dimensions:
         if "," in dimensions or (data_type not in ATOMIC_TYPES and _members_of(data_type, proj) is None):
@@ -390,7 +432,7 @@ def _aoi_el(parent: ET.Element, a: AOI, use: str = "") -> ET.Element:
             _cdata(pe, "Description", prm.description)
         if prm.default is not None and prm.usage != "InOut":
             d = ET.SubElement(pe, "DefaultData", Format="L5K")
-            d.text = f"{_CDATA_MARK}{_l5k_value(prm.default)}{_CDATA_MARK}"
+            d.text = f"{_CDATA_MARK}{_l5k_value(prm.default, prm.data_type)}{_CDATA_MARK}"
     lt = ET.SubElement(e, "LocalTags")
     for t in a.local_tags:
         attrs = dict(Name=t.name, DataType=t.data_type)
@@ -405,7 +447,7 @@ def _aoi_el(parent: ET.Element, a: AOI, use: str = "") -> ET.Element:
             _cdata(le, "Description", t.description)
         if t.value is not None and t.data_type in ATOMIC_TYPES and not t.dimensions:
             d = ET.SubElement(le, "DefaultData", Format="L5K")
-            d.text = f"{_CDATA_MARK}{_l5k_value(t.value)}{_CDATA_MARK}"
+            d.text = f"{_CDATA_MARK}{_l5k_value(t.value, t.data_type)}{_CDATA_MARK}"
     routines = ET.SubElement(e, "Routines")
     for r in a.routines:
         _routine_el(routines, r)

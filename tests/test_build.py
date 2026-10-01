@@ -150,3 +150,69 @@ def test_decorated_arrays_and_timer_preset(tmp_path):
     m2 = ctl.find("Tags/Tag[@Name='Motors']/Data/Array/Element[@Index='[1]']/Structure/DataValueMember[@Name='Cfg_FaultDelay_ms']")
     assert m2.get("Value") == "2"
     assert read_l5x(out).find_program("P_Conveyor") is not None
+
+
+def test_fbd_timer_data_defaults_and_incomplete_structures(tmp_path):
+    """BACKLOG 19: FBD_TIMER members rendered as Studio exports them (EnableIn = 1); a structure with an
+    unknown member type gets no Data element instead of an incomplete one."""
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    (tmp_path / "p" / "datatypes" / "UDT_Seq.json").write_text(json.dumps({
+        "name": "UDT_Seq", "description": "d", "members": [
+            {"name": "Step_Val", "data_type": "DINT", "description": "d"},
+            {"name": "Pulse_Tmr", "data_type": "FBD_TIMER", "description": "d"}]}), encoding="utf-8")
+    (tmp_path / "p" / "datatypes" / "UDT_Odd.json").write_text(json.dumps({
+        "name": "UDT_Odd", "description": "d", "members": [
+            {"name": "A", "data_type": "DINT", "description": "d"},
+            {"name": "Pid", "data_type": "PID_ENHANCED", "description": "d"}]}), encoding="utf-8")
+    (tmp_path / "p" / "tags" / "extra.json").write_text(json.dumps([
+        {"name": "Seq", "data_type": "UDT_Seq", "value": {"Step_Val": 3, "Pulse_Tmr": {"PRE": 250}}, "description": "d"},
+        {"name": "Odd", "data_type": "UDT_Odd", "value": {"A": 1}, "description": "d"},
+        {"name": "OS", "data_type": "FBD_ONESHOT", "value": {}, "description": "d"},
+    ]), encoding="utf-8")
+    proj = load_project(tmp_path / "p")
+    out = write_l5x(proj, str(tmp_path / "x.L5X"))
+    ctl = ET.parse(out).getroot().find("Controller")
+    tmr = ctl.find("Tags/Tag[@Name='Seq']/Data/Structure/StructureMember[@Name='Pulse_Tmr']")
+    members = {m.get("Name"): m.get("Value") for m in tmr}
+    assert members["EnableIn"] == "1" and members["PRE"] == "250" and members["PresetInv"] == "0"
+    assert list(members) == ["EnableIn", "TimerEnable", "PRE", "Reset", "EnableOut", "ACC", "EN", "TT", "DN", "Status", "InstructFault", "PresetInv"]
+    assert ctl.find("Tags/Tag[@Name='Odd']/Data") is None          # incomplete structure: no Data at all
+    assert ctl.find("Tags/Tag[@Name='OS']/Data/Structure/DataValueMember[@Name='EnableIn']").get("Value") == "1"
+
+
+def test_aoi_default_strings_written_bare(tmp_path):
+    """BACKLOG 18: a decompiled AOI carries defaults as strings; BOOL/DINT defaults must not be quoted."""
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    aoi = tmp_path / "p" / "aois" / "AOI_Motor" / "aoi.json"
+    d = json.loads(aoi.read_text(encoding="utf-8"))
+    for prm in d["parameters"]:
+        if prm["name"] == "Start":
+            prm["default"] = "0"
+        if prm["name"] == "FaultDelay":
+            prm["default"] = "2000"
+    aoi.write_text(json.dumps(d), encoding="utf-8")
+    out = write_l5x(load_project(tmp_path / "p"), str(tmp_path / "x.L5X"))
+    text = Path(out).read_text(encoding="utf-8")
+    assert "<![CDATA['0']]>" not in text and "<![CDATA['2000']]>" not in text
+    assert "<DefaultData Format=\"L5K\"><![CDATA[2000]]></DefaultData>" in text
+
+
+def test_validator_value_range(tmp_path):
+    """BACKLOG 20: initial values that do not fit the member type are errors (Studio keeps 0 silently)."""
+    import json
+    import shutil
+    shutil.copytree(DEMO, tmp_path / "p")
+    (tmp_path / "p" / "datatypes" / "UDT_Sp.json").write_text(json.dumps({
+        "name": "UDT_Sp", "description": "d", "members": [{"name": "Deadband_SP", "data_type": "INT", "description": "ms"}]}), encoding="utf-8")
+    (tmp_path / "p" / "tags" / "extra.json").write_text(json.dumps([
+        {"name": "Sp", "data_type": "UDT_Sp", "value": {"Deadband_SP": 60000}, "description": "d"},
+        {"name": "Ok", "data_type": "INT", "value": 30000, "description": "d"},
+        {"name": "Big", "data_type": "SINT", "dimensions": "2", "value": [1, 300], "description": "d"},
+    ]), encoding="utf-8")
+    codes = [(f.code, f.where) for f in validate(load_project(tmp_path / "p")) if f.code == "VALUE_RANGE"]
+    assert ("VALUE_RANGE", "controller tag Sp") in codes and ("VALUE_RANGE", "controller tag Big") in codes
+    assert not any(w == "controller tag Ok" for _, w in codes)

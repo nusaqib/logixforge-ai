@@ -183,6 +183,8 @@ class Validator:
                     self.err("UNKNOWN_TYPE", w, f"unknown data type {t.data_type!r}")
                 if t.data_type == "BOOL" and t.dimensions and int(t.dimensions.split(",")[0]) % 32:
                     self.err("BOOL_ARRAY", w, "BOOL array dimension must be a multiple of 32")
+                if t.value is not None:
+                    self.check_value_range(t.value, t.data_type, w, t.name)
             if not t.description:
                 self.warn("NO_DESC", w, "tag has no description")
             self.check_desc(t.description, w)
@@ -191,6 +193,36 @@ class Validator:
                 self.check_suffix(t.name, t.data_type, t.dimensions, w)
             if scope == "controller" and t.data_type in ATOMIC_TYPES and not t.alias_for and not t.constant:
                 pass  # allowed; house rule may prefer program scope (see standards)
+
+    INT_RANGE = {"SINT": (-128, 127), "INT": (-32768, 32767), "DINT": (-2**31, 2**31 - 1), "LINT": (-2**63, 2**63 - 1),
+                 "USINT": (0, 255), "UINT": (0, 65535), "UDINT": (0, 2**32 - 1), "BOOL": (0, 1)}
+
+    def check_value_range(self, value, data_type: str, where: str, path: str):
+        """Initial values must fit the member type: Studio imports an out-of-range value with
+        RxLsE_VALUE_OUT_OF_RANGE and silently keeps 0 (HVPS: 60000 ms in an INT setpoint)."""
+        if isinstance(value, (list, tuple)):
+            for i, v in enumerate(value):
+                self.check_value_range(v, data_type, where, f"{path}[{i}]")
+            return
+        if isinstance(value, dict):
+            udt = next((d for d in self.p.data_types if d.name == data_type), None)
+            if udt is None:
+                return
+            types = {m.name.lower(): m.data_type for m in udt.members}
+            for k, v in value.items():
+                mt = types.get(str(k).lower())
+                if mt:
+                    self.check_value_range(v, mt, where, f"{path}.{k}")
+            return
+        rng = self.INT_RANGE.get(data_type)
+        if rng is None or isinstance(value, bool):
+            return
+        try:
+            n = int(float(value))
+        except (TypeError, ValueError):
+            return
+        if not rng[0] <= n <= rng[1]:
+            self.err("VALUE_RANGE", where, f"initial value {value!r} of {path} does not fit {data_type} [{rng[0]}, {rng[1]}]")
 
     def all_tag_names(self, scope: str) -> set[str]:
         names = self.p.controller_tag_names()
